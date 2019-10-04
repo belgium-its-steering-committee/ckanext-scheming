@@ -67,7 +67,7 @@
     {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {% endcall %}
     <script>
-        // $('#field-{{ field.field_name }}-tz').parent().parent().toggle();
+        $('#field-{{ field.field_name }}-tz').parent().parent().toggle();
 
         setDatetimeIfEmpty();
 
@@ -95,7 +95,7 @@
             if (month < 10) {
                 month = '0' + month;
             }
-            return today.getFullYear() + "-" + day + "-" + month ;
+            return today.getFullYear() + "-" + month + "-" + day ;
         }
 
         function getTime() {
