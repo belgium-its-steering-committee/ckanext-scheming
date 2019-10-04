@@ -78,15 +78,12 @@
             }
             let timeField = $('#field-{{ field.field_name }}-time');
             if (timeField.val() === "") {
-                let timex = getTime();
-                console.log(timex);
-                timeField.val(timex);
+                timeField.val(getTime());
             }
         }
 
         function getToday() {
             let today = new Date();
-            console.log(today);
             let day = today.getDate();
             let month = today.getMonth() + 1;
             if (day < 10) {
