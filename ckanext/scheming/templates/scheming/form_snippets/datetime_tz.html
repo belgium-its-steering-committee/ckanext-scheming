@@ -67,7 +67,7 @@
     {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {% endcall %}
     <script>
-        // $('#field-{{ field.field_name }}-tz').parent().parent().toggle();
+        $('#field-{{ field.field_name }}-tz').parent().parent().toggle();
 
         setDatetimeIfEmpty();
 
