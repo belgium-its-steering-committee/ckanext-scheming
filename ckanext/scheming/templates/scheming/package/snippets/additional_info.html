@@ -13,6 +13,16 @@
     ] -%}
 
 {% block package_additional_info %}
+    <tr>
+        <th scope="row">{{ _('ID') }}</th>
+        <td>{{ pkg_dict.id }}</td>
+    </tr>
+    <tr>
+        <th scope="row" class="dataset-label">{{ _('metadata_modified') }}</th>
+        <td id="metadata_modified" class="dataset-details">
+            {{ h.format_datetime(pkg_dict.metadata_modified) }}
+        </td>
+    </tr>
   {%- for field in schema.dataset_fields -%}
     {%- if field.field_name not in exclude_fields
         and field.display_snippet is not none -%}
