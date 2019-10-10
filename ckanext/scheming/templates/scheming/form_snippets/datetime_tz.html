@@ -72,13 +72,15 @@
         setDatetimeIfEmpty();
 
         function setDatetimeIfEmpty() {
-            let dateField = $('#field-{{ field.field_name }}-date');
-            if (dateField.val() === "") {
-                dateField.val(getToday());
-            }
-            let timeField = $('#field-{{ field.field_name }}-time');
-            if (timeField.val() === "") {
-                timeField.val(getTime());
+            if ("{{ field.field_name }}" === "temporal_start") {
+                let dateField = $('#field-temporal_start-date');
+                if (dateField.val() === "") {
+                    dateField.val(getToday());
+                }
+                let timeField = $('#field-temporal_start-time');
+                if (timeField.val() === "") {
+                    timeField.val(getTime());
+                }
             }
         }
 
