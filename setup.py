@@ -29,6 +29,9 @@ setup(
     entry_points=\
     """
     [ckan.plugins]
+    itranslation=ckanext.itranslation.plugin:ExampleITranslationPlugin
+    [babel.extractors]
+    ckan = ckan.lib.extract:extract_ckan
     scheming_datasets=ckanext.scheming.plugins:SchemingDatasetsPlugin
     scheming_groups=ckanext.scheming.plugins:SchemingGroupsPlugin
     scheming_organizations=ckanext.scheming.plugins:SchemingOrganizationsPlugin
@@ -38,4 +41,11 @@ setup(
     [paste.paster_command]
     scheming=ckanext.scheming.commands:SchemingCommand
     """,
+    message_extractors={
+        'ckanext': [
+            ('**.py', 'python', None),
+            ('**.js', 'javascript', None),
+            ('**/templates/**.html', 'ckan', None),
+        ],
+    }
 )
