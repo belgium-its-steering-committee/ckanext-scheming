@@ -150,7 +150,7 @@ msgstr ""
 
 #: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:21
 msgid "Metadata date"
-msgstr ""
+msgstr "Datum der Metadaten"
 
 #: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:41
 msgid "State"
