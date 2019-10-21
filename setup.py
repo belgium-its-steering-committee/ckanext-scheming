@@ -29,15 +29,14 @@ setup(
     entry_points=\
     """
     [ckan.plugins]
-    itranslation=ckanext.itranslation.plugin:ExampleITranslationPlugin
-    [babel.extractors]
-    ckan = ckan.lib.extract:extract_ckan
     scheming_datasets=ckanext.scheming.plugins:SchemingDatasetsPlugin
     scheming_groups=ckanext.scheming.plugins:SchemingGroupsPlugin
     scheming_organizations=ckanext.scheming.plugins:SchemingOrganizationsPlugin
     scheming_test_subclass=ckanext.scheming.tests.plugins:SchemingTestSubclass
     scheming_test_plugin=ckanext.scheming.tests.plugins:SchemingTestSchemaPlugin
-
+    itranslation=ckanext.itranslation.plugin:ExampleITranslationPlugin
+    [babel.extractors]
+    ckan = ckan.lib.extract:extract_ckan
     [paste.paster_command]
     scheming=ckanext.scheming.commands:SchemingCommand
     """,
