@@ -22,86 +22,86 @@ msgstr ""
 #: ckanext/scheming/validation.py:42 ckanext/scheming/validation.py:102
 #, python-format
 msgid "unexpected choice \"%s\""
-msgstr ""
+msgstr "onverwachte keuze \"%s\""
 
 #: ckanext/scheming/validation.py:87
 msgid "expecting list of strings"
-msgstr ""
+msgstr "verwacht lijst met strings"
 
 #: ckanext/scheming/validation.py:110
 msgid "Select at least one"
-msgstr ""
+msgstr "Selecteer minimaal één"
 
 #: ckanext/scheming/validation.py:116 ckanext/scheming/validation.py:182
 #: ckanext/scheming/validation.py:211
 msgid "Date format incorrect"
-msgstr ""
+msgstr "Datumnotatie onjuist"
 
 #: ckanext/scheming/validation.py:117
 msgid "Time format incorrect"
-msgstr ""
+msgstr "Tijdnotatie onjuist"
 
 #: ckanext/scheming/validation.py:150
 msgid "Date is required when a time is provided"
-msgstr ""
+msgstr "Datum is vereist wanneer een tijd wordt opgegeven"
 
 #: ckanext/scheming/validation.py:245
 msgid "Unsupported value for JSON field: {}"
-msgstr ""
+msgstr "Niet-ondersteunde waarde voor JSON-veld: {}"
 
 #: ckanext/scheming/validation.py:250
 msgid "Invalid JSON string: {}"
-msgstr ""
+msgstr "Ongeldige JSON-string: {}"
 
 #: ckanext/scheming/validation.py:256
 msgid "Invalid JSON object: {}"
-msgstr ""
+msgstr "Ongeldig JSON-object: {}"
 
 #: ckanext/scheming/validation.py:259
 msgid "Unsupported type for JSON field: {}"
-msgstr ""
+msgstr "Niet-ondersteund type voor JSON-veld: {}"
 
 #: ckanext/scheming/templates/organization/snippets/organization_item.html:7
 #: ckanext/scheming/templates/scheming/snippets/organization.html:7
 msgid "read more"
-msgstr ""
+msgstr "Lees verder"
 
 #: ckanext/scheming/templates/scheming/form_snippets/_organization_select.html:21
 msgid "No organization"
-msgstr ""
+msgstr "Geen organisatie"
 
 #: ckanext/scheming/templates/scheming/form_snippets/organization.html:25
 msgid "Visibility"
-msgstr ""
+msgstr "Zichtbaarheid"
 
 #: ckanext/scheming/templates/scheming/form_snippets/organization.html:28
 msgid "Private"
-msgstr ""
+msgstr "Privaat"
 
 #: ckanext/scheming/templates/scheming/form_snippets/organization.html:28
 msgid "Public"
-msgstr ""
+msgstr "Openbaar"
 
 #: ckanext/scheming/templates/scheming/group/group_form.html:20
 msgid "Are you sure you want to delete this Group?"
-msgstr ""
+msgstr "Weet u zeker dat u deze groep wilt verwijderen?"
 
 #: ckanext/scheming/templates/scheming/group/group_form.html:21
 #: ckanext/scheming/templates/scheming/organization/group_form.html:22
 msgid "Delete"
-msgstr ""
+msgstr "Verwijder"
 
 #: ckanext/scheming/templates/scheming/group/group_form.html:25
 msgid "Save Group"
-msgstr ""
+msgstr "Groep opslaan"
 
 #: ckanext/scheming/templates/scheming/organization/group_form.html:21
 msgid "Are you sure you want to delete this Organization?"
-msgstr ""
+msgstr "Weet u zeker dat u deze organisatie wilt verwijderen?"
 
 #: ckanext/scheming/templates/scheming/organization/group_form.html:26
 msgid "Save Organization"
-msgstr ""
+msgstr "Organisatie opslaan"
 
 #: ckanext/scheming/templates/scheming/package/read.html:12
 #: ckanext/scheming/templates/scheming/package/snippets/package_form.html:15
@@ -109,58 +109,59 @@ msgstr ""
 msgid ""
 "dataset_type not passed to template. your version of CKAN might not be "
 "compatible with ckanext-scheming"
-msgstr ""
+msgstr "dataset_type niet doorgegeven aan sjabloon. uw versie van CKAN is mogelijk niet compatibel met ckanext-scheming
+"
 
 #: ckanext/scheming/templates/scheming/package/read.html:32
 msgid "Transportation modes covered"
-msgstr ""
+msgstr "Vervoerswijzen gedekt"
 
 #: ckanext/scheming/templates/scheming/package/resource_read.html:13
 msgid "Additional Information"
-msgstr ""
+msgstr "Extra informatie"
 
 #: ckanext/scheming/templates/scheming/package/resource_read.html:17
 msgid "Field"
-msgstr ""
+msgstr "Veld"
 
 #: ckanext/scheming/templates/scheming/package/resource_read.html:18
 msgid "Value"
-msgstr ""
+msgstr "Waarde"
 
 #: ckanext/scheming/templates/scheming/package/resource_read.html:24
 msgid "Last updated"
-msgstr ""
+msgstr "Laatst bijgewerkt"
 
 #: ckanext/scheming/templates/scheming/package/resource_read.html:25
 #: ckanext/scheming/templates/scheming/package/resource_read.html:31
 msgid "unknown"
-msgstr ""
+msgstr "onbekend"
 
 #: ckanext/scheming/templates/scheming/package/resource_read.html:30
 msgid "Created"
-msgstr ""
+msgstr "Gemaakt"
 
 #: ckanext/scheming/templates/scheming/package/resource_read.html:36
 msgid "License"
-msgstr ""
+msgstr "Licentie"
 
 #: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:17
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:21
 msgid "Metadata date"
-msgstr ""
+msgstr "Datum metadata"
 
 #: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:41
 msgid "State"
-msgstr ""
+msgstr "Staat"
 
 #: ckanext/scheming/templates/scheming/snippets/errors.html:6
 msgid "The form contains invalid entries:"
-msgstr ""
+msgstr "Het formulier bevat ongeldige vermeldingen:"
 
 #: ckanext/scheming/templates/scheming/snippets/organization.html:10
 msgid "There is no description for this organization"
-msgstr ""
+msgstr "Er is geen beschrijving voor deze organisatie"
 
