@@ -109,8 +109,9 @@ msgstr "Organisatie opslaan"
 msgid ""
 "dataset_type not passed to template. your version of CKAN might not be "
 "compatible with ckanext-scheming"
-msgstr "dataset_type niet doorgegeven aan sjabloon. uw versie van CKAN is mogelijk niet compatibel met ckanext-scheming
-"
+msgstr ""
+"dataset_type niet doorgegeven aan sjabloon. uw versie van CKAN is "
+"mogelijk niet compatibel met ckanext-schemin"
 
 #: ckanext/scheming/templates/scheming/package/read.html:32
 msgid "Transportation modes covered"
