@@ -18,7 +18,18 @@
         <td>{{ pkg_dict.id }}</td>
     </tr>
     <tr>
-        <th scope="row" class="dataset-label">{{ _('Metadata date') }}</th>
+        {% if h.lang() == 'en' %}
+            <th scope="row" class="dataset-label">{{ _('Metadata date') }}</th>
+        {% endif %}
+        {% if h.lang() == 'nl' %}
+            <th scope="row" class="dataset-label">Datum metadata</th>
+        {% endif %}
+        {% if h.lang() == 'fr' %}
+            <th scope="row" class="dataset-label">Date des métadonnées</th>
+        {% endif %}
+        {% if h.lang() == 'de' %}
+            <th scope="row" class="dataset-label">Datum der Metadaten</th>
+        {% endif %}
         <td id="metadata_modified" class="dataset-details">
             {{ h.format_datetime(pkg_dict.metadata_modified) }}
         </td>
