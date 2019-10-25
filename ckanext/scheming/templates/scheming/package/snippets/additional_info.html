@@ -22,13 +22,13 @@
             <th scope="row" class="dataset-label">{{ _('Metadata date') }}</th>
         {% endif %}
         {% if h.lang() == 'nl' %}
-            <th scope="row" class="dataset-label">Datum metadata</th>
+            <th scope="row" class="dataset-label">{{ _('Datum metadata') }}</th>
         {% endif %}
         {% if h.lang() == 'fr' %}
-            <th scope="row" class="dataset-label">Date des métadonnées</th>
+            <th scope="row" class="dataset-label">{{ _('Date des métadonnées') }}</th>
         {% endif %}
         {% if h.lang() == 'de' %}
-            <th scope="row" class="dataset-label">Datum der Metadaten</th>
+            <th scope="row" class="dataset-label">{{ _('Datum der Metadaten') }}</th>
         {% endif %}
         <td id="metadata_modified" class="dataset-details">
             {{ h.format_datetime(pkg_dict.metadata_modified) }}
