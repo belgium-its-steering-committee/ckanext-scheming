@@ -119,7 +119,13 @@
         "form_snippet": "json.html",
         "display_snippet": "json.html"
       }
+    },
+    {
+      "preset_name": "single_checkbox",
+      "values": {
+        "form_snippet": "single_checkbox.html",
+        "display_snippet": "single_choice.html"
+      }
     }
-
   ]
 }
