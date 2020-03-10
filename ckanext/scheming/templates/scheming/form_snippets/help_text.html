@@ -4,7 +4,7 @@
     {%- if field.get('help_link', false) -%}
         <div class="info-block">
             <i class="fa fa-info-circle"></i>
-            {{ h.scheming_language_text(field.help_text) }} <a href="{{ field.help_link }}">{{ field.get('help_link_text', 'link') }}</a>
+            {{ h.scheming_language_text(field.help_text) }} <a href="{{ field.help_link }}" target="_blank">{{ field.get('help_link_text', 'link') }}</a>
         </div>
     {%- else -%}
         {{- form.info(
