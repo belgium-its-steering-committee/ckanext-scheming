@@ -2,9 +2,9 @@
 
 {%- if field.help_text -%}
     {%- if field.get('help_link', false) -%}
-        {%- set help_text = h.scheming_language_text(field.help_text) + " " + field.help_link -%}
+        {%- set help_text =  + " " + h.link_to(field.help_link, field.help_link, rel=field.display_property, target='_blank') -%}
         {{- form.info(
-            text=help_text,
+            text=h.scheming_language_text(field.help_text),
             inline=field.get('help_inline', false)
             ) -}}
         {{ h.link_to(field.help_link, field.help_link, rel=field.display_property, target='_blank') }}
