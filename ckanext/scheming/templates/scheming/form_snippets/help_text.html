@@ -1,8 +1,17 @@
 {% import 'macros/form.html' as form %}
 
 {%- if field.help_text -%}
-    {{- form.info(
-        text=h.scheming_language_text(field.help_text),
-        inline=field.get('help_inline', false)
-        ) -}}
+    {%- if field.get('help_link', false) -%}
+        {%- set help_text = h.scheming_language_text(field.help_text) + " " + field.help_link -%}
+        {{- form.info(
+            text=help_text,
+            inline=field.get('help_inline', false)
+            ) -}}
+        {{ h.link_to(field.help_link, field.help_link, rel=field.display_property, target='_blank') }}
+    {%- else -%}
+        {{- form.info(
+            text=h.scheming_language_text(field.help_text),
+            inline=field.get('help_inline', false)
+            ) -}}
+    {%- endif -%}
 {%- endif -%}
