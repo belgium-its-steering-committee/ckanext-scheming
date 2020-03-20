@@ -73,10 +73,6 @@ msgstr ""
 msgid "Visibility"
 msgstr ""
 
-#: ckanext/scheming/templates/scheming/form_snippets/organization.html:26
-msgid "Car"
-msgstr ""
-
 #: ckanext/scheming/templates/scheming/form_snippets/organization.html:28
 msgid "Private"
 msgstr ""

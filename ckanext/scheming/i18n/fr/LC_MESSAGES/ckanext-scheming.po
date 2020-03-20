@@ -74,10 +74,6 @@ msgstr "Aucune organisation"
 msgid "Visibility"
 msgstr "Visibilité"
 
-#: ckanext/scheming/templates/scheming/form_snippets/organization.html:26
-msgid "Car"
-msgstr "Voiture"
-
 #: ckanext/scheming/templates/scheming/form_snippets/organization.html:28
 msgid "Private"
 msgstr "Privé"
