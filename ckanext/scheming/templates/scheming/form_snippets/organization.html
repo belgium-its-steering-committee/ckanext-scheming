@@ -23,9 +23,7 @@
   {% block package_metadata_fields_visibility %}
     <div class="control-group form-group control-medium">
       <!--<label for="field-private" class="control-label">{{ _('Visibility') }}</label>-->
-      <label for="field-private" class="control-label">{{- form.info(
-        text=h.scheming_language_text(field.label_dataset_organization)
-        ) -}}</label>
+      <label for="field-private" class="control-label">{{ h.scheming_language_text(field.label_dataset_organization) }}</label>
       <div class="controls">
         <select id="field-private" name="private" class="form-control">
           {% for option in [('True', _('Private')), ('False', _('Public'))] %}
