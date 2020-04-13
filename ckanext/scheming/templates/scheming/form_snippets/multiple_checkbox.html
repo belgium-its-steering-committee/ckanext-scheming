@@ -21,7 +21,7 @@ fieldset.checkboxes label input {
     is_required=h.scheming_field_required(field)) -%}
   {%- set choices = [] -%}
 
-  {%- if field.get('multi_help') -%}
+  {%- if field.get('multi_help', false) -%}
     {%- for c in h.scheming_field_choices(field) -%}
         {%- do choices.append(
         (c.value, h.scheming_language_text(c.label), h.scheming_language_text(c.help_text))) -%}
