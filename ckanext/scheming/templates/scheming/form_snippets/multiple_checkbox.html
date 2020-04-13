@@ -36,6 +36,19 @@ fieldset.checkboxes label input {
                     value="{{ val }}"
                     {{"checked " if val in data[field.field_name] }} />
                 {{ label }}
+                {%- if field.get('help_text', false) -%}
+                    {%- if field.get('help_link', false) -%}
+                        <div class="info-block">
+                            <i class="fa fa-info-circle"></i>
+                            {{ h.scheming_language_text(field.help_text) }} <a href="{{ field.help_link }}" target="_blank">{{ h.scheming_language_text(field.get('help_link_text', 'link')) }}</a>
+                        </div>
+                    {%- else -%}
+                        <div class="info-block">
+                            <i class="fa fa-info-circle"></i>
+                            {{ h.scheming_language_text(field.help_text) }}
+                        </div>
+                    {%- endif -%}
+                {%- endif -%}
             </label>
         {%- endfor -%}
     </fieldset>
