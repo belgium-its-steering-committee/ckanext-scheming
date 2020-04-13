@@ -37,6 +37,21 @@ fieldset.checkboxes label input {
   {%- if field.get('sorted_choices') -%}
     {%- set choices = choices|sort(case_sensitive=false, attribute=1) -%}
   {%- endif -%}
+  {%- if field.get('multi_help', false) -%}
+    <fieldset class="checkboxes">
+        {%- for val, label, mhelp in choices -%}
+            <label for="field-{{ field.field_name }}-{{ val }}">
+                <input id="field-{{ field.field_name }}-{{ val }}"
+                    type="checkbox"
+                    name="{{ field.field_name }}"
+                    value="{{ val }}"
+                    {{"checked " if val in data[field.field_name] }} />
+                {{ label }}
+                {{ mhelp }}
+            </label>
+        {%- endfor -%}
+    </fieldset>
+  {%- else -%}
     <fieldset class="checkboxes">
         {%- for val, label in choices -%}
             <label for="field-{{ field.field_name }}-{{ val }}">
@@ -46,22 +61,10 @@ fieldset.checkboxes label input {
                     value="{{ val }}"
                     {{"checked " if val in data[field.field_name] }} />
                 {{ label }}
-                {%- if field.get('help_text', false) -%}
-                    {%- if field.get('help_link', false) -%}
-                        <div class="info-block">
-                            <i class="fa fa-info-circle"></i>
-                            {{ h.scheming_language_text(field.help_text) }} <a href="{{ field.help_link }}" target="_blank">{{ h.scheming_language_text(field.get('help_link_text', 'link')) }}</a>
-                        </div>
-                    {%- else -%}
-                        <div class="info-block">
-                            <i class="fa fa-info-circle"></i>
-                            {{ h.scheming_language_text(field.help_text) }}
-                        </div>
-                    {%- endif -%}
-                {%- endif -%}
             </label>
         {%- endfor -%}
     </fieldset>
-    {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+  {%- endif -%}
+  {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {%- endcall -%}
 
