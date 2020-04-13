@@ -20,10 +20,20 @@ fieldset.checkboxes label input {
     error=errors[field.field_name],
     is_required=h.scheming_field_required(field)) -%}
   {%- set choices = [] -%}
-  {%- for c in h.scheming_field_choices(field) -%}
-    {%- do choices.append(
-      (c.value, h.scheming_language_text(c.label))) -%}
-  {%- endfor -%}
+
+  {%- if field.get('multi_help') -%}
+    {%- for c in h.scheming_field_choices(field) -%}
+        {%- do choices.append(
+        (c.value, h.scheming_language_text(c.label), h.scheming_language_text(c.help_text))) -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- for c in h.scheming_field_choices(field) -%}
+        {%- do choices.append(
+        (c.value, h.scheming_language_text(c.label))) -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+
   {%- if field.get('sorted_choices') -%}
     {%- set choices = choices|sort(case_sensitive=false, attribute=1) -%}
   {%- endif -%}
