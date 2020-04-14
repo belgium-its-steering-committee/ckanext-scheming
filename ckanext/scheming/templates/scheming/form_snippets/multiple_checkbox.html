@@ -20,38 +20,13 @@ fieldset.checkboxes label input {
     error=errors[field.field_name],
     is_required=h.scheming_field_required(field)) -%}
   {%- set choices = [] -%}
-
-  {%- if field.get('multi_help', false) -%}
-    {%- for c in h.scheming_field_choices(field) -%}
-        {%- do choices.append(
-        (c.value, h.scheming_language_text(c.label), h.scheming_language_text(c.help_text))) -%}
-    {%- endfor -%}
-  {%- else -%}
-    {%- for c in h.scheming_field_choices(field) -%}
-        {%- do choices.append(
-        (c.value, h.scheming_language_text(c.label))) -%}
-    {%- endfor -%}
-  {%- endif -%}
-
-
+  {%- for c in h.scheming_field_choices(field) -%}
+    {%- do choices.append(
+      (c.value, h.scheming_language_text(c.label))) -%}
+  {%- endfor -%}
   {%- if field.get('sorted_choices') -%}
     {%- set choices = choices|sort(case_sensitive=false, attribute=1) -%}
   {%- endif -%}
-  {%- if field.get('multi_help', false) -%}
-    <fieldset class="checkboxes">
-        {%- for val, label, mhelp in choices -%}
-            <label for="field-{{ field.field_name }}-{{ val }}">
-                <input id="field-{{ field.field_name }}-{{ val }}"
-                    type="checkbox"
-                    name="{{ field.field_name }}"
-                    value="{{ val }}"
-                    {{"checked " if val in data[field.field_name] }} />
-                {{ label }}
-                {{ mhelp }}
-            </label>
-        {%- endfor -%}
-    </fieldset>
-  {%- else -%}
     <fieldset class="checkboxes">
         {%- for val, label in choices -%}
             <label for="field-{{ field.field_name }}-{{ val }}">
@@ -64,7 +39,6 @@ fieldset.checkboxes label input {
             </label>
         {%- endfor -%}
     </fieldset>
-  {%- endif -%}
-  {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+    {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {%- endcall -%}
 
