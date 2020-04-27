@@ -6,7 +6,10 @@ import inspect
 import logging
 
 import ckan.plugins as p
+import ckan.plugins.toolkit as t
+
 from ckan.common import c
+from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.scheming.lib.uploader import OrganizationUploader
 
@@ -368,6 +371,14 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
 
     def get_resource_uploader(self, data_dict):
         return None
+
+
+class SchemingITranslationPlugin(p.SingletonPlugin, DefaultTranslation):
+    p.implements(p.ITranslation)
+    p.implements(p.IConfigurer)
+
+    def update_config(self, config):
+        t.add_template_directory(config, 'templates')
 
 
 def _load_schemas(schemas, type_field):
