@@ -12,11 +12,14 @@ fieldset.radios label input {
     width: auto;
     top: 0;
 }
+.no-bottom-margin {
+    margin-bottom: 4px;
+}
 </style>
 
 {%- call form.input_block(
     label=h.scheming_language_text(field.label),
-    classes=['control-medium'],
+    classes=['control-medium no-bottom-margin'],
     error=errors[field.field_name],
     is_required=h.scheming_field_required(field)) -%}
   {%- set choices = [] -%}
@@ -53,7 +56,7 @@ fieldset.radios label input {
             </label>
             <div style="padding-left: 24px;">
                     {%- if mhelp_link != "" -%}
-                        <a target="_blank" href="{{ mhelp_link }}" style="color: #333333; font-style: italic;">{{ mhelp }}</a>
+                        <a target="_blank" href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/{{ h.lang() }}{{ mhelp_link }}" style=" font-style: italic;">{{ mhelp }}</a>
                     {%- else -%}
                         <div style="color: #333333; font-style: italic;">{{ mhelp }}</div>
                     {%- endif -%}
