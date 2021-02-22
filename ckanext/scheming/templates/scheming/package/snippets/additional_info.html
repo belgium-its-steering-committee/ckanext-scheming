@@ -11,21 +11,17 @@
     'license_id',
     'owner_org',
     'agreement_declaration',
-    'optional_comment'
+    'optional_comment',
+    'custom_id'
     ] -%}
 {%- set state_field = ['theme'] -%}
 {% block package_additional_info %}
-    <script>
-        console.log(JSON.parse(decodeURIComponent({{ pkg_dict }}.replace(/l&#39;e/g, 'l\'e').replace(/u&#39;\[/g, '\[').replace(/\]&#39;/g, '\]').replace(/u&#39;/g, '"').replace(/&#39;/g, '"').replace(/u&#34;/g, '"').replace(/&#34;/g, '"').replace(/True/g, '"True"').replace(/False/g, '"False"').replace(/None/g, '"None"'))));
-    </script>
     <tr>
         <th scope="row">{{ _('ID') }}</th>
         <td>
             {% if pkg_dict.custom_id %}
-                <script>console.log("show custom_id");</script>
                 {{ pkg_dict.custom_id }}
             {% else %}
-                <script>console.log("show id");</script>
                 {{ pkg_dict.id }}
             {% endif %}
         </td>
