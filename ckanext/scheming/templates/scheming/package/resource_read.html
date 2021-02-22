@@ -40,6 +40,7 @@
           </tr>
         {%- endblock -%}
         {%- block resource_fields -%}
+          <script>console.log(schema.resource_fields);</script>
           {%- for field in schema.resource_fields -%}
             {%- if field.field_name not in exclude_fields
                 and field.display_snippet is not none -%}
