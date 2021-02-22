@@ -13,7 +13,6 @@
 {% block resource_additional_information_inner %}
   <div class="module-content">
     <h2>{{ _('Additional Information') }}</h2>
-    <p>test</p>
     <table class="table table-striped table-bordered table-condensed" data-module="table-toggle-more">
       <thead>
         <tr>
@@ -41,7 +40,6 @@
           </tr>
         {%- endblock -%}
         {%- block resource_fields -%}
-          <script>console.log({{schema.resource_fields}});</script>
           {%- for field in schema.resource_fields -%}
             {%- if field.field_name not in exclude_fields
                 and field.display_snippet is not none -%}
