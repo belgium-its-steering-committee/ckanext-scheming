@@ -15,7 +15,10 @@
     ] -%}
 {%- set state_field = ['theme'] -%}
 {% block package_additional_info %}
-    <script>console.log({{pkg_dict}});</script>
+    <script>
+        let x = JSON.parse(decodeURIComponent(escape("{{ pkg_dict }}")).replace(/&#39;/g, '"'));
+        console.log(x);
+    </script>
     <tr>
         <th scope="row">{{ _('ID') }}</th>
         <td>{{ pkg_dict.id }}</td>
