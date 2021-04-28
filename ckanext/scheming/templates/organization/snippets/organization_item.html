@@ -3,7 +3,7 @@
 {% block description %}
     {% if organization['description_translated'] %}
         <p>
-          {{ h.markdown_extract(h.benap_field_translated_fallback(organization['description_translated']), 80) }}
+          {{ h.markdown_extract(h.benap_field_translated_fallback(organization['description_translated']), extract_length=200) }}
           {% link_for _('read more'), controller='organization', action='about', id=organization.name %}
         </p>
     {% endif %}
