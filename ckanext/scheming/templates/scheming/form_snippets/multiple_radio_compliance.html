@@ -58,7 +58,7 @@ fieldset.radios label input {
                     {%- if mhelp_link != "" -%}
                     {%- for p in h.scheming_split_help_text_by_link(mhelp) -%}
                          {%- if p.link -%}
-                            <a target="_blank" href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/{{ h.lang() }}{{ mhelp_link }}" style=" font-style: italic;">{{ p }}</a>
+                            <a target="_blank" href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/{{ h.lang() }}{{ mhelp_link }}" style=" font-style: italic;">{{ p.text }}</a>
                          {%- else -%}
                             {{ p.text }}
                          {%- endif -%}
