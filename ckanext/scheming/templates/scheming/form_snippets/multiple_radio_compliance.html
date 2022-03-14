@@ -60,7 +60,7 @@ fieldset.radios label input {
                          {%- if p.link -%}
                             <a target="_blank" href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/{{ h.lang() }}{{ mhelp_link }}" style=" font-style: italic;">{{ p }}</a>
                          {%- else -%}
-                            {{ p }}
+                            {{ p.text }}
                          {%- endif -%}
                     {%- endfor -%}
                     {%- else -%}
