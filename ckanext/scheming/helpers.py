@@ -352,8 +352,6 @@ def scheming_split_help_text_by_link(help_text):
     """
     parts_list = []
     print("!"*25)
-    print(help_text)
-    print("!"*25)
     if "<a>" in help_text:
         parts = help_text.split("<a>")
         parts2 = parts[1].split("</a>")
@@ -361,5 +359,7 @@ def scheming_split_help_text_by_link(help_text):
         parts_list.extend(parts2)
     else:
         parts_list.append(help_text)
+    for p in parts_list:
+        print(p)
     print("!" * 25)
     return parts_list
