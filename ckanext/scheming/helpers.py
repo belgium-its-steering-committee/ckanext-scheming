@@ -351,7 +351,6 @@ def scheming_split_help_text_by_link(help_text):
     :return: list of parts
     """
     parts_list = []
-    print("!"*25)
     if "<a>" in help_text:
         parts = help_text.split("<a>")
         parts2 = parts[1].split("</a>")
@@ -360,7 +359,4 @@ def scheming_split_help_text_by_link(help_text):
         parts_list.append({"text": parts2[1], "link": False})
     else:
         parts_list.append({"text": help_text, "link": False})
-    for p in parts_list:
-        print(p)
-    print("!" * 25)
     return parts_list
