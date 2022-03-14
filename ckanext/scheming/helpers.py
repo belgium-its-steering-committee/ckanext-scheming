@@ -355,10 +355,11 @@ def scheming_split_help_text_by_link(help_text):
     if "<a>" in help_text:
         parts = help_text.split("<a>")
         parts2 = parts[1].split("</a>")
-        parts_list.append(parts[0])
-        parts_list.extend(parts2)
+        parts_list.append({"text": parts[0], "link": False})
+        parts_list.append({"text": parts2[0], "link": True})
+        parts_list.append({"text": parts2[1], "link": False})
     else:
-        parts_list.append(help_text)
+        parts_list.append({"text": help_text, "link": False})
     for p in parts_list:
         print(p)
     print("!" * 25)
