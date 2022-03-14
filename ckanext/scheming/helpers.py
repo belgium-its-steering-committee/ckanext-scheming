@@ -342,3 +342,24 @@ def scheming_display_json_value(value, indent=2):
         return json.dumps(value, indent=indent, sort_keys=True)
     except (TypeError, ValueError):
         return value
+
+
+def scheming_split_help_text_by_link(help_text):
+    """
+    Split help text in different parts by looking for '<a>' tags
+    :param help_text: input help text
+    :return: list of parts
+    """
+    parts_list = []
+    print("!"*25)
+    print(help_text)
+    print("!"*25)
+    if "<a>" in help_text:
+        parts = help_text.split("<a>")
+        parts2 = parts[1].split("</a>")
+        parts_list.append(parts[0])
+        parts_list.extend(parts2)
+    else:
+        parts_list.append(help_text)
+    print("!" * 25)
+    return parts_list
