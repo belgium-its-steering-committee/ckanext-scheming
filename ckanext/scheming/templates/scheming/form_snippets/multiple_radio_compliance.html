@@ -54,13 +54,22 @@ fieldset.radios label input {
                 </div>
 
             </label>
-            <div style="padding-left: 24px;">
+            <div style="padding-left: 24px;" class="info-block ">
+                <i class="fa fa-info-circle"></i>
+                <br/>
                     {%- if mhelp_link != "" -%}
-                        <a target="_blank" href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/{{ h.lang() }}{{ mhelp_link }}" style=" font-style: italic;">{{ mhelp }}</a>
+                    {%- for p in h.scheming_split_help_text_by_link(mhelp) -%}
+                         {%- if p.link -%}
+                            <a target="_blank" href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/{{ h.lang() }}{{ mhelp_link }}" style=" font-style: italic;">{{ p.text }}</a>
+                         {%- else -%}
+                            {{ p.text }}
+                         {%- endif -%}
+                    {%- endfor -%}
                     {%- else -%}
                         <div style="color: #333333; font-style: italic;">{{ mhelp }}</div>
                     {%- endif -%}
-                </div>
+                <br/><br/>
+            </div>
         {%- endfor -%}
     </fieldset>
   {%- else -%}
