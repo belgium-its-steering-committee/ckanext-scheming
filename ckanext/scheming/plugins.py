@@ -376,16 +376,17 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
 
     # IOrganizationController
     def create(self, entity):
-        self._print_entity(entity)
+        self._print_entity(entity, "scheming org create")
         return entity
 
     def edit(self, entity):
-        self._print_entity(entity)
+        self._print_entity(entity, "scheming org edit")
         return entity
 
     @staticmethod
-    def _print_entity(entity):
+    def _print_entity(entity, message):
         print("#"*25)
+        print(message)
         print()
         print(entity)
         print()
