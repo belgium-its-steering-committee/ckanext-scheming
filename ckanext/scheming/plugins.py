@@ -324,6 +324,7 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
     p.implements(p.IActions)
     p.implements(p.IValidators)
     p.implements(p.IUploader)
+    p.implements(p.IOrganizationController)
 
     SCHEMA_OPTION = 'scheming.organization_schemas'
     FALLBACK_OPTION = 'scheming.organization_fallback'
@@ -372,6 +373,24 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
 
     def get_resource_uploader(self, data_dict):
         return None
+
+    # IOrganizationController
+    def create(self, entity):
+        self._print_entity(entity)
+        return entity
+
+    def edit(self, entity):
+        self._print_entity(entity)
+        return entity
+
+    @staticmethod
+    def _print_entity(entity):
+        print("#"*25)
+        print()
+        print(entity)
+        print()
+        print("#"*25)
+
 
 
 class SchemingITranslationPlugin(p.SingletonPlugin, DefaultTranslation):
