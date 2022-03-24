@@ -324,7 +324,7 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
     p.implements(p.IActions)
     p.implements(p.IValidators)
     p.implements(p.IUploader)
-    p.implements(p.IOrganizationController)
+    p.implements(p.IOrganizationController, inherit=True)
 
     SCHEMA_OPTION = 'scheming.organization_schemas'
     FALLBACK_OPTION = 'scheming.organization_fallback'
