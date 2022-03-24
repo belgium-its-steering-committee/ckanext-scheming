@@ -95,15 +95,12 @@ class OrganizationUploader(object):
             return
 
         # hack into this to upload NAP DOC
+        if self.doc_old_filename:
+            self.doc_old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.doc_old_filename)
+
         self.doc_clear = data_dict.pop('clear_upload_doc', None)
         self.doc_file_field = 'upload_doc'
         self.doc_upload_field_storage = data_dict.pop(self.doc_file_field, None)
-        print("#" * 25)
-        print("-" * 25)
-        print(data_dict)
-        print(self.doc_clear)
-        print(self.doc_file_field)
-        print(self.doc_upload_field_storage)
         if isinstance(self.doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
             self.doc_filename = self.doc_upload_field_storage.filename
             self.doc_filename = munge.munge_filename(self.doc_filename)
@@ -114,8 +111,13 @@ class OrganizationUploader(object):
             data_dict['url_type'] = 'upload'
             self.doc_upload_file = _get_underlying_file(self.doc_upload_field_storage)
             self.doc_tmp_filepath = self.doc_filepath + '~'
-        print("-" * 25)
-        print("#" * 25)
+        # keep the file if there has been no change
+        elif self.doc_old_filename and not self.doc_old_filename.startswith('http'):
+            if not self.doc_clear:
+                data_dict['doc_document_upload'] = self.doc_old_filename
+            if self.doc_clear and self.doc_url == self.doc_old_filename:
+                data_dict['doc_document_upload'] = ''
+        # end NAP DOC hack
 
         if self.old_filename:
             self.old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.old_filename)

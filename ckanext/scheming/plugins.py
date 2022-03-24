@@ -374,29 +374,6 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
     def get_resource_uploader(self, data_dict):
         return None
 
-    # # IOrganizationController
-    # def create(self, entity):
-    #     self._print_entity(entity, "scheming org create")
-    #     return entity
-    #
-    # def edit(self, entity):
-    #     self._print_entity(entity, "scheming org edit")
-    #     return entity
-    #
-    # @staticmethod
-    # def _print_entity(entity, message):
-    #     print("#"*25)
-    #     print("-" * 25)
-    #     print(message)
-    #     print()
-    #     print(entity)
-    #     print(hasattr(entity, "extras"))
-    #     if hasattr(entity, "extras"):
-    #         print(entity.extras)
-    #     print()
-    #     print("-" * 25)
-    #     print("#"*25)
-
 
 class SchemingITranslationPlugin(p.SingletonPlugin, DefaultTranslation):
     p.implements(p.ITranslation)
