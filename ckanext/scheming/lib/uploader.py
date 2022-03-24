@@ -79,6 +79,16 @@ class OrganizationUploader(object):
         self.file_field = file_field
         self.upload_field_storage = data_dict.pop(file_field, None)
 
+        print("#" * 25)
+        print(data_dict)
+        print("-" * 25)
+        print(url_field)
+        print(clear_field)
+        print(file_field)
+
+        print("-" * 25)
+        print("#" * 25)
+
         if not self.storage_path:
             return
 
