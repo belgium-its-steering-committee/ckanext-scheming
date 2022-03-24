@@ -386,12 +386,16 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
     @staticmethod
     def _print_entity(entity, message):
         print("#"*25)
+        print("-" * 25)
         print(message)
         print()
         print(entity)
+        print(hasattr(entity, "extras"))
+        if hasattr(entity, "extras"):
+            print(entity.extras)
         print()
+        print("-" * 25)
         print("#"*25)
-
 
 
 class SchemingITranslationPlugin(p.SingletonPlugin, DefaultTranslation):
