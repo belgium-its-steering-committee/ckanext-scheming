@@ -2,7 +2,7 @@
 
 {% block primary_content_inner %}
 <h2> {{ c.group_dict['title'] }} </h2>
-<div>c.group_dict</div>
+<div>{{ c.group_dict }}</div>
 <p> {{ h.render_markdown(h.benap_field_translated_fallback(c.group_dict['description_translated'])) }} </p>
 <br/>
 <dl>
