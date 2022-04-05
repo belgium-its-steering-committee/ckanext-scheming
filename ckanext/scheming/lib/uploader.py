@@ -66,6 +66,42 @@ class OrganizationUploader(object):
         self.old_filename = old_filename
         self.old_filepath = None
 
+        # hack into this to upload NAP DOC
+        # SSTP
+        self.sstp_doc_url = ''
+        self.sstp_doc_clear = None
+        self.sstp_doc_file_field = None
+        self.sstp_doc_upload_field_storage = None
+        self.sstp_doc_filename = None
+        self.sstp_doc_filepath = None
+        self.sstp_doc_tmp_filepath = None
+        self.sstp_doc_upload_file = None
+        self.sstp_doc_old_filename = None
+        self.sstp_doc_old_filepath = None
+        # SRTI
+        self.srti_doc_url = ''
+        self.srti_doc_clear = None
+        self.srti_doc_file_field = None
+        self.srti_doc_upload_field_storage = None
+        self.srti_doc_filename = None
+        self.srti_doc_filepath = None
+        self.srti_doc_tmp_filepath = None
+        self.srti_doc_upload_file = None
+        self.srti_doc_old_filename = None
+        self.srti_doc_old_filepath = None
+        # RTTI
+        self.rtti_doc_url = ''
+        self.rtti_doc_clear = None
+        self.rtti_doc_file_field = None
+        self.rtti_doc_upload_field_storage = None
+        self.rtti_doc_filename = None
+        self.rtti_doc_filepath = None
+        self.rtti_doc_tmp_filepath = None
+        self.rtti_doc_upload_file = None
+        self.rtti_doc_old_filename = None
+        self.rtti_doc_old_filepath = None
+        # end hack
+
     def update_data_dict(self, data_dict, url_field, file_field, clear_field):
         """ Manipulate data from the data_dict.  url_field is the name of the
         field where the upload is going to be. file_field is name of the key
@@ -81,6 +117,81 @@ class OrganizationUploader(object):
 
         if not self.storage_path:
             return
+
+        # hack into this to upload NAP DOC
+        # SSTP
+        if self.sstp_doc_old_filename:
+            self.sstp_doc_old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.sstp_doc_old_filename)
+
+        self.sstp_doc_clear = data_dict.pop('sstp_clear_upload_doc', None)
+        self.sstp_doc_file_field = 'sstp_upload_doc'
+        self.sstp_doc_upload_field_storage = data_dict.pop(self.sstp_doc_file_field, None)
+        if isinstance(self.sstp_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
+            self.sstp_doc_filename = self.sstp_doc_upload_field_storage.filename
+            self.sstp_doc_filename = munge.munge_filename(self.sstp_doc_filename)
+            organization_storagepath = os.path.join(self.storage_path, data_dict.get('name'))
+            _make_dirs_if_not_existing(organization_storagepath)
+            self.sstp_doc_filepath = os.path.join(organization_storagepath, self.sstp_doc_filename)
+            data_dict['sstp_doc_document_upload'] = self.sstp_doc_filename
+            data_dict['url_type'] = 'upload'
+            self.sstp_doc_upload_file = _get_underlying_file(self.sstp_doc_upload_field_storage)
+            self.sstp_doc_tmp_filepath = self.sstp_doc_filepath + '~'
+        # keep the file if there has been no change
+        elif self.sstp_doc_old_filename and not self.sstp_doc_old_filename.startswith('http'):
+            if not self.sstp_doc_clear:
+                data_dict['sstp_doc_document_upload'] = self.sstp_doc_old_filename
+            if self.sstp_doc_clear and self.sstp_doc_url == self.sstp_doc_old_filename:
+                data_dict['sstp_doc_document_upload'] = ''
+
+        # SRTI
+        if self.srti_doc_old_filename:
+            self.srti_doc_old_filepath = os.path.join(self.storage_path, data_dict.get('name'),
+                                                 self.srti_doc_old_filename)
+
+        self.srti_doc_clear = data_dict.pop('srti_clear_upload_doc', None)
+        self.srti_doc_file_field = 'srti_upload_doc'
+        self.srti_doc_upload_field_storage = data_dict.pop(self.srti_doc_file_field, None)
+        if isinstance(self.srti_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
+            self.srti_doc_filename = self.srti_doc_upload_field_storage.filename
+            self.srti_doc_filename = munge.munge_filename(self.srti_doc_filename)
+            organization_storagepath = os.path.join(self.storage_path, data_dict.get('name'))
+            _make_dirs_if_not_existing(organization_storagepath)
+            self.srti_doc_filepath = os.path.join(organization_storagepath, self.srti_doc_filename)
+            data_dict['srti_doc_document_upload'] = self.srti_doc_filename
+            data_dict['url_type'] = 'upload'
+            self.srti_doc_upload_file = _get_underlying_file(self.srti_doc_upload_field_storage)
+            self.srti_doc_tmp_filepath = self.srti_doc_filepath + '~'
+        # keep the file if there has been no change
+        elif self.srti_doc_old_filename and not self.srti_doc_old_filename.startswith('http'):
+            if not self.srti_doc_clear:
+                data_dict['srti_doc_document_upload'] = self.srti_doc_old_filename
+            if self.srti_doc_clear and self.srti_doc_url == self.srti_doc_old_filename:
+                data_dict['srti_doc_document_upload'] = ''
+
+        # RTTI
+        if self.rtti_doc_old_filename:
+            self.rtti_doc_old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.rtti_doc_old_filename)
+
+        self.rtti_doc_clear = data_dict.pop('rtti_clear_upload_doc', None)
+        self.rtti_doc_file_field = 'rtti_upload_doc'
+        self.rtti_doc_upload_field_storage = data_dict.pop(self.rtti_doc_file_field, None)
+        if isinstance(self.rtti_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
+            self.rtti_doc_filename = self.rtti_doc_upload_field_storage.filename
+            self.rtti_doc_filename = munge.munge_filename(self.rtti_doc_filename)
+            organization_storagepath = os.path.join(self.storage_path, data_dict.get('name'))
+            _make_dirs_if_not_existing(organization_storagepath)
+            self.rtti_doc_filepath = os.path.join(organization_storagepath, self.rtti_doc_filename)
+            data_dict['rtti_doc_document_upload'] = self.rtti_doc_filename
+            data_dict['url_type'] = 'upload'
+            self.rtti_doc_upload_file = _get_underlying_file(self.rtti_doc_upload_field_storage)
+            self.rtti_doc_tmp_filepath = self.rtti_doc_filepath + '~'
+        # keep the file if there has been no change
+        elif self.rtti_doc_old_filename and not self.rtti_doc_old_filename.startswith('http'):
+            if not self.rtti_doc_clear:
+                data_dict['rtti_doc_document_upload'] = self.rtti_doc_old_filename
+            if self.rtti_doc_clear and self.rtti_doc_url == self.rtti_doc_old_filename:
+                data_dict['rtti_doc_document_upload'] = ''
+        # end NAP DOC hack
 
         if self.old_filename:
             self.old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.old_filename)
@@ -127,3 +238,65 @@ class OrganizationUploader(object):
                 os.remove(self.old_filepath)
             except OSError:
                 pass
+
+        # hack into this to upload NAP DOC
+        # SSTP
+        if self.sstp_doc_filename:
+            with open(self.sstp_doc_tmp_filepath, 'wb+') as output_file:
+                try:
+                    _copy_file(self.sstp_doc_upload_file, output_file, max_size)
+                except logic.ValidationError:
+                    os.remove(self.sstp_doc_tmp_filepath)
+                    raise
+                finally:
+                    self.sstp_doc_upload_file.close()
+            os.rename(self.sstp_doc_tmp_filepath, self.sstp_doc_filepath)
+            self.sstp_doc_clear = True
+
+        if (self.sstp_doc_clear and self.sstp_doc_old_filename
+                and not self.sstp_doc_old_filename.startswith('http')):
+            try:
+                os.remove(self.sstp_doc_old_filepath)
+            except OSError:
+                pass
+
+        # SRTI
+        if self.srti_doc_filename:
+            with open(self.srti_doc_tmp_filepath, 'wb+') as output_file:
+                try:
+                    _copy_file(self.srti_doc_upload_file, output_file, max_size)
+                except logic.ValidationError:
+                    os.remove(self.srti_doc_tmp_filepath)
+                    raise
+                finally:
+                    self.srti_doc_upload_file.close()
+            os.rename(self.srti_doc_tmp_filepath, self.srti_doc_filepath)
+            self.srti_doc_clear = True
+
+        if (self.srti_doc_clear and self.srti_doc_old_filename
+                and not self.srti_doc_old_filename.startswith('http')):
+            try:
+                os.remove(self.srti_doc_old_filepath)
+            except OSError:
+                pass
+
+        # RTTI
+        if self.rtti_doc_filename:
+            with open(self.rtti_doc_tmp_filepath, 'wb+') as output_file:
+                try:
+                    _copy_file(self.rtti_doc_upload_file, output_file, max_size)
+                except logic.ValidationError:
+                    os.remove(self.rtti_doc_tmp_filepath)
+                    raise
+                finally:
+                    self.rtti_doc_upload_file.close()
+            os.rename(self.rtti_doc_tmp_filepath, self.rtti_doc_filepath)
+            self.rtti_doc_clear = True
+
+        if (self.rtti_doc_clear and self.rtti_doc_old_filename
+                and not self.rtti_doc_old_filename.startswith('http')):
+            try:
+                os.remove(self.rtti_doc_old_filepath)
+            except OSError:
+                pass
+        # end hack
