@@ -43,7 +43,7 @@ fieldset.radios label input {
   {%- if field.get('multi_help', false) -%}
     <fieldset class="radios">
         {%- for val, label, mhelp, mhelp_link in choices -%}
-            <label style="margin: 12px 0 0 0;" for="field-{{ field.field_name }}-{{ val }}">
+            <label style="margin: 15px 0 0 0;" for="field-{{ field.field_name }}-{{ val }}">
                 <div style="display: flex; align-items: center;">
                     <input id="field-{{ field.field_name }}-{{ val }}"
                     type="radio"
@@ -65,7 +65,7 @@ fieldset.radios label input {
                          {%- endif -%}
                     {%- endfor -%}
                     {%- else -%}
-                        <div style="color: #333333; font-style: italic;">{{ mhelp }}</div>
+                        <span style="color: #333333; font-style: italic;">{{ mhelp }}</span>
                     {%- endif -%}
                 <br/><br/>
             </div>
