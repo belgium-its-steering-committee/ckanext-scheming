@@ -43,7 +43,7 @@ fieldset.radios label input {
   {%- if field.get('multi_help', false) -%}
     <fieldset class="radios">
         {%- for val, label, mhelp, mhelp_link in choices -%}
-            <label style="margin: 15px 0 0 0;" for="field-{{ field.field_name }}-{{ val }}">
+            <label style="margin: 8px 0 0 8px;" for="field-{{ field.field_name }}-{{ val }}">
                 <div style="display: flex; align-items: center;">
                     <input id="field-{{ field.field_name }}-{{ val }}"
                     type="radio"
@@ -55,7 +55,7 @@ fieldset.radios label input {
 
             </label>
             <div style="padding-left: 24px;" class="info-block ">
-                <i class="fa fa-info-circle"></i>
+                <i class="fa fa-info-circle"></i> &nbsp;&nbsp;
                     {%- if mhelp_link != "" -%}
                     {%- for p in h.scheming_split_help_text_by_link(mhelp) -%}
                          {%- if p.link -%}
