@@ -6,7 +6,7 @@
 <br/>
 <dl>
     <div>
-        {{ h.groups_available() }}
+        {{ h.check_access('organization_update', {'id': c.group_dict.id})  }}
     </div>
     <div>
         {{ h.user_in_org_or_group(c.group_dict['name'])}}
