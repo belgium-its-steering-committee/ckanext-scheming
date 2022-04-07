@@ -21,7 +21,7 @@
             </a>
         </dd>
         {% endif %}
-    {% elif f.field_name in ('agreement_declaration_mmtis', 'organization_agreement_declaration') %}
+    {% elif f.field_name in ('agreement_declaration_mmtis', 'organization_agreement_declaration', 'optional_comment') %}
         {% if h.user_in_org_or_group(c.group_dict['name']) %}
             <dt>{{ h.scheming_language_text(f.label) }}:</dt>
             <dd>{{ c.group_dict[f.field_name] or ("&nbsp;"|safe) }}</dd>
