@@ -5,6 +5,12 @@
 <p> {{ h.render_markdown(h.benap_field_translated_fallback(c.group_dict['description_translated'])) }} </p>
 <br/>
 <dl>
+    <div>
+        {{ h.groups_available() }}
+    </div>
+    <div>
+        {{ h.user_in_org_or_group(c.group_dict['name'])}}
+    </div>
 {% for f in c.scheming_fields if f.field_name not in ('title','description_translated','name', 'image_url') %}
     {% if f.field_name == 'do_website' %}
         <dt>{{ h.scheming_language_text(f.label) }}:</dt>
