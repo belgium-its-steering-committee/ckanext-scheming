@@ -38,8 +38,9 @@
 
   {% endmacro %}
 <div>
-    <b>{{ data.url_type }}</b>
-    <span style="background: #AAFFBB">{{ data }}</span>
+    <b>{{ data.url_type }}</b><br/>
+    <span style="background: #AAFFBB">{{ data }}</span><br/>
+    <span style="background: #AA22BB">{{ field }}</span><br/>
 </div>
 
 {%- set is_upload = (data.url_type == 'upload') -%}
