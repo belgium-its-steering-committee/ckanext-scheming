@@ -67,7 +67,7 @@ this.ckan.module('image-upload', function($) {
       // Button to attach local file to the form
       this.button_upload = $('<a href="javascript:;" class="btn btn-default">' +
                              '<i class="fa fa-cloud-upload"></i>' +
-                             this._('Upload') + '</a>')
+                             this._('Upload') + '</a><span>test123</span>')
         .insertAfter(this.input);
 
       if (this.previousUpload) {
@@ -91,7 +91,7 @@ this.ckan.module('image-upload', function($) {
         .on('mouseover', this._onInputMouseOver)
         .on('mouseout', this._onInputMouseOut)
         .on('change', this._onInputChange)
-        .prop('title', this._('Upload a file on your computer !!&!!!'))
+        .prop('title', this._('Upload a file on your computer'))
         .css('width', this.button_upload.outerWidth());
 
       // Fields storage. Used in this.changeState
