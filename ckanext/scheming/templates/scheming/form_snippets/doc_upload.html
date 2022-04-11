@@ -37,6 +37,7 @@
     {% if is_upload_enabled %}</div>{% endif %}
 
   {% endmacro %}
+<div><b>{{ data.url_type }}</b></div>
 {%- set is_upload = (data.url_type == 'upload') -%}
 {{ doc_upload(
     data,
