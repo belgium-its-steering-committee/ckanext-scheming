@@ -40,7 +40,16 @@
 <div>
     <b>{{ data.url_type }}</b><br/>
     <span style="background: #AAFFBB">{{ data }}</span><br/>
-    <span style="background: #AA22BB">{{ field }}</span><br/>
+    <span>{{ 'rtti_doc_document_upload' in data }}</span><br/>
+    <span>{{ 'srti_doc_document_upload' in data }}</span><br/>
+    <span>{{ 'sstp_doc_document_upload' in data }}</span><br/>
+
+    {% if 'rtti_doc_document_upload' in data %}
+    <span>{{ data.rtti_doc_document_upload }}</span><br/>
+    {% endif %}
+    {% if 'sstp_doc_document_upload' in data %}
+    <span>{{ data.sstp_doc_document_upload }}</span><br/>
+    {% endif %}
 </div>
 
 {%- set is_upload = (data.url_type == 'upload') -%}
