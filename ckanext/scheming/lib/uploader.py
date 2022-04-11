@@ -122,6 +122,7 @@ class OrganizationUploader(object):
         print("#>"*25)
         print('upload org name')
         print(data_dict.get('name'))
+        print(os.path.join(self.storage_path, data_dict.get('name')))
         print("#>"*25)
         # SSTP
         if self.sstp_doc_old_filename:
