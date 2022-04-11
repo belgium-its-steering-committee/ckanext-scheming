@@ -49,10 +49,6 @@
     {%- set is_upload = (data.sstp_doc_document_upload != '') -%}
 {% endif %}
 
-<div style="background: #AAFFBB">
-{{ is_upload }}
-</div>
-
 {{ doc_upload(
     data,
     errors,
