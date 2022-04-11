@@ -119,6 +119,10 @@ class OrganizationUploader(object):
             return
 
         # hack into this to upload NAP DOC
+        print("#>"*25)
+        print('upload org name')
+        print(data_dict.get('name'))
+        print("#>"*25)
         # SSTP
         if self.sstp_doc_old_filename:
             self.sstp_doc_old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.sstp_doc_old_filename)
