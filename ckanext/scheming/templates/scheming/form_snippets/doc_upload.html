@@ -14,7 +14,7 @@
   <div class="image-upload"
        data-module="image-upload"
        data-module-is_url="{{ 'false' }}"
-       data-module-is_upload="{{ 'false' }}"
+       data-module-is_upload="{{ 'true' if is_upload else 'false' }}"
        data-module-field_url="{{ field_url }}"
        data-module-field_upload="{{ field_upload }}"
        data-module-field_clear="{{ field_clear }}"
@@ -37,25 +37,22 @@
     {% if is_upload_enabled %}</div>{% endif %}
 
   {% endmacro %}
-<div>
-    <span style="background: #AAFFBB">{{ data }}</span><br/>
-    <span style="background: #d3fc03">{{ field }}</span><br/>
 
-    {% if 'rtti_doc_document_upload' in data and field.field_name == 'rtti_doc_document_upload' %}
-    <span>data: {{ data.rtti_doc_document_upload }}</span><br/>
-    <span>data: {{ data.rtti_doc_document_upload == '' }}</span><br/>
-    {% endif %}
-    {% if 'srti_doc_document_upload' in data and field.field_name == 'srti_doc_document_upload' %}
-    <span>data: {{ data.srti_doc_document_upload }}</span><br/>
-    <span>data: {{ data.srti_doc_document_upload == '' }}</span><br/>
-    {% endif %}
-    {% if 'sstp_doc_document_upload' in data and field.field_name == 'sstp_doc_document_upload'  %}
-    <span>data: {{ data.sstp_doc_document_upload }}</span><br/>
-    <span>data: {{ data.sstp_doc_document_upload == '' }}</span><br/>
-    {% endif %}
+
+{% if 'rtti_doc_document_upload' in data and field.field_name == 'rtti_doc_document_upload' %}
+    {%- set is_upload = (data.rtti_doc_document_upload != '') -%}
+{% endif %}
+{% if 'srti_doc_document_upload' in data and field.field_name == 'srti_doc_document_upload' %}
+    {%- set is_upload = (data.srti_doc_document_upload != '') -%}
+{% endif %}
+{% if 'sstp_doc_document_upload' in data and field.field_name == 'sstp_doc_document_upload'  %}
+    {%- set is_upload = (data.sstp_doc_document_upload != '') -%}
+{% endif %}
+
+<div style="background: #AAFFBB">
+{{ is_upload }}
 </div>
 
-{%- set is_upload = (data.url_type == 'upload') -%}
 {{ doc_upload(
     data,
     errors,
