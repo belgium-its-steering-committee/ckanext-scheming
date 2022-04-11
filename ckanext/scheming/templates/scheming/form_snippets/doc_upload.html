@@ -38,18 +38,20 @@
 
   {% endmacro %}
 <div>
-    <b>{{ data.url_type }}</b><br/>
     <span style="background: #AAFFBB">{{ data }}</span><br/>
     <span style="background: #d3fc03">{{ field }}</span><br/>
-    <span>{{ 'rtti_doc_document_upload' in data }}</span><br/>
-    <span>{{ 'srti_doc_document_upload' in data }}</span><br/>
-    <span>{{ 'sstp_doc_document_upload' in data }}</span><br/>
 
-    {% if 'rtti_doc_document_upload' in data %}
-    <span>{{ data.rtti_doc_document_upload }}</span><br/>
+    {% if 'rtti_doc_document_upload' in data and field.field_name == 'rtti_doc_document_upload' %}
+    <span>data: {{ data.rtti_doc_document_upload }}</span><br/>
+    <span>data: {{ data.rtti_doc_document_upload == '' }}</span><br/>
     {% endif %}
-    {% if 'sstp_doc_document_upload' in data %}
-    <span>{{ data.sstp_doc_document_upload }}</span><br/>
+    {% if 'srti_doc_document_upload' in data and field.field_name == 'srti_doc_document_upload' %}
+    <span>data: {{ data.srti_doc_document_upload }}</span><br/>
+    <span>data: {{ data.srti_doc_document_upload == '' }}</span><br/>
+    {% endif %}
+    {% if 'sstp_doc_document_upload' in data and field.field_name == 'sstp_doc_document_upload'  %}
+    <span>data: {{ data.sstp_doc_document_upload }}</span><br/>
+    <span>data: {{ data.sstp_doc_document_upload == '' }}</span><br/>
     {% endif %}
 </div>
 
