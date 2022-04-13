@@ -65,3 +65,8 @@
 }}
 {# doc_upload macro doesn't support call #}
 {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+
+
+<script>
+    $( "a[data-module-field_upload|='sstp_upload_doc']" ).css( "border", "3px dotted green" );
+</script>
