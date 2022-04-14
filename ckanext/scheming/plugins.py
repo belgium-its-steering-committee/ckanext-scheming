@@ -156,7 +156,7 @@ class _SchemingMixin(object):
         self._store_instance(self)
         self._add_template_directory(config)
         self._load_presets(config)
-        self._add_resource('fanstatic', 'scheming')
+        t.add_resource('fanstatic', 'scheming')
 
         self._is_fallback = asbool(config.get(self.FALLBACK_OPTION, False))
 
@@ -166,7 +166,7 @@ class _SchemingMixin(object):
             self.SCHEMA_TYPE_FIELD
         )
         self._expanded_schemas = _expand_schemas(self._schemas)
-        #t.add_resource('fanstatic', 'scheming')
+
 
     def is_fallback(self):
         return self._is_fallback
