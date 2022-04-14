@@ -66,12 +66,3 @@
 {# doc_upload macro doesn't support call #}
 {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 
-
-<script>
-    $(document).ready(function(){
-        $( "div[data-module-field_upload|='rtti_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='rtti_upload_doc']" ).attr("data-module-upload_label") );
-        $( "div[data-module-field_upload|='srti_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='srti_upload_doc']" ).attr("data-module-upload_label") );
-        $( "div[data-module-field_upload|='sstp_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='sstp_upload_doc']" ).attr("data-module-upload_label") );
-        alert( $("div[data-module-field_upload|='sstp_upload_doc']" ).attr("data-module-upload_label") )
-    });
-</script>

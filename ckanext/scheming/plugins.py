@@ -165,6 +165,7 @@ class _SchemingMixin(object):
             self.SCHEMA_TYPE_FIELD
         )
         self._expanded_schemas = _expand_schemas(self._schemas)
+        t.add_resource('fanstatic', 'scheming')
 
     def is_fallback(self):
         return self._is_fallback
