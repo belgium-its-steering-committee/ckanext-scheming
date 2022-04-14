@@ -34,12 +34,15 @@
       <fieldset class="checkboxes">
         {%- for val, label, mhelp, mhelp_link in choices -%}
             <label for="field-{{ field.field_name }}-{{ val }}">
-                <input id="field-{{ field.field_name }}-{{ val }}"
-                    type="checkbox"
-                    name="{{ field.field_name }}"
-                    value="{{ val }}"
-                     />
-                <div style="padding-left: 8px;">{{ label }}</div>
+                <div style="display: flex; align-items: center;">
+                    <input id="field-{{ field.field_name }}-{{ val }}"
+                        type="checkbox"
+                        name="{{ field.field_name }}"
+                        value="{{ val }}"
+                         />
+                    <div style="padding-left: 8px;">{{ label }}</div>
+                </div>
+
             </label>
             <div style="padding-left: 24px;" class="info-block ">
                 <i class="fa fa-info-circle"></i> &nbsp;&nbsp;
