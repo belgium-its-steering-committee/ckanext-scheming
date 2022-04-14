@@ -33,7 +33,7 @@
     {%- if field.get('multi_help', false) -%}
       <fieldset class="checkboxes">
         {%- for val, label, mhelp, mhelp_link in choices -%}
-            <label for="field-{{ field.field_name }}-{{ val }}">
+            <label style="margin: 8px 0 0 8px;" for="field-{{ field.field_name }}-{{ val }}">
                 <div style="display: flex; align-items: center;">
                     <input id="field-{{ field.field_name }}-{{ val }}"
                         type="checkbox"
