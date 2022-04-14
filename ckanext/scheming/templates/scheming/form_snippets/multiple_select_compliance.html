@@ -26,10 +26,6 @@
     {%- endfor -%}
   {%- endif -%}
 
-  {%- for c in h.scheming_field_choices(field) -%}
-    {%- do choices.append(
-      (c.value, h.scheming_language_text(c.label))) -%}
-  {%- endfor -%}
   {%- if field.get('sorted_choices') -%}
     {%- set choices = choices|sort(case_sensitive=false, attribute=1) -%}
   {%- endif -%}
