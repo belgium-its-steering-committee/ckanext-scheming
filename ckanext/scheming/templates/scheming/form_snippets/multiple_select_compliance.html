@@ -34,55 +34,7 @@
     {%- set choices = choices|sort(case_sensitive=false, attribute=1) -%}
   {%- endif -%}
 
-    {%- if field.get('multi_help', false) -%}
-      <select multiple
-          size="{{ ([field.get('select_size', 10), field.choices|length]|sort)[0] }}"
-          style="display: block"
-          id="field-{{ field.field_name }}"
-          name="{{ field.field_name }}"
-          {{ form.attributes(dict(
-            {"class": "form-control"}, **field.get('form_select_attrs', {}))) }}>
-        {%- for val, label in choices -%}
-          <option id="field-{{ field.field_name }}-{{ val }}"
-              value="{{ val }}"
-              {{"selected " if val in data[field.field_name] }} />
-            {{ label }}
-          </option>
-
-          <div style="padding-left: 24px;" class="info-block ">
-                <i class="fa fa-info-circle"></i> &nbsp;&nbsp;
-                    {%- if mhelp_link != "" -%}
-                    {%- for p in h.scheming_split_help_text_by_link(mhelp) -%}
-                         {%- if p.link -%}
-                            <a target="_blank" href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/{{ h.lang() }}{{ mhelp_link }}" style="color: #1c71bf;font-style: italic;">{{ p.text }}</a>
-                         {%- else -%}
-                            {{ p.text }}
-                         {%- endif -%}
-                    {%- endfor -%}
-                    {%- else -%}
-                        <span style="color: #333333; font-style: italic;">{{ mhelp }}</span>
-                    {%- endif -%}
-                <br/><br/>
-          </div>
-        {%- endfor -%}
-      </select>
-    {%- else -%}
-      <select multiple
-          size="{{ ([field.get('select_size', 10), field.choices|length]|sort)[0] }}"
-          style="display: block"
-          id="field-{{ field.field_name }}"
-          name="{{ field.field_name }}"
-          {{ form.attributes(dict(
-            {"class": "form-control"}, **field.get('form_select_attrs', {}))) }}>
-        {%- for val, label in choices -%}
-          <option id="field-{{ field.field_name }}-{{ val }}"
-              value="{{ val }}"
-              {{"selected " if val in data[field.field_name] }} />
-            {{ label }}
-          </option>
-        {%- endfor -%}
-      </select>
-    {%- endif -%}
+{{ choices }}
 
 
 {%- endcall -%}
