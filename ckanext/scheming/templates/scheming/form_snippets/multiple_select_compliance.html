@@ -43,9 +43,7 @@
               value="{{ val }}"
               {{"selected " if val in data[field.field_name] }} />
             {{ label }}
-          </option>
-
-          <div style="padding-left: 24px;" class="info-block ">
+            <div style="padding-left: 24px;" class="info-block ">
                 <i class="fa fa-info-circle"></i> &nbsp;&nbsp;
                     {%- if mhelp_link != "" -%}
                     {%- for p in h.scheming_split_help_text_by_link(mhelp) -%}
@@ -60,6 +58,8 @@
                     {%- endif -%}
                 <br/><br/>
           </div>
+          </option>
+
         {%- endfor -%}
       </select>
     {%- else -%}
