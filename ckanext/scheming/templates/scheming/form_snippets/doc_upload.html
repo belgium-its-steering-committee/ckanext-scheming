@@ -68,10 +68,9 @@
 
 
 <script>
-    $( "div[data-module-field_upload|='rtti_upload_doc']>div.form-group>label" ).css( "border", "3px dotted green" );
-    $( "div[data-module-field_upload|='srti_upload_doc']>div.form-group>label" ).css( "border", "3px dotted blue" );
-    $( "div[data-module-field_upload|='sstp_upload_doc']>div.form-group>label" ).css( "border", "3px dotted red" );
-    $( "div[data-module-field_upload|='rtti_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='rtti_upload_doc']" ).attr("data-module-upload_label") );
-    $( "div[data-module-field_upload|='srti_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='srti_upload_doc']" ).attr("data-module-upload_label") );
-    $( "div[data-module-field_upload|='sstp_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='sstp_upload_doc']" ).attr("data-module-upload_label") );
+    $(document).ready(function(){
+        $( "div[data-module-field_upload|='rtti_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='rtti_upload_doc']" ).attr("data-module-upload_label") );
+        $( "div[data-module-field_upload|='srti_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='srti_upload_doc']" ).attr("data-module-upload_label") );
+        $( "div[data-module-field_upload|='sstp_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='sstp_upload_doc']" ).attr("data-module-upload_label") );
+    });
 </script>
