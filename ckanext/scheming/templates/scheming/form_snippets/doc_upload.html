@@ -2,16 +2,14 @@
 
 {% macro doc_upload(data, errors, field_url='image_url', field_upload='image_upload', field_clear='clear_upload',
                       is_url=false, is_upload=false, is_upload_enabled=false, placeholder=false,
-                      url_label='', upload_label='', field_name='image_url')  %}
+                      url_label='', upload_label='', field_name='doc_url')  %}
   {% set placeholder = placeholder if placeholder else false %}
-  {% set url_label = url_label or _('Image URL')  %}
+  {% set url_label = url_label or ''  %}
   {% set upload_label = upload_label or ''  %}
   {% set previous_upload = data['previous_upload'] %}
 
   {% if is_upload_enabled %}
-
-
-  <div class="image-upload"
+    <div class="image-upload"
        data-module="image-upload"
        data-module-is_url="{{ 'false' }}"
        data-module-is_upload="{{ 'true' if is_upload else 'false' }}"
@@ -22,21 +20,54 @@
        data-module-field_name="{{ field_name }}"
        data-module-previous_upload="{{ 'true' if previous_upload else 'false' }}">
   {% endif %}
+  {{ form.input(field_url, label=url_label, id='field-image-url', type='url', placeholder=placeholder, value=data.get(field_url), error=errors.get(field_url), classes=['control-full', field_upload + '_url']) }}
 
-
-   {{ form.input(field_url, label=url_label, id='field-image-url', type='url', placeholder=placeholder, value=data.get(field_url), error=errors.get(field_url), classes=['control-full']) }}
-
-
-    {% if is_upload_enabled %}
-    {{ form.input(field_upload, label=upload_label, id='field-image-upload', type='file', placeholder='', value='', error='', classes=['control-full']) }}
+  {% if is_upload_enabled %}
+    {{ form.input(field_upload, label=upload_label, id='field-image-upload', type='file', placeholder='', value='', error='', classes=['control-full', field_upload]) }}
     {% if is_upload %}
-    {{ form.checkbox(field_clear, label=_('Clear Upload'), id='field-clear-upload', value='true', error='', classes=['control-full']) }}
+        {{ form.checkbox(field_clear, label=_('Clear Upload'), id='field-clear-upload', value='true', error='', classes=['control-full', field_upload + '_clear']) }}
     {% endif %}
-    {% endif %}
+  {% endif %}
+  {% if is_upload_enabled %}</div>{% endif %}
 
-    {% if is_upload_enabled %}</div>{% endif %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+            var url = $(location).attr('href').split("/");
+            var is_new = url[url.length - 1].toLowerCase() === 'new';
+            var has_real_file = $('.{{field_upload}} input#field-image-upload')[0].files.length > 0;
+            var file_size = 0;
+            var file_name = '';
+            if (has_real_file) {
+                file_size = $('.{{field_upload}} input#field-image-upload')[0].files[0].size;
+                file_name = $('.{{field_upload}}_url input#field-image-url')[0].value;
+            }
+            var errors = JSON.parse('{{ errors }}'.replace(/u&#39;/g, '"').replace(/&#39;/g, '"'));
+            var has_errors = Object.keys(errors).length !== 0;
+            //alert('{{field_upload}} isnew' + is_new + ' file: ' + file_name + ' size ' + file_size + ' errors ' + has_errors);
+            var intervalId;
+            if (is_new && file_size == 0 && has_errors) {
 
-  {% endmacro %}
+                intervalId = setInterval(function() {
+                    clear();
+                    //  add warning
+                }, 100);
+            }
+            if (!is_new && has_errors) {
+                // check unique
+            }
+
+            function clear() {
+                $('.{{field_upload}}_url a.btn-remove-url').click();
+                clearInterval(intervalId);
+            }
+    });
+</script>
+
+{% endmacro %}
 
 
 {% if 'rtti_doc_document_upload' in data and field.field_name == 'rtti_doc_document_upload' %}
