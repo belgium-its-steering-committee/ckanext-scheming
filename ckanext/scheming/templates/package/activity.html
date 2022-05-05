@@ -1,0 +1,9 @@
+{% ckan_extends %}
+
+
+{% block package_organization %}
+    {% if pkg.organization %}
+      {% set org = h.get_organization(pkg.organization.id) %}
+      {% snippet "scheming/snippets/organization.html", organization=org, has_context_title=true %}
+    {% endif %}
+{% endblock %}
