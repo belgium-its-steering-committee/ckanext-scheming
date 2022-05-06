@@ -64,7 +64,7 @@ class OrganizationUploader(object):
         of name object_type. old_filename is the name of the file in the url
         field last time"""
         log.warning("GEO---->///in <organisationUploader> class")
-        log.warning("GEO----> |+INFO: self object type is : " + "xxxx")
+        log.warning("GEO----> |+INFO: self object type is : " "WElKE PARAMS?")
         log.warning("GEO----> |+INFO: object_type is : " + object_type)
 
         self.storage_path = None
@@ -125,7 +125,7 @@ class OrganizationUploader(object):
         requests the upload to be deleted.  This needs to be called before
         it reaches any validators"""
         log.warning("GEO---->///IN <UPDATE_DATA_DICT> def")
-        log.warning("GEO----> |+INFO: Self object.type is: " + self.object_type)
+        log.warning("GEO----> |+INFO: Self object.type is: " + "NOG TE ZOEKEN WELKE PARMS")
         log.warning("GEO----> |+INFO: url_field is: " + url_field)
         log.warning("GEO----> |+INFO: inkomende paramater file_field is: " + file_field)
         log.warning("GEO----> |+INFO: clear_field is: " + clear_field)
@@ -143,9 +143,13 @@ class OrganizationUploader(object):
         if self.sstp_doc_old_filename:
             self.sstp_doc_old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.sstp_doc_old_filename)
 
-        self.sstp_doc_clear = data_dict.pop('sstp_clear_upload_doc', None)
+        self.sstp_doc_clear = data_dict.pop('sstp_clear_upload_doc', None) 
         self.sstp_doc_file_field = 'sstp_upload_doc'
         self.sstp_doc_upload_field_storage = data_dict.pop(self.sstp_doc_file_field, None)
+        log.warning("GEO----> |++INFO (for disable) sstp_doc_clear: " + self.sstp_doc_old_filename)
+        log.warning("GEO----> |++INFO (for disable) sstp_doc_clear: " + self.sstp_doc_clear)
+        log.warning("GEO----> |++INFO (for disable) sstp_doc_file_field: " + self.sstp_doc_file_field)
+        log.warning("GEO----> |++INFO (for disable) sstp_doc_upload_field_storage: " + self.sstp_doc_upload_field_storage)
         if isinstance(self.sstp_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
             log.warning("GEO----> |++in <data dict SSTP> instance")
             self.sstp_doc_filename = self.sstp_doc_upload_field_storage.filename
@@ -157,12 +161,18 @@ class OrganizationUploader(object):
             data_dict['url_type'] = 'upload'
             self.sstp_doc_upload_file = _get_underlying_file(self.sstp_doc_upload_field_storage)
             self.sstp_doc_tmp_filepath = self.sstp_doc_filepath + '~'
+            log.warning("GEO----> |__uit instance")
         # keep the file if there has been no change
         elif self.sstp_doc_old_filename and not self.sstp_doc_old_filename.startswith('http'):
+            log.warning("GEO----> |++in <data_dict SSTP> OLD Files")
             if not self.sstp_doc_clear:
                 data_dict['sstp_doc_document_upload'] = self.sstp_doc_old_filename
+                log.warning("GEO----> ||+in <dic>doc_document_upload = doc_old_filename")
+                log.warning("GEO----> ||_uit remove")
             if self.sstp_doc_clear and self.sstp_doc_url == self.sstp_doc_old_filename:
                 data_dict['sstp_doc_document_upload'] = ''
+                log.warning("GEO----> ||+in <dic>doc_document_upload = empty streing!")
+                log.warning("GEO----> ||_uit remove")
         log.warning("GEO----> |___uit <data_dict SSTP> functie")
 
         # SRTI
@@ -195,7 +205,6 @@ class OrganizationUploader(object):
         # RTTI
         log.warning("GEO----> +++in <data_dict RRTI> functie")
         if self.rtti_doc_old_filename:
-            log.warning("GEO----> in<OLD FILENAME> = TRUE dus data_dict(rrti_doc_file_field, none) -> breekt _get_underlying file")
             self.rtti_doc_old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.rtti_doc_old_filename)
             self.rtti_doc_clear = data_dict.pop('rtti_clear_upload_doc', None)
             self.rtti_doc_file_field = 'rtti_upload_doc'
