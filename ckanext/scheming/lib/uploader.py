@@ -146,10 +146,10 @@ class OrganizationUploader(object):
         self.sstp_doc_clear = data_dict.pop('sstp_clear_upload_doc', None) 
         self.sstp_doc_file_field = 'sstp_upload_doc'
         self.sstp_doc_upload_field_storage = data_dict.pop(self.sstp_doc_file_field, None)
-        log.warning("GEO----> |++INFO (for disable) sstp_doc_clear: " + self.sstp_doc_old_filename)
-        log.warning("GEO----> |++INFO (for disable) sstp_doc_clear: " + self.sstp_doc_clear)
-        log.warning("GEO----> |++INFO (for disable) sstp_doc_file_field: " + self.sstp_doc_file_field)
-        log.warning("GEO----> |++INFO (for disable) sstp_doc_upload_field_storage: " + self.sstp_doc_upload_field_storage)
+        log.warning("GEO----> |++INFO (for disable) sstp_doc_clear: " + str(self.sstp_doc_old_filename))
+        log.warning("GEO----> |++INFO (for disable) sstp_doc_clear: " + str(self.sstp_doc_clear))
+        log.warning("GEO----> |++INFO (for disable) sstp_doc_file_field: " + str(self.sstp_doc_file_field))
+        log.warning("GEO----> |++INFO (for disable) sstp_doc_upload_field_storage: " + str(self.sstp_doc_upload_field_storage))
         if isinstance(self.sstp_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
             log.warning("GEO----> |++in <data dict SSTP> instance")
             self.sstp_doc_filename = self.sstp_doc_upload_field_storage.filename
