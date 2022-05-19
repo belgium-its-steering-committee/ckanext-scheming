@@ -6,14 +6,12 @@ import inspect
 import logging
 
 import ckan.plugins as p
-from ckan.plugins.interfaces import IGroupController
 import ckan.plugins.toolkit as t
 
 from ckan.common import c
 from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.scheming.lib.uploader import OrganizationUploader
-from ckanext.scheming.controllers.group import OrganizationGroupUploadFix
 
 try:
     from ckan.lib.helpers import helper_functions as core_helper_functions
@@ -320,10 +318,11 @@ class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
         }
 
 class SchemingOrganizationPlugin(p.SingletonPlugin):
-    p.implements(p.IGroupController)
+    pass
+    #p.implements(p.IGroupController, inherit = True)
 
-    def create(self):
-        return OrganizationGroupUploadFix(self)
+    #def create(self):
+        #return OrganizationGroupUploadFix(self)
 
 class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
                                   DefaultOrganizationForm, _SchemingMixin):
