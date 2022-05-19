@@ -13,7 +13,7 @@ from ckan.common import c
 from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.scheming.lib.uploader import OrganizationUploader
-from ckanext.scheming.controllers.group import organizationGroupUploadFix
+from ckanext.scheming.controllers.group import OrganizationGroupUploadFix
 
 try:
     from ckan.lib.helpers import helper_functions as core_helper_functions
@@ -323,7 +323,7 @@ class SchemingOrganizationPlugin(p.SingletonPlugin):
     p.implements(p.IGroupController)
 
     def create(self):
-        return organizationGroupUploadFix(self)
+        return OrganizationGroupUploadFix(self)
 
 class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
                                   DefaultOrganizationForm, _SchemingMixin):

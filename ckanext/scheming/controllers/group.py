@@ -36,7 +36,7 @@ lookup_group_plugin = ckan.lib.plugins.lookup_group_plugin
 lookup_group_controller = ckan.lib.plugins.lookup_group_controller
 
 
-class organizationGroupUploadFix(object):
+class OrganizationGroupUploadFix(object):
 
     group_types = ['group']
     """
