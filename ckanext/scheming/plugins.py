@@ -4,6 +4,7 @@
 import os
 import inspect
 import logging
+from re import M
 
 import ckan.plugins as p
 import ckan.plugins.toolkit as t
@@ -317,12 +318,20 @@ class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
             'scheming_group_schema_show': scheming_group_schema_show,
         }
 
-class SchemingOrganizationPlugin(p.SingletonPlugin):
-    pass
-    #p.implements(p.IGroupController, inherit = True)
+class SchemingOrganizationCustomRouting(p.SingletonPlugin):
+    p.implements(p.IRoutes, inherit=True)
 
-    #def create(self):
-        #return OrganizationGroupUploadFix(self)
+    def before_map(self ,m):
+        #Hook into custom group controller at the points of creation
+        controller = 'ckanext.scheming.controllers.customGroup:customGroupOrganization'
+        m.connect('uploadBugFix_organization_new', '/organization/new',
+                    controller=controller,
+                    action='new')
+        #Hook into custom group controller at the points of edidation  
+        m.connect('uploadBugFix_organization_edit', '/organization/edit/{id}',
+                    controller=controller,
+                    action='edit', ckan_icon='pencil-square-o')
+        return m
 
 class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
                                   DefaultOrganizationForm, _SchemingMixin):
