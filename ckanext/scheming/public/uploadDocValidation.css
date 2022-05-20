@@ -1,0 +1,28 @@
+/*dif & js styles for doc/image upload validation error */
+table.diff {
+    font-family: 'Courier New';
+    border: medium;
+}
+.diff_header{
+    background-color: #e0e0e0;
+}
+.td.diff_header{
+    text-align: right;
+}
+.diff_next{
+    background-color: #c0c0c0;;
+}
+.diff_add{
+    background-color: #aaffaa;
+}
+.diff_chg{
+    background-color: #ffff77;
+}
+.diff_sub{
+    background-color: #ffaaaa;
+}
+.js .image-upload .error-inline {
+    margin-top: 5px;
+    margin-left: 2px;
+    font-weight: bold;
+}

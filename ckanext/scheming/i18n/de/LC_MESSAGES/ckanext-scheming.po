@@ -166,3 +166,6 @@ msgstr "The form contains invalid entries:"
 msgid "There is no description for this organization"
 msgstr "Es gibt keine Beschreibung für diese Organisation"
 
+#: ckanext/scheming/fanstatic/scheming-doc_upload:77
+msgid "Please select the file to upload again"
+msgstr "Bitte wählen Sie die Datei erneut aus"

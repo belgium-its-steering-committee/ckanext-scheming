@@ -3,8 +3,8 @@
 {% macro doc_upload(
 data, 
 errors, 
-field_url='image_url', 
-field_upload='image_upload', 
+field_url='doc_url', 
+field_upload='doc_upload', 
 field_clear='clear_upload',
 is_url=false,
 is_upload=false,
@@ -25,7 +25,7 @@ previous_upload=false)
 
 {% if is_upload_enabled %}
 <div class="image-upload"
-    data-module="image-upload"
+    data-module="scheming-doc-upload"
     data-module-is_url="{{ 'false' }}"
     data-module-is_upload="{{ 'true' if is_upload else 'false' }}"
     data-module-field_url="{{ field_url }}"
