@@ -135,10 +135,13 @@ class customGroupOrganization(base.BaseController):
 
             if context['save'] and not data and request.method == 'POST':
                 old_data = self._action('organization_show')(context, data_dict)
+                for key, value in old_data.items():
+                    log.warning("key:: " + key + " value:: " + str(value))
+                imageBool=(not old_data[u'image_url']) == str(request.params[u'image_url'])
                 rttiBool=(not old_data[u'rtti_doc_document_upload']) == str(request.params[u'rtti_doc_document_upload'])
                 srtiBool =(not old_data[u'srti_doc_document_upload']) == str(request.params[u'srti_doc_document_upload'])
-                sstpBool =(not old_data[u'sstp_doc_document_upload']) == str(request.params[u'sstp_doc_document_upload']).lower()
-                return self._save_edit(id, context, rttiBool, srtiBool, sstpBool)
+                sstpBool =(not old_data[u'sstp_doc_document_upload']) == str(request.params[u'sstp_doc_document_upload'])
+                return self._save_edit(id, context, imageBool, rttiBool, srtiBool, sstpBool)
                 #return self._save_edit(id, context)
 
             try:
@@ -192,13 +195,13 @@ class customGroupOrganization(base.BaseController):
                 data_dict[u'url_type']=''
                 data_dict[u'previous_upload']=True
                 data_dict[u'doc_url']=''
+                data_dict[u'image_url']=''
                 data_dict[u'sstp_doc_document_upload']=''
                 data_dict[u'srti_doc_document_upload']=''
                 data_dict[u'rtti_doc_document_upload']=''
         return self.new(data_dict, errors, error_summary)
 
-    def _save_edit(self, id, context, rttiBool, srtiBool, sstpBool):
-        log.warning("GEO---->///PLUGIN <save_edit group>")
+    def _save_edit(self, id, context, imageBool, rttiBool, srtiBool, sstpBool):
         try:
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))
@@ -221,6 +224,7 @@ class customGroupOrganization(base.BaseController):
             if data_dict.get('url_type') == 'upload':
                 data_dict['url_type']=''
                 data_dict['previous_upload']=True
+                data_dict['image_url'] ='' if imageBool else data_dict['image_url']
                 data_dict['rtti_doc_document_upload'] ='' if rttiBool else data_dict['rtti_doc_document_upload']
                 data_dict['sstp_doc_document_upload']='' if sstpBool else data_dict['sstp_doc_document_upload']
                 data_dict['srti_doc_document_upload']='' if srtiBool else data_dict['srti_doc_document_upload']

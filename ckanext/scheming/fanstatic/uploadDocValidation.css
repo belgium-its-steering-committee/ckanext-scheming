@@ -23,10 +23,10 @@ table.diff {
 }
 
 /*js scheming-doc_upload css */
-.js .scheming-doc_upload #field-image-url {
+.js .scheming-doc_upload #field-doc-url {
 padding-right: 90px;
 }
-.js .scheming-doc_upload #field-image-upload {
+.js .scheming-doc_upload #field-doc-upload {
 cursor: pointer;
 position: absolute;
 z-index: 1;

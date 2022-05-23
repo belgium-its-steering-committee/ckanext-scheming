@@ -54,6 +54,7 @@ previous_upload=false)
 {% if 'srti_doc_document_upload' in data and field.field_name == 'srti_doc_document_upload' %}
     {% if (request.path == '/organization/new') and (errors == {}) or (request.path != '/organization/new') %}
         {%- set is_upload = (data.srti_doc_document_upload != '' ) -%}
+
     {% else %}
         {%- set is_upload = false -%}
     {% endif %}
