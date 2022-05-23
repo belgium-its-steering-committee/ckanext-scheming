@@ -169,3 +169,7 @@ msgstr "Il n'y a pas de description pour cette organisation"
 #: ckanext/scheming/fanstatic/scheming-doc_upload.js:76
 msgid "Please select the file to upload again"
 msgstr "Veuillez sélectionner à nouveau le fichier"
+
+#: ckanext/scheming/templates/scheming/organization/about.html:27
+msgid "Signed"
+msgstr "Signé"

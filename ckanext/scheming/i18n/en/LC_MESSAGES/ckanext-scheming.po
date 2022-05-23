@@ -166,3 +166,10 @@ msgstr "The form contains invalid entries:"
 msgid "There is no description for this organization"
 msgstr "There is no description for this organization"
 
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:76
+msgid "Please select the file to upload again"
+msgstr "Please select the file to upload again"
+
+#: ckanext/scheming/templates/scheming/organization/about.html:27
+msgid "Signed"
+msgstr "Signed"
