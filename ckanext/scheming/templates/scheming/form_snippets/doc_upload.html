@@ -24,8 +24,8 @@ previous_upload=false)
 
 
 {% if is_upload_enabled %}
-<div class="image-upload"
-    data-module="scheming-doc-upload"
+<div class="scheming-doc_upload"
+    data-module="scheming-doc_upload"
     data-module-is_url="{{ 'false' }}"
     data-module-is_upload="{{ 'true' if is_upload else 'false' }}"
     data-module-field_url="{{ field_url }}"
@@ -37,11 +37,11 @@ previous_upload=false)
 {% endif %}
 
 
-{{ form.input(field_url, label=url_label, id='field-image-url', type='url', placeholder=placeholder, value=data.get(field_url), error=errors.get(field_url), classes=['control-full']) }}
+{{ form.input(field_url, label=url_label, id='field-doc-url', type='url', placeholder=placeholder, value=data.get(field_url), error=errors.get(field_url), classes=['control-full']) }}
 
 
 {% if is_upload_enabled %}
-{{ form.input(field_upload, label=upload_label, id='field-image-upload', type='file', placeholder='', value='', error='', classes=['control-full']) }}
+{{ form.input(field_upload, label=upload_label, id='field-doc-upload', type='file', placeholder='', value='', error='', classes=['control-full']) }}
     {% if is_upload %}
     {{ form.checkbox(field_clear, label=_('Clear Upload'), id='field-clear-upload', value='true', error='', classes=['control-full']) }}
     {% endif %}
@@ -51,18 +51,9 @@ previous_upload=false)
 
 {% endmacro %}
 
-
-{% if 'rtti_doc_document_upload' in data and field.field_name == 'rtti_doc_document_upload' %}
-    {% if (request.path == '/organization/new') and (errors == {}) or (request.path != '/organization/new') %}
-        {%- set is_upload = (data.rrti_doc_document_upload != '') -%}
-    {% else %}
-        {%- set is_upload = false -%}
-    {% endif %}
-{% endif %}
-
 {% if 'srti_doc_document_upload' in data and field.field_name == 'srti_doc_document_upload' %}
     {% if (request.path == '/organization/new') and (errors == {}) or (request.path != '/organization/new') %}
-        {%- set is_upload = (data.srti_doc_document_upload != '') -%}
+        {%- set is_upload = (data.srti_doc_document_upload != '' ) -%}
     {% else %}
         {%- set is_upload = false -%}
     {% endif %}
@@ -71,6 +62,14 @@ previous_upload=false)
 {% if 'sstp_doc_document_upload' in data and field.field_name == 'sstp_doc_document_upload'%}
     {% if (request.path == '/organization/new') and (errors == {}) or (request.path != '/organization/new') %}
         {%- set is_upload = (data.sstp_doc_document_upload != '') -%}
+    {% else %}
+        {%- set is_upload = false -%}
+    {% endif %}
+{% endif %}
+
+{% if 'rtti_doc_document_upload' in data and field.field_name == 'rtti_doc_document_upload' %}
+    {% if (request.path == '/organization/new') and (errors == {}) or (request.path != '/organization/new') %}
+        {%- set is_upload = (data.rtti_doc_document_upload != '') -%}
     {% else %}
         {%- set is_upload = false -%}
     {% endif %}

@@ -163,3 +163,6 @@ msgstr ""
 msgid "There is no description for this organization"
 msgstr ""
 
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:76
+msgid "Please select the file to upload again"
+msgstr ""

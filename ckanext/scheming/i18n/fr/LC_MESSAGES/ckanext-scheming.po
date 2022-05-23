@@ -166,6 +166,6 @@ msgstr "Le formulaire contient des entrées non valides:"
 msgid "There is no description for this organization"
 msgstr "Il n'y a pas de description pour cette organisation"
 
-#: ckanext/scheming/fanstatic/scheming-doc_upload:77
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:76
 msgid "Please select the file to upload again"
 msgstr "Veuillez sélectionner à nouveau le fichier"

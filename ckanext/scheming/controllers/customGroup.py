@@ -2,14 +2,13 @@
 
 import ckan.lib.navl.dictization_functions as dict_fns
 import ckan.lib.helpers as h
-from ckan.lib.plugins import lookup_group_plugin
-from ckan.lib.plugins import lookup_group_controller
-import ckan.model as model
-from ckan.common import OrderedDict, c, config, request
-import ckan.lib.search as search
 import ckan.logic as logic
 import ckan.lib.base as base
 import logging
+import ckan.model as model
+from ckan.lib.plugins import lookup_group_plugin
+from ckan.common import c, request
+
 
 NotFound = logic.NotFound
 NotAuthorized = logic.NotAuthorized
@@ -87,7 +86,6 @@ class customGroupOrganization(base.BaseController):
     
     # customization
     def new(self, data=None, errors=None, error_summary=None):
-            log.warning("GEO---->///PLUGIN: in <new group>")
             if data and 'type' in data:
                 group_type = data['type']
             else:
@@ -108,8 +106,8 @@ class customGroupOrganization(base.BaseController):
                 return self._save_new(context, group_type)
 
             data = data or {}
-            if not data.get('image_url', '').startswith('http'):
-                data.pop('image_url', None)
+            if not data.get('doc_url', '').startswith('http'):
+                data.pop('doc_url', None)
 
             errors = errors or {}
             error_summary = error_summary or {}
@@ -124,7 +122,6 @@ class customGroupOrganization(base.BaseController):
                         extra_vars={'group_type': group_type})
 
     def edit(self, id, data=None, errors=None, error_summary=None):
-            log.warning("GEO---->///PLUGIN <edit group>")
             group_type = self._ensure_controller_matches_group_type(
                 id.split('@')[0])
 
@@ -138,15 +135,13 @@ class customGroupOrganization(base.BaseController):
 
             if context['save'] and not data and request.method == 'POST':
                 old_data = self._action('organization_show')(context, data_dict)
-                rttiBool=(not old_data['rtti_doc_document_upload'] == request.params['rtti_doc_document_upload'])
-                srtiBool =(not old_data['srti_doc_document_upload'] == request.params['srti_doc_document_upload'])
-                sstpBool =(not old_data['sstp_doc_document_upload'] == request.params['sstp_doc_document_upload'])
-                imageBool =(not old_data['image_url'] == request.params['image_url'])
-                return self._save_edit(id, context, rttiBool, srtiBool, sstpBool, imageBool)
+                rttiBool=(not old_data[u'rtti_doc_document_upload']) == str(request.params[u'rtti_doc_document_upload'])
+                srtiBool =(not old_data[u'srti_doc_document_upload']) == str(request.params[u'srti_doc_document_upload'])
+                sstpBool =(not old_data[u'sstp_doc_document_upload']) == str(request.params[u'sstp_doc_document_upload']).lower()
+                return self._save_edit(id, context, rttiBool, srtiBool, sstpBool)
                 #return self._save_edit(id, context)
 
             try:
-                log.warning("GEO----> +++ IN <_edit> _edit TRY")
                 data_dict['include_datasets'] = False
                 old_data = self._action('organization_show')(context, data_dict)
                 c.grouptitle = old_data.get('title')
@@ -176,9 +171,7 @@ class customGroupOrganization(base.BaseController):
                         extra_vars={'group_type': group_type})
 
     def _save_new(self, context, group_type=None):
-        log.warning("GEO---->///PLUGIN: <_save_new group>")
         try:
-            #log.warning("GEO----> +++ in <Try>")
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))
             data_dict['type'] = group_type or 'group'
@@ -195,28 +188,16 @@ class customGroupOrganization(base.BaseController):
         except ValidationError as e:
             errors = e.error_dict
             error_summary = e.error_summary
-            log.warning("GEO----> +++ in <validation error>")
-            if data_dict.get('url_type') == 'upload':
-                data_dict['url_type']=''
-                data_dict['previous_upload']=True
-                data_dict['image_url']=''
-                data_dict['sstp_doc_document_upload']=''
-                data_dict['srti_doc_document_upload']=''
-                data_dict['rtti_doc_document_upload']=''
+            if data_dict.get(u'url_type') == 'upload':
+                data_dict[u'url_type']=''
+                data_dict[u'previous_upload']=True
+                data_dict[u'doc_url']=''
+                data_dict[u'sstp_doc_document_upload']=''
+                data_dict[u'srti_doc_document_upload']=''
+                data_dict[u'rtti_doc_document_upload']=''
         return self.new(data_dict, errors, error_summary)
 
-    '''
-    def _force_reindex(self, grp):
-             When the group name has changed, we need to force a reindex                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-            of the datasets within the group, otherwise they will stop
-            appearing on the read page for the group (as they're connected via
-            the group name)
-            group = model.Group.get(grp['name'])
-            for dataset in group.packages():
-                search.rebuild(dataset.name)
-    '''
-
-    def _save_edit(self, id, context, rttiBool, srtiBool, sstpBool, imageBool):
+    def _save_edit(self, id, context, rttiBool, srtiBool, sstpBool):
         log.warning("GEO---->///PLUGIN <save_edit group>")
         try:
             data_dict = clean_dict(dict_fns.unflatten(
@@ -227,7 +208,8 @@ class customGroupOrganization(base.BaseController):
             group = self._action('organization_update')(context, data_dict)
             if id != group['name']:
                 self._force_reindex(group)
-            
+            for key,value in data_dict.items():
+                    log.warning("data_dict in edit --> KEY: " + key + " VALUE: " + str(value))
             h.redirect_to('%s_read' % group['type'], id=group['name'])
         except (NotFound, NotAuthorized) as e:
             abort(404, _('Organization not found'))
@@ -239,7 +221,6 @@ class customGroupOrganization(base.BaseController):
             if data_dict.get('url_type') == 'upload':
                 data_dict['url_type']=''
                 data_dict['previous_upload']=True
-                data_dict['image_url']='' if imageBool else data_dict['image_url']
                 data_dict['rtti_doc_document_upload'] ='' if rttiBool else data_dict['rtti_doc_document_upload']
                 data_dict['sstp_doc_document_upload']='' if sstpBool else data_dict['sstp_doc_document_upload']
                 data_dict['srti_doc_document_upload']='' if srtiBool else data_dict['srti_doc_document_upload']

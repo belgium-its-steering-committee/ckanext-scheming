@@ -1,9 +1,8 @@
 /* Doc Upload 
 *  is a modified image-upload.js
 */
-"use strict"
 
-ckan.module('scheming-doc-upload', function($){
+ckan.module('scheming-doc_upload', function($){
     return {
       /* options object can be extended using data-module-* attributes */
       options: {
@@ -43,7 +42,7 @@ ckan.module('scheming-doc-upload', function($){
         this.field_url_input = $('input', this.field_url);
         this.field_name = this.el.parents('form').find(field_name);
         // this is the location for the upload/link data/image label
-        this.label_location = $('label[for="field-image-url"]');
+        this.label_location = $('label[for="field-doc-url"]');
         // determines if the resource is a data resource
         this.is_data_resource = (this.options.field_url === 'url') && (this.options.field_upload === 'upload');
         this.previousUpload = this.options.previous_upload;
@@ -86,7 +85,7 @@ ckan.module('scheming-doc-upload', function($){
           .insertBefore(this.field_url_input);
   
         // Update the main label (this is displayed when no data/image has been uploaded/linked)
-        $('label[for="field-image-upload"]').text(options.upload_label || this._('Image'));
+        $('label[for="field-doc-upload"]').text(options.upload_label || this._('Image'));
   
         // Setup the file input
         this.input
@@ -156,7 +155,7 @@ ckan.module('scheming-doc-upload', function($){
       /* Update the `this.label_location` text
        *
        * If the upload/link is for a data resource, rather than an image,
-       * the text for label[for="field-image-url"] will be updated.
+       * the text for label[for="field-doc-url"] will be updated.
        *
        * label_text - The text for the label of an uploaded/linked resource
        *

@@ -2,6 +2,7 @@
 
 {% block styles %}
   {{ super() }}
-  <link rel="stylesheet" href="/ckanext-scheming/ckanext/scheming/public/uploadDocValidation.css"/>
   {% resource 'scheming/scheming-upload.js' %}
+  {% resource 'scheming/scheming-doc_upload.js' %}
+  {% resource 'scheming/uploadDocValidation.css' %}
 {% endblock %}

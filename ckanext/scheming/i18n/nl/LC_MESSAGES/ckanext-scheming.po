@@ -166,6 +166,6 @@ msgstr "Het formulier bevat ongeldige vermeldingen:"
 msgid "There is no description for this organization"
 msgstr "Er is geen beschrijving voor deze organisatie"
 
-#: ckanext/scheming/fanstatic/scheming-doc_upload:77
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:76
 msgid "Please select the file to upload again"
 msgstr "Gelieve het bestand opnieuw te selecteren"
