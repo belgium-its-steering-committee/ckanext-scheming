@@ -318,7 +318,7 @@ class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
 
 class SchemingOrganizationCustomRouting(p.SingletonPlugin, DefaultTranslation):
     p.implements(p.IRoutes, inherit=True)
-    p.implements(p.IConfigurer, inherent=True)
+    p.implements(p.IConfigurer, inherit=True)
     p.implements(p.ITranslation, inherit=True)
 
     def before_map(self ,m):

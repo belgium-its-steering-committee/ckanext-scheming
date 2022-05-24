@@ -135,8 +135,6 @@ class customGroupOrganization(base.BaseController):
 
             if context['save'] and not data and request.method == 'POST':
                 old_data = self._action('organization_show')(context, data_dict)
-                for key, value in old_data.items():
-                    log.warning("key:: " + key + " value:: " + str(value))
                 imageBool=(not old_data[u'image_url']) == str(request.params[u'image_url'])
                 rttiBool=(not old_data[u'rtti_doc_document_upload']) == str(request.params[u'rtti_doc_document_upload'])
                 srtiBool =(not old_data[u'srti_doc_document_upload']) == str(request.params[u'srti_doc_document_upload'])
@@ -211,8 +209,6 @@ class customGroupOrganization(base.BaseController):
             group = self._action('organization_update')(context, data_dict)
             if id != group['name']:
                 self._force_reindex(group)
-            for key,value in data_dict.items():
-                    log.warning("data_dict in edit --> KEY: " + key + " VALUE: " + str(value))
             h.redirect_to('%s_read' % group['type'], id=group['name'])
         except (NotFound, NotAuthorized) as e:
             abort(404, _('Organization not found'))
