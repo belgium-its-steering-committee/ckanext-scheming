@@ -47,4 +47,5 @@ setup(
             ('**/templates/**.html', 'ckan', None),
         ],
     }
+    
 )
