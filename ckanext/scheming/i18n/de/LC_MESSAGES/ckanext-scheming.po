@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-scheming 1.2.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-15 10:19+0200\n"
+"POT-Creation-Date: 2022-05-24 11:44+0200\n"
 "PO-Revision-Date: 2019-10-15 10:19+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -61,6 +61,75 @@ msgstr "Ungültiges JSON-Objekt: {}"
 msgid "Unsupported type for JSON field: {}"
 msgstr "Nicht unterstützter Typ für JSON-Feld: {}"
 
+#: ckanext/scheming/controllers/customGroup.py:41
+#: ckanext/scheming/controllers/customGroup.py:188
+msgid "Group not found"
+msgstr ""
+
+#: ckanext/scheming/controllers/customGroup.py:43
+msgid "Incorrect group type"
+msgstr ""
+
+#: ckanext/scheming/controllers/customGroup.py:103
+msgid "Unauthorized to create a group"
+msgstr ""
+
+#: ckanext/scheming/controllers/customGroup.py:154
+#: ckanext/scheming/controllers/customGroup.py:218
+#, fuzzy
+msgid "Organization not found"
+msgstr "Keine Organisation"
+
+#: ckanext/scheming/controllers/customGroup.py:163
+#, python-format
+msgid "User %r not authorized to edit %s"
+msgstr ""
+
+#: ckanext/scheming/controllers/customGroup.py:190
+#: ckanext/scheming/controllers/customGroup.py:220
+msgid "Integrity Error"
+msgstr ""
+
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:63
+msgid "Link"
+msgstr ""
+
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:64
+msgid "Link to a URL on the internet (you can also link to an API)"
+msgstr ""
+
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:71
+msgid "Upload"
+msgstr ""
+
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:76
+msgid "Please select the file to upload again"
+msgstr "Bitte wählen Sie die Datei erneut aus"
+
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:80
+#, fuzzy
+msgid "Remove"
+msgstr "Weiterlesen"
+
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:88
+#: ckanext/scheming/templates/scheming/form_snippets/upload.html:21
+msgid "Image"
+msgstr ""
+
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:95
+msgid "Upload a file on your computer"
+msgstr ""
+
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:118
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:186
+msgid "URL"
+msgstr ""
+
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:127
+#: ckanext/scheming/fanstatic/scheming-doc_upload.js:227
+msgid "File"
+msgstr ""
+
 #: ckanext/scheming/templates/organization/snippets/organization_item.html:7
 #: ckanext/scheming/templates/scheming/snippets/organization.html:7
 msgid "read more"
@@ -70,30 +139,47 @@ msgstr "Weiterlesen"
 msgid "No organization"
 msgstr "Keine Organisation"
 
+#: ckanext/scheming/templates/scheming/form_snippets/doc_upload.html:46
+#: ckanext/scheming/templates/scheming/form_snippets/upload.html:44
+msgid "Clear Upload"
+msgstr ""
+
 #: ckanext/scheming/templates/scheming/form_snippets/organization.html:25
 msgid "Visibility"
 msgstr "Sichtweite"
 
-#: ckanext/scheming/templates/scheming/form_snippets/organization.html:28
+#: ckanext/scheming/templates/scheming/form_snippets/organization.html:29
 msgid "Private"
 msgstr "Privat"
 
-#: ckanext/scheming/templates/scheming/form_snippets/organization.html:28
+#: ckanext/scheming/templates/scheming/form_snippets/organization.html:29
 msgid "Public"
 msgstr "Öffentlich"
 
-#: ckanext/scheming/templates/scheming/group/group_form.html:20
+#: ckanext/scheming/templates/scheming/form_snippets/upload.html:19
+msgid "http://example.com/my-image.jpg"
+msgstr ""
+
+#: ckanext/scheming/templates/scheming/form_snippets/upload.html:20
+msgid "Image URL"
+msgstr ""
+
+#: ckanext/scheming/templates/scheming/group/group_form.html:21
 msgid "Are you sure you want to delete this Group?"
 msgstr "Möchten Sie diese Gruppe wirklich löschen?"
 
-#: ckanext/scheming/templates/scheming/group/group_form.html:21
+#: ckanext/scheming/templates/scheming/group/group_form.html:22
 #: ckanext/scheming/templates/scheming/organization/group_form.html:22
 msgid "Delete"
 msgstr "Löschen"
 
-#: ckanext/scheming/templates/scheming/group/group_form.html:25
+#: ckanext/scheming/templates/scheming/group/group_form.html:26
 msgid "Save Group"
 msgstr "Gruppe speichern"
+
+#: ckanext/scheming/templates/scheming/organization/about.html:27
+msgid "Signed"
+msgstr ""
 
 #: ckanext/scheming/templates/scheming/organization/group_form.html:21
 msgid "Are you sure you want to delete this Organization?"
@@ -113,48 +199,72 @@ msgstr ""
 "dataset_type wurde nicht an template übergeben. Ihre Version von CKAN ist"
 " möglicherweise nicht mit ckanext-schemin kompatibel"
 
-#: ckanext/scheming/templates/scheming/package/read.html:32
+#: ckanext/scheming/templates/scheming/package/read.html:33
 msgid "Transportation modes covered"
 msgstr "Transportarten abgedeckt"
 
-#: ckanext/scheming/templates/scheming/package/resource_read.html:13
+#: ckanext/scheming/templates/scheming/package/read.html:36
+msgid "Vervoerswijzen gedekt"
+msgstr ""
+
+#: ckanext/scheming/templates/scheming/package/read.html:39
+msgid "Modes de transport couverts"
+msgstr ""
+
+#: ckanext/scheming/templates/scheming/package/read.html:42
+msgid "Transportarten abgedeckt"
+msgstr ""
+
+#: ckanext/scheming/templates/scheming/package/resource_read.html:15
 msgid "Additional Information"
 msgstr "Zusätzliche Information"
 
-#: ckanext/scheming/templates/scheming/package/resource_read.html:17
+#: ckanext/scheming/templates/scheming/package/resource_read.html:19
 msgid "Field"
 msgstr "v"
 
-#: ckanext/scheming/templates/scheming/package/resource_read.html:18
+#: ckanext/scheming/templates/scheming/package/resource_read.html:20
 msgid "Value"
 msgstr "Wert"
 
-#: ckanext/scheming/templates/scheming/package/resource_read.html:24
+#: ckanext/scheming/templates/scheming/package/resource_read.html:26
 msgid "Last updated"
 msgstr "Zuletzt aktualisiert"
 
-#: ckanext/scheming/templates/scheming/package/resource_read.html:25
-#: ckanext/scheming/templates/scheming/package/resource_read.html:31
+#: ckanext/scheming/templates/scheming/package/resource_read.html:27
+#: ckanext/scheming/templates/scheming/package/resource_read.html:33
 msgid "unknown"
 msgstr "Unbekannt"
 
-#: ckanext/scheming/templates/scheming/package/resource_read.html:30
+#: ckanext/scheming/templates/scheming/package/resource_read.html:32
 msgid "Created"
 msgstr "Erstellt"
 
-#: ckanext/scheming/templates/scheming/package/resource_read.html:36
+#: ckanext/scheming/templates/scheming/package/resource_read.html:38
 msgid "License"
 msgstr "Lizenz"
 
-#: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:17
+#: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:20
 msgid "ID"
 msgstr "ID"
 
-#: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:21
+#: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:31
 msgid "Metadata date"
 msgstr "Datum der Metadaten"
 
-#: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:41
+#: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:34
+msgid "Datum metadata"
+msgstr ""
+
+#: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:37
+msgid "Date des métadonnées"
+msgstr ""
+
+#: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:40
+msgid "Datum der Metadaten"
+msgstr ""
+
+#: ckanext/scheming/templates/scheming/package/snippets/additional_info.html:63
 msgid "State"
 msgstr "Zustand"
 
@@ -166,10 +276,6 @@ msgstr "The form contains invalid entries:"
 msgid "There is no description for this organization"
 msgstr "Es gibt keine Beschreibung für diese Organisation"
 
-#: ckanext/scheming/fanstatic/scheming-doc_upload.js:76
-msgid "Please select the file to upload again"
-msgstr "Bitte wählen Sie die Datei erneut aus"
+#~ msgid "Signed"
+#~ msgstr "Unterzeichnet"
 
-#: ckanext/scheming/templates/scheming/organization/about.html:27
-msgid "Signed"
-msgstr "Unterzeichnet"

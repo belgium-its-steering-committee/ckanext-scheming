@@ -34,7 +34,6 @@ setup(
     scheming_organizations=ckanext.scheming.plugins:SchemingOrganizationsPlugin
     scheming_test_subclass=ckanext.scheming.tests.plugins:SchemingTestSubclass
     scheming_test_plugin=ckanext.scheming.tests.plugins:SchemingTestSchemaPlugin
-    itranslation=ckanext.itranslation.plugin:ExampleITranslationPlugin
     scheming_uploadFix=ckanext.scheming.plugins:SchemingOrganizationCustomRouting
     [babel.extractors]
     ckan = ckan.lib.extract:extract_ckan
