@@ -135,10 +135,10 @@ class customGroupOrganization(base.BaseController):
 
             if context['save'] and not data and request.method == 'POST':
                 old_data = self._action('organization_show')(context, data_dict)
-                imageBool=(not old_data[u'image_url']) == str(request.params[u'image_url'])
-                rttiBool=(not old_data[u'rtti_doc_document_upload']) == str(request.params[u'rtti_doc_document_upload'])
-                srtiBool =(not old_data[u'srti_doc_document_upload']) == str(request.params[u'srti_doc_document_upload'])
-                sstpBool =(not old_data[u'sstp_doc_document_upload']) == str(request.params[u'sstp_doc_document_upload'])
+                imageBool=(old_data[u'image_url']) != str(request.params[u'image_url'])
+                rttiBool=(old_data[u'rtti_doc_document_upload']) != str(request.params[u'rtti_doc_document_upload'])
+                srtiBool =(old_data[u'srti_doc_document_upload']) != str(request.params[u'srti_doc_document_upload'])
+                sstpBool =(old_data[u'sstp_doc_document_upload']) != str(request.params[u'sstp_doc_document_upload'])
                 return self._save_edit(id, context, imageBool, rttiBool, srtiBool, sstpBool)
                 #return self._save_edit(id, context)
 
