@@ -319,7 +319,7 @@ class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
 class SchemingOrganizationCustomRouting(p.SingletonPlugin, DefaultTranslation):
     p.implements(p.IRoutes, inherit=True)
     p.implements(p.IConfigurer, inherit=True)
-    p.implements(p.ITranslation, inherit=True)
+    p.implements(p.ITranslation)
 
     def before_map(self ,m):
         #Hook into custom group controller at the points of creation
