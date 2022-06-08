@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '2.0.2'
+version = '2.0.4'
 
 setup(
     name='ckanext-scheming',
@@ -35,6 +35,7 @@ setup(
     scheming_test_subclass=ckanext.scheming.tests.plugins:SchemingTestSubclass
     scheming_test_plugin=ckanext.scheming.tests.plugins:SchemingTestSchemaPlugin
     itranslation=ckanext.itranslation.plugin:ExampleITranslationPlugin
+    scheming_uploadFix=ckanext.scheming.plugins:SchemingOrganizationCustomRouting
     [babel.extractors]
     ckan = ckan.lib.extract:extract_ckan
     [paste.paster_command]
@@ -46,5 +47,5 @@ setup(
             ('**.js', 'javascript', None),
             ('**/templates/**.html', 'ckan', None),
         ],
-    }
+    }  
 )

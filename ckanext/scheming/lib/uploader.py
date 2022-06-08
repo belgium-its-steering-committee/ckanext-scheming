@@ -1,12 +1,19 @@
 # encoding: utf-8
 import cgi
+from distutils import errors
 import logging
-import os
 
+import os
+import datetime
+import mimetypes
 import ckan.lib.munge as munge
 import ckan.logic as logic
+import ckan.plugins as plugins
+
 from ckan.lib.uploader import get_storage_path
 from werkzeug.datastructures import FileStorage as FlaskFileStorage
+from ckan.common import config
+
 
 ALLOWED_UPLOAD_TYPES = (cgi.FieldStorage, FlaskFileStorage)
 MB = 1 << 20
@@ -114,7 +121,6 @@ class OrganizationUploader(object):
         self.clear = data_dict.pop(clear_field, None)
         self.file_field = file_field
         self.upload_field_storage = data_dict.pop(file_field, None)
-
         if not self.storage_path:
             return
 

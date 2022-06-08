@@ -39,7 +39,8 @@
                         type="checkbox"
                         name="{{ field.field_name }}"
                         value="{{ val }}"
-                           style="width: auto; top: 0;"
+                        style="width: auto; top: 0;"
+                        {{"checked" if val in data[field.field_name] }}
                          />
                     <div style="padding-left: 8px;">{{ label }}</div>
                 </div>

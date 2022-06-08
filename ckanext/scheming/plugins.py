@@ -213,14 +213,14 @@ class _GroupOrganizationMixin(object):
 
         return navl_validate(data_dict, schema, context)
 
-
 class SchemingDatasetsPlugin(p.SingletonPlugin, DefaultDatasetForm,
-                             _SchemingMixin):
+                             _SchemingMixin, DefaultTranslation):
     p.implements(p.IConfigurer)
     p.implements(p.ITemplateHelpers)
     p.implements(p.IDatasetForm, inherit=True)
     p.implements(p.IActions)
     p.implements(p.IValidators)
+    p.implements(p.ITranslation)
 
     SCHEMA_OPTION = 'scheming.dataset_schemas'
     FALLBACK_OPTION = 'scheming.dataset_fallback'
@@ -287,7 +287,6 @@ class SchemingDatasetsPlugin(p.SingletonPlugin, DefaultDatasetForm,
             'scheming_dataset_schema_show': scheming_dataset_schema_show,
         }
 
-
 class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
                            DefaultGroupForm, _SchemingMixin):
     p.implements(p.IConfigurer)
@@ -295,6 +294,7 @@ class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
     p.implements(p.IGroupForm, inherit=True)
     p.implements(p.IActions)
     p.implements(p.IValidators)
+    p.implements(p.ITranslation)
 
     SCHEMA_OPTION = 'scheming.group_schemas'
     FALLBACK_OPTION = 'scheming.group_fallback'
@@ -317,9 +317,29 @@ class SchemingGroupsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
             'scheming_group_schema_show': scheming_group_schema_show,
         }
 
+class SchemingOrganizationCustomRouting(p.SingletonPlugin, DefaultTranslation):
+    p.implements(p.IRoutes, inherit=True)
+    p.implements(p.IConfigurer, inherit=True)
+    p.implements(p.ITranslation)
+
+    def before_map(self ,m):
+        #Hook into custom group controller at the points of creation
+        controller = 'ckanext.scheming.controllers.customGroup:customGroupOrganization'
+        m.connect('uploadBugFix_organization_new', '/organization/new',
+                    controller=controller,
+                    action='new')
+        #Hook into custom group controller at the points of edidation  
+        m.connect('uploadBugFix_organization_edit', '/organization/edit/{id}',
+                    controller=controller,
+                    action='edit', ckan_icon='pencil-square-o')
+        return m
+    
+    def update_config(self, config):
+        t.add_template_directory(config, 'templates')
+        t.add_resource('fanstatic','scheming')
 
 class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
-                                  DefaultOrganizationForm, _SchemingMixin):
+                                  DefaultOrganizationForm, _SchemingMixin, DefaultTranslation):
     p.implements(p.IConfigurer)
     p.implements(p.ITemplateHelpers)
     p.implements(p.IGroupForm, inherit=True)
@@ -327,6 +347,7 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
     p.implements(p.IValidators)
     p.implements(p.IUploader)
     p.implements(p.IOrganizationController, inherit=True)
+    p.implements(p.ITranslation)
 
     SCHEMA_OPTION = 'scheming.organization_schemas'
     FALLBACK_OPTION = 'scheming.organization_fallback'
@@ -374,16 +395,7 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
         return None
 
     def get_resource_uploader(self, data_dict):
-        return None
-
-
-class SchemingITranslationPlugin(p.SingletonPlugin, DefaultTranslation):
-    p.implements(p.ITranslation)
-    p.implements(p.IConfigurer)
-
-    def update_config(self, config):
-        t.add_template_directory(config, 'templates')
-
+        return None 
 
 def _load_schemas(schemas, type_field):
     out = {}
