@@ -42,7 +42,6 @@
         {%- endblock -%}
         {%- block resource_fields -%}
           {%- for field in schema.resource_fields -%}
-            {%- pprint(field) -%}
             {%- if field.field_name not in exclude_fields
                 and field.display_snippet is not none -%}
               <tr>
