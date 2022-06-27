@@ -5,7 +5,7 @@
             {%- if field.get('help_link', false) -%}
                 <div class="info-block">
                     <i class="fa fa-info-circle"></i>
-                    {{ h.scheming_language_text(field.help_text) }} <a href="{{ field.help_link }}" target="_blank">{{ h.scheming_language_text(field.get('help_link_text', 'link')) }}</a>
+                    {{ h.scheming_language_text(field.help_text) }} <a href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/{{ h.lang() }}{{ field.help_link }}" target="_blank">{{ h.scheming_language_text(field.get('help_link_text', 'link')) }}</a>
                 </div>
         {%- else -%}
             {{- form.info(
@@ -19,7 +19,7 @@
         {%- if field.get('help_link_visibility', false) -%}
             <div class="info-block">
                 <i class="fa fa-info-circle"></i>
-                {{ h.scheming_language_text(field.help_text_visibility) }} <a href="{{ field.help_link_visibility }}" target="_blank">{{ h.scheming_language_text(field.get('help_link_text_visibility', 'link')) }}</a>
+                {{ h.scheming_language_text(field.help_text_visibility) }} <a href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/{{ h.lang() }}{{ field.help_link_visibility }}" target="_blank">{{ h.scheming_language_text(field.get('help_link_text_visibility', 'link')) }}</a>
             </div>
         {%- endif -%}  
     {%- endif -%}
