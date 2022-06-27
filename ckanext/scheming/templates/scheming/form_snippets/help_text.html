@@ -1,15 +1,27 @@
 {% import 'macros/form.html' as form %}
 
-{%- if field.help_text -%}
-    {%- if field.get('help_link', false) -%}
-        <div class="info-block">
-            <i class="fa fa-info-circle"></i>
-            {{ h.scheming_language_text(field.help_text) }} <a href="{{ field.help_link }}" target="_blank">{{ h.scheming_language_text(field.get('help_link_text', 'link')) }}</a>
-        </div>
-    {%- else -%}
-        {{- form.info(
-            text=h.scheming_language_text(field.help_text),
-            inline=field.get('help_inline', false)
-            ) -}}
+    {%- if id!="field_private" %}
+       {%- if field.help_text -%}
+            {%- if field.get('help_link', false) -%}
+                <div class="info-block">
+                    <i class="fa fa-info-circle"></i>
+                    {{ h.scheming_language_text(field.help_text) }} <a href="{{ field.help_link }}" target="_blank">{{ h.scheming_language_text(field.get('help_link_text', 'link')) }}</a>
+                </div>
+        {%- else -%}
+            {{- form.info(
+                text=h.scheming_language_text(field.help_text),
+                inline=field.get('help_inline', false)
+                ) -}}
+            {%- endif -%}
+        {%- endif -%}
+    {%- else%}
+        <!--help_tekst for dataset visibility. Sits in a data-module = "dataset-visbility" Had to be filterd out-->
+        {%- if field.get('help_link_visibility', false) -%}
+            <div class="info-block">
+                <i class="fa fa-info-circle"></i>
+                {{ h.scheming_language_text(field.help_text_visibility) }} <a href="{{ field.help_link_visibility }}" target="_blank">{{ h.scheming_language_text(field.get('help_link_text_visibility', 'link')) }}</a>
+            </div>
+        {%- endif -%}  
     {%- endif -%}
-{%- endif -%}
+     
+
