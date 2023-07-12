@@ -12,7 +12,7 @@ Two attributes need to be linked too the CKAN attributes:
 {% macro logo_upload(
     data,
     errors,
-    field_url='image_url',
+    field_url='organisation_logo',
     field_upload='logo_upload',
     field_clear='clear_upload',
     is_upload_logo=true,
@@ -37,14 +37,14 @@ Two attributes need to be linked too the CKAN attributes:
     data-module-upload_label="{{ field_label }}"
     data-module-field_name="{{ field_name }}"
     data-module-previous_upload="{{ 'true' if previous_upload else 'false' }}"
-    data-module-error="{{ data }}">
+    >
 {% endif %}
 
 
 {{ form.input(field_url, label=field_label, id="field-logo-file", type=type, value=data.get(field_file), classes=['control-full'])  }}
 
 {% if is_upload_logo_enabled%}
-    {{ form.input(field_upload, label=field_label, id="field-logo-upload", type="file", error=errors.get(field_url), classes=['control-full'])}}
+    {{ form.input(field_upload, label=field_label, id="field-logo-upload", type="file", value='', error=errors.get(field_url), classes=['control-full'])}}
     
     {%if is_upload_logo%}
         {{ form.checkbox(field_clear, label=_('Clear Upload'), id="field-clear-upload", value="true", classes=['control-full'])}}
