@@ -37,7 +37,7 @@
     {{ form.input(field_url, label=url_label, id='field-doc-url', type='url', placeholder=placeholder, value=data.get(field_url), error=errors.get(field_url), classes=['control-full']) }}
 
     {% if is_upload_enabled %}
-        {{ form.input(field_upload, label=upload_label, id='field-doc-upload', type='file', placeholder='', value='', error='', classes=['control-full']) }}
+        {{ form.input(field_upload, label=upload_label, id='field-doc-upload', type='file', placeholder='', value='', error=errors.get(field_url), classes=['control-full']) }}
         {% if is_upload %}
         {{ form.checkbox(field_clear, label=_('Clear Upload'), id='field-clear-upload', value='true', error='', classes=['control-full']) }}
         {% endif %}
@@ -87,5 +87,6 @@
     )
 }}
 {# doc_upload macro doesn't support call #}
+
 {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 

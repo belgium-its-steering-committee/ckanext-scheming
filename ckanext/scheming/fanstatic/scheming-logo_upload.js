@@ -6,8 +6,8 @@ ckan.module('scheming-logo_upload', function($){
             /* options object can be extended using data-module-* attributes */
             options:{
                 is_upload_logo: true,
-                field_file: 'logo_upload',
-                field_url: 'logo_file',
+                field_upload: 'logo_upload',
+                field_url: 'image_url',
                 field_clear: 'clear_upload',
                 field_name: 'logo_name',
                 upload_label: '',
@@ -30,7 +30,7 @@ ckan.module('scheming-logo_upload', function($){
             $.proxyAll(this, /_on/);
             var options = this.options;
             // firstly setup the fields
-            var field_upload = 'input[name="' + options.field_file+ '"]';
+            var field_upload = 'input[name="' + options.field_upload+ '"]';
             var field_url = 'input[name="' + options.field_url + '"]';
             var field_clear = 'input[name="' + options.field_clear + '"]';
             var field_name = 'input[name="' + options.field_name + '"]';

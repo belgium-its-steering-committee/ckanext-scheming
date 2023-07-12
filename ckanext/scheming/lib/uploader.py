@@ -60,6 +60,8 @@ class OrganizationUploader(object):
         """ Setup upload by creating a subdirectory of the storage directory
         of name object_type. old_filename is the name of the file in the url
         field last time"""
+        
+
 
         self.storage_path = None
         self.filename = None
@@ -116,14 +118,14 @@ class OrganizationUploader(object):
         actually is). clear_field is the name of a boolean field which
         requests the upload to be deleted.  This needs to be called before
         it reaches any validators"""
-
+        
         self.url = data_dict.get(url_field, '')
         self.clear = data_dict.pop(clear_field, None)
         self.file_field = file_field
         self.upload_field_storage = data_dict.pop(file_field, None)
         if not self.storage_path:
             return
-
+        
         # hack into this to upload NAP DOC
         # SSTP
         if self.sstp_doc_old_filename:
