@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
     setTimeout(function(){
         $( "div[data-module-field_upload|='rtti_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='rtti_upload_doc']" ).attr("data-module-upload_label") );
         $( "div[data-module-field_upload|='srti_upload_doc']>div.form-group>label" ).text( $("div[data-module-field_upload|='srti_upload_doc']" ).attr("data-module-upload_label") );
@@ -7,4 +7,4 @@ $(document).ready(function(){
         $( "label[for|='field-organization_agreement_declaration_nap-Y']" ).addClass('remove-after');
         $('head').append("<style>.remove-after::after{ content:None }</style>");
     },1000);
-  });
+  });*/

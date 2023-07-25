@@ -304,7 +304,6 @@ def validators_from_string(s, field, schema):
         out.append(v)
     return out
 
-
 def get_validator_or_converter(name):
     """
     Get a validator or converter by name
@@ -317,3 +316,16 @@ def get_validator_or_converter(name):
     except UnknownValidator:
         pass
     raise SchemingException('validator/converter not found: %r' % name)
+
+//TODO add validation to organisation upload field
+def logo_validator(value):
+    if value and len(value) >0:
+        if not value.endswith(('jpeg', 'JPEG', 'jpg','JPG','bmp','BMP', "PNG", "png")):
+            raise Invalid(_('Only supported image formats are allowed: jpeg, jpg, bmp, png'))
+    return value
+
+def pdf_validator(value):
+    if value and len(value) > 0:
+        if not value.endswith(('pdf', 'PDF')):
+            raise Invalid(_('Only PDF is allowed').format(url=value))
+    return value

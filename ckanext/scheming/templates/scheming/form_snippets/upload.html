@@ -32,7 +32,8 @@
         data-module-field_clear="{{ field_clear }}"
         data-module-upload_label="{{ upload_label }}"
         data-module-field_name="{{ field_name }}"
-        data-module-previous_upload="{{ 'true' if previous_upload else 'false' }}">
+        data-module-previous_upload="{{ 'true' if previous_upload else 'false' }}"
+        data-module-data="{{data}}">
     {% endif %}
    
     {{ form.input(field_url, label=url_label, id='field-image-url', type=type, placeholder=placeholder, value=data.get(field_url), error=errors.get(field_url), classes=['control-full']) }}
@@ -47,6 +48,7 @@
     {% if is_upload_enabled %}</div>{% endif %}
 
 {% endmacro %}
+
 
 {% if (('image_url' in data) and (type=='file')) %}
     {% if ((request.path == '/organization/new') and (errors == {})) or (request.path != '/organization/new') %}

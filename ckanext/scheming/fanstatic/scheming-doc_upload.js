@@ -1,17 +1,15 @@
-/* Doc Upload 
-*  is a modified image-upload.js
-*/
+/* Doc Upload is a modified image-upload.js */
 
 ckan.module('scheming-doc_upload', function($){
     return {
       /* options object can be extended using data-module-* attributes */
       options: {
-        is_url: false,
-        is_upload: false,
+        is_url_doc: false,
+        is_upload_doc: false,
         field_upload: 'doc_upload',
         field_url: 'doc_url',
         field_clear: 'clear_upload',
-        field_name: 'name',
+        field_name: 'doc_url',
         upload_label: '',
         previous_upload: false
   
@@ -29,7 +27,7 @@ ckan.module('scheming-doc_upload', function($){
       initialize: function () {
         $.proxyAll(this, /_on/);
         var options = this.options;
-  
+        console.log("KOEKOEK IN DOC JS")
         // firstly setup the fields
         var field_upload = 'input[name="' + options.field_upload + '"]';
         var field_url = 'input[name="' + options.field_url + '"]';
@@ -37,9 +35,16 @@ ckan.module('scheming-doc_upload', function($){
         var field_name = 'input[name="' + options.field_name + '"]';
   
         this.input = $(field_upload, this.el);
+        
         this.field_url = $(field_url, this.el).parents('.form-group');
+        //console.log("field_url::", this.field_url)
+        
         this.field_image = this.input.parents('.form-group');
+        //console.log("field_image::", this.field_image)
+        
         this.field_url_input = $('input', this.field_url);
+        //console.log("field_url_input::", this.field_url_input)
+        
         this.field_name = this.el.parents('form').find(field_name);
         // this is the location for the upload/link data/image label
         this.label_location = $('label[for="field-doc-url"]');
@@ -108,15 +113,17 @@ ckan.module('scheming-doc_upload', function($){
           .on('change', this._onModifyName);
         // Disables autoName if resource name already has value,
         // i.e. we on edit page
+        
+        
         if (this.field_name.val()){
           this._nameIsDirty = true;
         }
   
-        if (options.is_url) {
+        if (options.is_url_doc) {
           this._showOnlyFieldUrl();
   
           this._updateUrlLabel(this._('URL'));
-        } else if (options.is_upload) {
+        } else if (options.is_upload_doc) {
           this._showOnlyFieldUrl();
   
           this.field_url_input.prop('readonly', true);
@@ -179,7 +186,7 @@ ckan.module('scheming-doc_upload', function($){
         this.field_url_input.focus()
           .on('blur', this._onFromWebBlur);
   
-        if (this.options.is_upload) {
+        if (this.options.is_upload_doc) {
           this.field_clear.val('true');
         }
   

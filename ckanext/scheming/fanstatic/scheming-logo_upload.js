@@ -2,10 +2,10 @@
 
 ckan.module('scheming-logo_upload', function($){
     return {
-        /*PARAMS*/
             /* options object can be extended using data-module-* attributes */
             options:{
-                is_upload_logo: true,
+                is_url_logo: false,  
+                is_upload_logo: false,
                 field_upload: 'logo_upload',
                 field_url: 'image_url',
                 field_clear: 'clear_upload',
@@ -27,6 +27,7 @@ ckan.module('scheming-logo_upload', function($){
         */
 
         initialize: function(){
+            console.log("KOEKOEK IN LOGO JS")
             $.proxyAll(this, /_on/);
             var options = this.options;
             // firstly setup the fields
@@ -36,9 +37,13 @@ ckan.module('scheming-logo_upload', function($){
             var field_name = 'input[name="' + options.field_name + '"]';
 
             this.input = $(field_upload, this.el);
+            
             this.field_url = $(field_url, this.el).parents('.form-group');
+
             this.field_image = this.input.parents('.form-group');
+            
             this.field_url_input = $('input', this.field_url);
+            
             this.field_name = this.el.parents('form').find(field_name);
             // this is the location for the upload/link data/image label
             this.label_location = $('label[for="field-logo-file"]');
@@ -110,8 +115,8 @@ ckan.module('scheming-logo_upload', function($){
 
                 this.field_url_input.prop('readonly', true);
                 // If the data is an uploaded file, the filename will display rather than whole url of the site
-                var filename = this._fileNameFromUpload(this.field_url_input.val());
-                this.field_url_input.val(filename);
+                //var filename = this._fileNameFromUpload(this.field_url_input.val());
+                //this.field_url_input.val(filename);
 
                 this._updateUrlLabel(this._('File'));
             } else {

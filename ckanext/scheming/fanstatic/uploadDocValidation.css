@@ -1,4 +1,4 @@
-/*dif & js styles for doc/image upload validation error */
+/*dif & js styles for doc/image upload validation error*/
 table.diff {
     font-family: 'Courier New';
     border: medium;
@@ -22,7 +22,7 @@ table.diff {
     background-color: #ffaaaa;
 }
 
-/*js scheming-doc_upload css */
+/*js scheming-doc_upload css*/
 .js .scheming-doc_upload #field-doc-url {
 padding-right: 90px;
 }
