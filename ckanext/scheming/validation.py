@@ -317,7 +317,7 @@ def get_validator_or_converter(name):
         pass
     raise SchemingException('validator/converter not found: %r' % name)
 
-//TODO add validation to organisation upload field
+#//TODO add validation to organisation upload field
 def logo_validator(value):
     if value and len(value) >0:
         if not value.endswith(('jpeg', 'JPEG', 'jpg','JPG','bmp','BMP', "PNG", "png")):
