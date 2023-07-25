@@ -44,6 +44,8 @@ from ckanext.scheming.validation import (
     scheming_isodatetime_tz,
     scheming_valid_json_object,
     scheming_load_json,
+    logo_validator,
+    pdf_validator
 )
 from ckanext.scheming.logic import (
     scheming_dataset_schema_list,
@@ -129,6 +131,8 @@ class _SchemingMixin(object):
             'scheming_isodatetime_tz': scheming_isodatetime_tz,
             'scheming_valid_json_object': scheming_valid_json_object,
             'scheming_load_json': scheming_load_json,
+            'logo_extensions': logo_validator,
+            'doc_validator': pdf_validator,
         }
 
     def _add_template_directory(self, config):

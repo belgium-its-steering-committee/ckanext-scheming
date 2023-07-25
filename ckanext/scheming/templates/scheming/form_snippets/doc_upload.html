@@ -31,8 +31,7 @@
         data-module-field_clear="{{ field_clear }}"
         data-module-upload_label="{{ field_label }}"
         data-module-field_name="{{ field_name }}"
-        data-module-previous_upload="{{ 'true' if previous_upload else 'false' }}"
-        data-module-dataDict="{{data}}">
+        data-module-previous_upload="{{ 'true' if previous_upload else 'false' }}">
     {% endif %}
 
     {{ form.input(field_url, label=field_label, id='field-doc-url', type=type, placeholder=placeholder, value=data.get(field_url), error=errors.get(field_url), classes=['control-full']) }}
