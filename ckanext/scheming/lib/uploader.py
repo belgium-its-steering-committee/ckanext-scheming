@@ -193,6 +193,7 @@ class OrganizationUploader(object):
 
         self.rtti_doc_clear = data_dict.pop('rtti_clear_upload_doc', None)
         self.rtti_doc_file_field = 'rtti_upload_doc'
+        print("RRTI DATA_DICT - look for rtti_upload_doc and compare with proxy_upload")
         self.rtti_doc_upload_field_storage = data_dict.pop(self.rtti_doc_file_field, None)
         if isinstance(self.rtti_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
             self.rtti_doc_filename = self.rtti_doc_upload_field_storage.filename
