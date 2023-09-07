@@ -60,8 +60,6 @@ class OrganizationUploader(object):
         """ Setup upload by creating a subdirectory of the storage directory
         of name object_type. old_filename is the name of the file in the url
         field last time"""
-        
-
 
         self.storage_path = None
         self.filename = None
@@ -109,7 +107,19 @@ class OrganizationUploader(object):
         self.rtti_doc_upload_file = None
         self.rtti_doc_old_filename = None
         self.rtti_doc_old_filepath = None
-        # end hack
+        # end NAP DOC hack
+        #hack into this to upload PROXY DOC
+        self.proxy_doc_url=''
+        self.proxy_doc_clear= None
+        self.proxy_doc_file_field = None
+        self.proxy_doc_upload_field_storage = None
+        self.proxy_doc_filename = None
+        self.proxy_doc_filepath = None
+        self.proxy_doc_tmp_filepath = None
+        self.proxy_doc_upload_file = None
+        self.proxy_doc_old_filename = None
+        self.proxy_doc_old_filepath = None
+        #end PROXY DOC hack
 
     def update_data_dict(self, data_dict, url_field, file_field, clear_field):
         """ Manipulate data from the data_dict.  url_field is the name of the
@@ -200,7 +210,32 @@ class OrganizationUploader(object):
             if self.rtti_doc_clear and self.rtti_doc_url == self.rtti_doc_old_filename:
                 data_dict['rtti_doc_document_upload'] = ''
         # end NAP DOC hack
-
+        
+        # hack into this to upload PROXY DOC
+        if self.proxy_doc_old_filename:
+            self.proxy_doc_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.proxy_doc_old_filename)
+        
+        self.proxy_doc_clear = data_dict.pop('proxy_pdf_url', None)
+        self.proxy_doc_file_field='proxy_pdf_url'
+        self.proxy_doc_upload_field_storage  = data_dict.pop(self.proxy_doc_file_field, None)
+        if isinstance(self.proxy_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
+            self.proxy_doc_filename= self.upload_field_storage.filename
+            self.proxy_doc_filename= munge.munge_filename(self.proxy_doc_filename)
+            organization_storagepath = os.path.join(self.storage_path, data_dict.get('name'))
+            _make_dirs_if_not_existing(organization_storagepath)
+            self.proxy_doc_filepath= os.path.join(organization_storagepath, self.proxy_doc_filename)
+            data_dict['proxy_pdf_url'] = self.proxy_doc_filename
+            data_dict['url_type'] = 'upload'
+            self.proxy_doc_upload_file = _get_underlying_file(self.proxy_doc_upload_field_storage)
+            self.proxy_doc_tmp_filepath = self.proxy_doc_tmp_filepath + '~'
+        #keep the file if there has been no change
+        elif self.proxy_doc_old_filename and not self.proxy_doc_old_filename.startswith('http'):
+            if not self.proxy_doc_clear:
+                data_dict['proxy_pdf_url'] = self.proxy_doc_old_filename
+            if self.proxy_doc_clear and self.proxy_doc_url == self.proxy_doc_old_filename:
+                data_dict['proxy_pdf_url'] = ''
+        # end PROXY DOC hack
+        
         if self.old_filename:
             self.old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.old_filename)
 
@@ -308,3 +343,23 @@ class OrganizationUploader(object):
             except OSError:
                 pass
         # end hack
+
+        # hack into this to upload PROXY DOC
+        if self.proxy_doc_filename:
+            with open(self.proxy_doc_tmp_filepath, 'wb+') as output_file:
+                try:
+                    _copy_file(self.proxy_doc_upload_file, output_file, max_size)
+                except logic.ValidationError:
+                    os.remove(self.proxy_doc_tmp_filepath)
+                    raise
+                finally:
+                    self.proxy_doc_upload_file.close()
+            os.rename(self.proxy_doc_tmp_filepath, self.proxy_doc_filepath)
+            self.proxy_doc_clear = True
+        
+        if (self.proxy_doc_clear and self.proxy_doc_old_filename and not self.proxy_doc_old_filename.startswith('http')):
+            try:
+                os.remove(self.proxy_doc_old_filepath)
+            except OSError:
+                pass
+        #end PROXY DOC hack

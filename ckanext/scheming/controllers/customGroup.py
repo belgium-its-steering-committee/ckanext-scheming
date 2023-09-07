@@ -108,6 +108,8 @@ class customGroupOrganization(base.BaseController):
             data = data or {}
             if not data.get('doc_url', '').startswith('http'):
                 data.pop('doc_url', None)
+            if not data.get('proxy_pdf_url').startswith('http'):
+                data.pop('proxy_pdf_url', None)
 
             errors = errors or {}
             error_summary = error_summary or {}
@@ -139,7 +141,8 @@ class customGroupOrganization(base.BaseController):
                 rttiBool=(old_data[u'rtti_doc_document_upload']) != str(request.params[u'rtti_doc_document_upload']) if u'rtti_doc_document_upload' in old_data else False
                 srtiBool =(old_data[u'srti_doc_document_upload']) != str(request.params[u'srti_doc_document_upload']) if u'srti_doc_document_upload' in old_data else False
                 sstpBool =(old_data[u'sstp_doc_document_upload']) != str(request.params[u'sstp_doc_document_upload']) if u'sstp_doc_document_upload' in old_data else False
-                return self._save_edit(id, context, imageBool, rttiBool, srtiBool, sstpBool)
+                proxyBool =(old_data[u'proxy_pdf_url']) != str(request.params[u'proxy_pdf_url']) if u'proxy_pdf_url' in old_data else False
+                return self._save_edit(id, context, imageBool, rttiBool, srtiBool, sstpBool, proxyBool)
                 #return self._save_edit(id, context)
 
             try:
@@ -197,9 +200,10 @@ class customGroupOrganization(base.BaseController):
                 data_dict[u'sstp_doc_document_upload']=''
                 data_dict[u'srti_doc_document_upload']=''
                 data_dict[u'rtti_doc_document_upload']=''
+                data_dict[u'proxy_pdf_url']=''
         return self.new(data_dict, errors, error_summary)
 
-    def _save_edit(self, id, context, imageBool, rttiBool, srtiBool, sstpBool):
+    def _save_edit(self, id, context, imageBool, rttiBool, srtiBool, sstpBool, proxyBool):
         try:
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))
@@ -224,6 +228,7 @@ class customGroupOrganization(base.BaseController):
                 data_dict['rtti_doc_document_upload'] ='' if rttiBool else data_dict['rtti_doc_document_upload']
                 data_dict['sstp_doc_document_upload']='' if sstpBool else data_dict['sstp_doc_document_upload']
                 data_dict['srti_doc_document_upload']='' if srtiBool else data_dict['srti_doc_document_upload']
+                data_dict['proxy_pdf_url']='' if proxyBool else data_dict['proxy_pdf_url']
         
         return self.edit(id, data_dict, errors, error_summary)
 
