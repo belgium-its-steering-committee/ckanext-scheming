@@ -12,7 +12,7 @@
     {% elif f.field_name == 'do_email' %}
         <dt>{{ h.scheming_language_text(f.label) }}:</dt>
         <dd><a href="mailto:{{ c.group_dict[f.field_name] or ('&nbsp;'|safe) }}">{{ c.group_dict[f.field_name] or ("&nbsp;"|safe) }}</a></dd>
-    {% elif f.field_name in ('rtti_doc_document_upload', 'srti_doc_document_upload', 'sstp_doc_document_upload') %}
+    {% elif f.field_name in ('rtti_doc_document_upload', 'srti_doc_document_upload', 'sstp_doc_document_upload', 'proxy_pdf_url') %}
         {% if h.check_access('organization_update', {'id': c.group_dict.id}) %}
         <dt>{{ h.scheming_language_text(f.label) }}:</dt>
         <dd>
