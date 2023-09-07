@@ -47,7 +47,7 @@ ckan.module('scheming-proxy_upload', function($){
             // this is the location for the upload/link data/image label
             this.label_location = $('label[for="field-proxy-url"]');
             // determines if the resource is a data resource
-            this.is_data_resource = (this.options.field_url === 'proxy_pdf_url') && (this.options.field_upload === 'proxy_upload');
+            this.is_data_resource = (this.options.field_url === 'url') && (this.options.field_upload === 'upload');
             this.previousUpload = this.options.previous_upload;
 
             // Is there a clear checkbox on the form already?
@@ -109,7 +109,7 @@ ckan.module('scheming-proxy_upload', function($){
             if (options.is_url) {
                 this._showOnlyFieldUrl();
                 this._updateUrlLabel(this._('URL'));
-            }else if (options.is_upload_logo) {
+            }else if (options.is_upload_proxy) {
                 this._showOnlyFieldUrl();
 
                 this.field_url_input.prop('readonly', true);
