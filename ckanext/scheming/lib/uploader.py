@@ -62,7 +62,7 @@ class OrganizationUploader(object):
         """ Setup upload by creating a subdirectory of the storage directory
         of name object_type. old_filename is the name of the file in the url
         field last time"""
-
+        print("///UPLOADER INIT")
         self.storage_path = None
         self.filename = None
         self.filepath = None
@@ -111,7 +111,6 @@ class OrganizationUploader(object):
         self.rtti_doc_old_filepath = None
         # end NAP DOC hack
         #hack into this to upload PROXY DOC
-        print("\t//////UPLOADER")
         self.proxy_doc_url=''
         self.proxy_doc_clear= None
         self.proxy_doc_file_field = None
@@ -191,7 +190,7 @@ class OrganizationUploader(object):
 
         # RTTI
         print("START:: UPDATE RTTI DATA DICT")
-        print("\nRRTI DATA_DICT - look for rtti_upload_doc and compare with proxy_upload", data_dict)
+        #print("\nRRTI DATA_DICT - look for rtti_upload_doc and compare with proxy_upload", data_dict)
         if self.rtti_doc_old_filename:
             self.rtti_doc_old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.rtti_doc_old_filename)
 
@@ -208,6 +207,7 @@ class OrganizationUploader(object):
             data_dict['url_type'] = 'upload'
             print("\nRRTI DATA_DICT - rrti_doc_upload_field_storage", self.rtti_doc_upload_field_storage)
             self.rtti_doc_upload_file = _get_underlying_file(self.rtti_doc_upload_field_storage)
+            print("RTTI filepath:: ",self.rtti_doc_filepath )
             self.rtti_doc_tmp_filepath = self.rtti_doc_filepath + '~'
         # keep the file if there has been no change
         elif self.rtti_doc_old_filename and not self.rtti_doc_old_filename.startswith('http'):
@@ -235,9 +235,10 @@ class OrganizationUploader(object):
             self.proxy_doc_filepath= os.path.join(organization_storagepath, self.proxy_doc_filename)
             data_dict['proxy_pdf_url'] = self.proxy_doc_filename
             data_dict['url_type'] = 'upload'
-            print("\nDATA_DICT: proxy_doc_upload_field_storage",self.proxy_doc_upload_field_storage )
+            #print("\nDATA_DICT: proxy_doc_upload_field_storage",self.proxy_doc_upload_field_storage )
             self.proxy_doc_upload_file = _get_underlying_file(self.proxy_doc_upload_field_storage)
-            self.proxy_doc_tmp_filepath = self.proxy_doc_tmp_filepath + '~'
+            print("PROXY filepath:: ",self.proxy_doc_filepath )
+            self.proxy_doc_tmp_filepath = self.proxy_doc_filepath + '~'
         #keep the file if there has been no change
         elif self.proxy_doc_old_filename and not self.proxy_doc_old_filename.startswith('http'):
             if not self.proxy_doc_clear:
@@ -336,7 +337,7 @@ class OrganizationUploader(object):
 
         # RTTI
         if self.rtti_doc_filename:
-            print("\nUPLOAD FILE:: self.rtti_doc_filename: ", self.rtti_doc_filename)
+            print("UPLOAD FILE:: self.rtti_doc_filename: ", self.rtti_doc_filename)
             with open(self.rtti_doc_tmp_filepath, 'wb+') as output_file:
                 try:
                     _copy_file(self.rtti_doc_upload_file, output_file, max_size)
@@ -344,7 +345,7 @@ class OrganizationUploader(object):
                     os.remove(self.rtti_doc_tmp_filepath)
                     raise
                 finally:
-                    print("\nUPLOAD RTTI FILE DONE")
+                    print("UPLOAD RTTI FILE DONE")
                     self.rtti_doc_upload_file.close()
             os.rename(self.rtti_doc_tmp_filepath, self.rtti_doc_filepath)
             self.rtti_doc_clear = True
@@ -359,7 +360,7 @@ class OrganizationUploader(object):
 
         # hack into this to upload PROXY DOC
         if self.proxy_doc_filename:
-            print("\nUPLOAD FILE:: self.proxy_doc_filename: ", self.proxy_doc_filename)
+            print("UPLOAD FILE:: self.proxy_doc_filename: ", self.proxy_doc_filename)
             with open(self.proxy_doc_tmp_filepath, 'wb+') as output_file:
                 try:
                     _copy_file(self.proxy_doc_upload_file, output_file, max_size)
@@ -368,7 +369,7 @@ class OrganizationUploader(object):
                     raise
                 finally:
                     self.proxy_doc_upload_file.close()
-                    print("\nUPLOAD PROXY FILE DONE")
+                    print("UPLOAD PROXY FILE DONE")
             os.rename(self.proxy_doc_tmp_filepath, self.proxy_doc_filepath)
             self.proxy_doc_clear = True
         
