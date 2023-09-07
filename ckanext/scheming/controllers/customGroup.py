@@ -214,14 +214,14 @@ class customGroupOrganization(base.BaseController):
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))
             context['message'] = data_dict.get('log_message', '')
-            
-            print("_save_EDIT DataDict::", data_dict)
-            
             data_dict['id'] = id
+            print("_save_EDIT DataDict::", data_dict)
             context['allow_partial_update'] = True
+            print("_save_EDIT self_action::")
             group = self._action('organization_update')(context, data_dict)
             if id != group['name']:
                 self._force_reindex(group)
+            print("_save_EDIT h.redirect_to::")
             h.redirect_to('%s_read' % group['type'], id=group['name'])
         except (NotFound, NotAuthorized) as e:
             abort(404, _('Organization not found'))
@@ -230,6 +230,7 @@ class customGroupOrganization(base.BaseController):
         except ValidationError as e:
             errors = e.error_dict
             error_summary = e.error_summary
+            print("_save_EDIT ValidationErrror::")
             if data_dict.get('url_type') == 'upload':
                 data_dict['url_type']=''
                 data_dict['previous_upload']=True
