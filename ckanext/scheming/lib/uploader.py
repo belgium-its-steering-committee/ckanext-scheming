@@ -336,7 +336,7 @@ class OrganizationUploader(object):
 
         # RTTI
         if self.rtti_doc_filename:
-            print("\nUPLOAD FILE:: self.rtti_doc_filename: ", self.rtti_doc_filename:)
+            print("\nUPLOAD FILE:: self.rtti_doc_filename: ", self.rtti_doc_filename)
             with open(self.rtti_doc_tmp_filepath, 'wb+') as output_file:
                 try:
                     _copy_file(self.rtti_doc_upload_file, output_file, max_size)
