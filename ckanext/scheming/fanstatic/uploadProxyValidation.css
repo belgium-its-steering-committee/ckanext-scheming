@@ -1,16 +1,16 @@
-.js .scheming-scheming-proxy_upload #field-proxy-url{
+.js .scheming-proxy_upload #field-proxy-url{
     border-color: blue;
 }
 
-.js .scheming-scheming-proxy_upload #field-proxy-upload{
+.js .scheming-proxy_upload #field-proxy-upload{
     border-color: red;
 }
 
-.js .scheming-scheming-proxy_upload #field-proxy-url{
+.js .scheming-proxy_upload #field-proxy-url{
     padding-right:90px;
 }
 
-.js .scheming-scheming-proxy_upload #field-proxy-upload {
+.js .scheming-proxy_upload #field-proxy-upload {
     cursor: pointer;
     position: absolute;
     z-index: 1;
@@ -18,17 +18,17 @@
     opacity: 0;
 }
 
-.js .scheming-scheming-proxy_upload .controls {
+.js .scheming-proxy_upload .controls {
     position: relative;
 }
 
-.js .scheming-scheming-proxy_upload .btn {
+.js .scheming-proxy_upload .btn {
     position: relative;
     top: 0;
     margin-right: 10px;
     }
 
-.js .scheming-scheming-proxy_upload .btn.hover {
+.js .scheming-proxy_upload .btn.hover {
     color: #333333;
     text-decoration: none;
     background-position: 0 -15px;
@@ -37,7 +37,7 @@
     transition: background-position 0.1s linear;
 }
 
-.js .scheming-scheming-proxy_upload .btn-remove-url {
+.js .scheming-proxy_upload .btn-remove-url {
     position: absolute;
     margin-right: 0;
     top: 6px;
@@ -46,11 +46,11 @@
     border-radius: 100px;
 }
 
-.js .scheming-scheming-proxy_upload .btn-remove-url .icon-remove {
+.js .scheming-proxy_upload .btn-remove-url .icon-remove {
     margin-right: 0;
     }
     
-.js .scheming-scheming-proxy_upload .error-inline {
+.js .scheming-proxy_upload .error-inline {
     margin-top: 5px;
     margin-left: 2px;
     font-weight: bold;
