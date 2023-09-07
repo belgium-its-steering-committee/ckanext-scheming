@@ -188,12 +188,13 @@ class OrganizationUploader(object):
                 data_dict['srti_doc_document_upload'] = ''
 
         # RTTI
+        print("\n START:: UPDATE DATA DICT")
+        print("RRTI DATA_DICT - look for rtti_upload_doc and compare with proxy_upload", data_dict)
         if self.rtti_doc_old_filename:
             self.rtti_doc_old_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.rtti_doc_old_filename)
 
         self.rtti_doc_clear = data_dict.pop('rtti_clear_upload_doc', None)
         self.rtti_doc_file_field = 'rtti_upload_doc'
-        print("RRTI DATA_DICT - look for rtti_upload_doc and compare with proxy_upload", data_dict)
         self.rtti_doc_upload_field_storage = data_dict.pop(self.rtti_doc_file_field, None)
         if isinstance(self.rtti_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
             self.rtti_doc_filename = self.rtti_doc_upload_field_storage.filename
@@ -203,6 +204,7 @@ class OrganizationUploader(object):
             self.rtti_doc_filepath = os.path.join(organization_storagepath, self.rtti_doc_filename)
             data_dict['rtti_doc_document_upload'] = self.rtti_doc_filename
             data_dict['url_type'] = 'upload'
+            print("RRTI DATA_DICT - rrti_doc_upload_field_storage", self.rtti_doc_upload_field_storage)
             self.rtti_doc_upload_file = _get_underlying_file(self.rtti_doc_upload_field_storage)
             self.rtti_doc_tmp_filepath = self.rtti_doc_filepath + '~'
         # keep the file if there has been no change
@@ -215,7 +217,7 @@ class OrganizationUploader(object):
         
         # hack into this to upload PROXY DOC
         print("\n START:: UPDATE DATA DICT")
-        print("DATA_DICT - Look for: proxy_pdf_url::", data_dict)
+        print("DATA_DICT - Look for: proxy_upload::", data_dict)
         if self.proxy_doc_old_filename:
             self.proxy_doc_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.proxy_doc_old_filename)
         
