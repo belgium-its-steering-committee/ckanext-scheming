@@ -17,7 +17,7 @@
         <dt>{{ h.scheming_language_text(f.label) }}:</dt>
         <dd>
             <script>
-                console.log("Group_dict::", c.group_dict)
+                console.log("Group_dict::", {{c.group_dict}})
             </script>
             <a href="{{ h.get_site_protocol_and_host()[0] }}://{{ h.get_site_protocol_and_host()[1] }}/uploads/organization/{{ c.group_dict['name'] }}/{{ c.group_dict[f.field_name] }}" target="_blank">
             {{ c.group_dict[f.field_name] or ("&nbsp;"|safe) }}
