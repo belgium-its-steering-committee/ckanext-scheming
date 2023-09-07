@@ -109,8 +109,6 @@ class customGroupOrganization(base.BaseController):
             data = data or {}
             if not data.get('doc_url', '').startswith('http'):
                 data.pop('doc_url', None)
-            if not data.get('proxy_pdf_url').startswith('http'):
-                data.pop('proxy_pdf_url', None)
 
             errors = errors or {}
             error_summary = error_summary or {}

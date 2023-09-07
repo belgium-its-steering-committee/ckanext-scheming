@@ -223,13 +223,13 @@ class OrganizationUploader(object):
         self.proxy_doc_upload_field_storage  = data_dict.pop(self.proxy_doc_file_field, None)
         if isinstance(self.proxy_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
             self.proxy_doc_filename= self.proxy_doc_upload_field_storage.filename
-            self.proxy_doc_filename= munge.munge_filename(self.proxy_doc_filename)
-            print("proxy file name should be there:: ", self.proxy_doc_filename)
+            self.proxy_doc_filename= munge.munge_filename(self.proxy_doc_filename)  
             organization_storagepath = os.path.join(self.storage_path, data_dict.get('name'))
             _make_dirs_if_not_existing(organization_storagepath)
             self.proxy_doc_filepath= os.path.join(organization_storagepath, self.proxy_doc_filename)
             data_dict['proxy_pdf_url'] = self.proxy_doc_filename
             data_dict['url_type'] = 'upload'
+            print("DATA_DICT: proxy_doc_upload_field_storage",self.proxy_doc_upload_field_storage )
             self.proxy_doc_upload_file = _get_underlying_file(self.proxy_doc_upload_field_storage)
             self.proxy_doc_tmp_filepath = self.proxy_doc_tmp_filepath + '~'
         #keep the file if there has been no change
