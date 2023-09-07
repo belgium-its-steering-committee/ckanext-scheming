@@ -210,10 +210,13 @@ class customGroupOrganization(base.BaseController):
     def _save_edit(self, id, context, imageBool, rttiBool, srtiBool, sstpBool, proxyBool):
         print("\nCONTROLLER START:: _save_Edit")
         try:
-            print("_save_EDIT DataDict::", data_dict)
+            
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))
             context['message'] = data_dict.get('log_message', '')
+            
+            print("_save_EDIT DataDict::", data_dict)
+            
             data_dict['id'] = id
             context['allow_partial_update'] = True
             group = self._action('organization_update')(context, data_dict)
