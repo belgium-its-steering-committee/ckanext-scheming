@@ -27,7 +27,6 @@ ckan.module('scheming-doc_upload', function($){
       initialize: function () {
         $.proxyAll(this, /_on/);
         var options = this.options;
-        console.log("KOEKOEK IN DOC JS")
         // firstly setup the fields
         var field_upload = 'input[name="' + options.field_upload + '"]';
         var field_url = 'input[name="' + options.field_url + '"]';

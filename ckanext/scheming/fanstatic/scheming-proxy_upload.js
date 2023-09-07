@@ -1,15 +1,15 @@
 /* logo_upload is a modified image-upload.js */
 
-ckan.module('scheming-logo_upload', function($){
+ckan.module('scheming-proxy_upload', function($){
     return {
             /* options object can be extended using data-module-* attributes */
             options:{
-                is_url_logo: false,  
-                is_upload_logo: false,
+                is_url_proxy: false,  
+                is_upload_proxy: false,
                 field_upload: 'proxy_upload',
                 field_url: 'proxy_pdf_url',
-                field_clear: 'clear_upload',
-                field_name: 'proxy_name',
+                field_clear: 'proxy_clear_upload',
+                field_name: 'proxy_pdf_url',
                 upload_label: '',
                 previous_upload:false,
             },
@@ -45,9 +45,9 @@ ckan.module('scheming-logo_upload', function($){
             
             this.field_name = this.el.parents('form').find(field_name);
             // this is the location for the upload/link data/image label
-            this.label_location = $('label[for="field-proxy-file"]');
+            this.label_location = $('label[for="field-proxy-url"]');
             // determines if the resource is a data resource
-            this.is_data_resource = (this.options.field_url === 'url') && (this.options.field_upload === 'upload');
+            this.is_data_resource = (this.options.field_url === 'proxy_pdf_url') && (this.options.field_upload === 'proxy_upload');
             this.previousUpload = this.options.previous_upload;
 
             // Is there a clear checkbox on the form already?

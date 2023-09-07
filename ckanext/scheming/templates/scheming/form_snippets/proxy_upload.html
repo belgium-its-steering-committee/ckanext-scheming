@@ -37,13 +37,13 @@
 {% endif %}
 
 
-{{ form.input(field_url, label=url_label, id="field-proxy-file", type=type, value=data.get(field_url), error=errors.get(field_url), classes=['control-full'])  }}
+{{ form.input(field_url, label=url_label, id="field-proxy-url", type=type, value=data.get(field_url), error=errors.get(field_url), classes=['control-full'])  }}
 
 {% if is_upload_proxy_enabled%}
     {{ form.input(field_upload, label=upload_label, id="field-proxy-upload", type="file", value='', error=errors.get(field_url), classes=['control-full'])}}
     
     {%if is_upload_proxy%}
-        {{ form.checkbox(field_clear, label=_('Clear Upload'), id="field-clear-proxy", value="true", classes=['control-full'])}}
+        {{ form.checkbox(field_clear, label=_('Clear Upload'), id="proxy_clear_upload", value="true", classes=['control-full'])}}
     {%endif%}
 {%endif%}
 
