@@ -6,10 +6,10 @@ ckan.module('scheming-logo_upload', function($){
             options:{
                 is_url_logo: false,  
                 is_upload_logo: false,
-                field_upload: 'logoK_upload',
+                field_upload: 'proxy_upload',
                 field_url: 'proxy_pdf_url',
                 field_clear: 'clear_upload',
-                field_name: 'logo_name',
+                field_name: 'proxy_name',
                 upload_label: '',
                 previous_upload:false,
             },
@@ -45,7 +45,7 @@ ckan.module('scheming-logo_upload', function($){
             
             this.field_name = this.el.parents('form').find(field_name);
             // this is the location for the upload/link data/image label
-            this.label_location = $('label[for="field-logo-file"]');
+            this.label_location = $('label[for="field-proxy-file"]');
             // determines if the resource is a data resource
             this.is_data_resource = (this.options.field_url === 'url') && (this.options.field_upload === 'upload');
             this.previousUpload = this.options.previous_upload;
@@ -80,7 +80,7 @@ ckan.module('scheming-logo_upload', function($){
             .insertBefore(this.field_url_input);
 
             // Update the main label (this is displayed when no data/image has been uploaded/linked)
-            $('label[for="field-logo-upload"]').text(options.upload_label || this._('Image'));
+            $('label[for="field-proxy-upload"]').text(options.upload_label || this._('Image'));
 
             // Setup the file upload input
             this.input
