@@ -214,7 +214,7 @@ class OrganizationUploader(object):
         
         # hack into this to upload PROXY DOC
         print("\n START:: UPDATE DATA DICT")
-        print("DATA_DICT - Look for: proxy_pdf_url::")
+        print("DATA_DICT - Look for: proxy_pdf_url::", data_dict)
         if self.proxy_doc_old_filename:
             self.proxy_doc_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.proxy_doc_old_filename)
         
