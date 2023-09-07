@@ -51,9 +51,14 @@
 {% endmacro %}
 
 {% if data%}
-    <script>
-        console.log("DATAAAAAAA::: ", data)
-    </script>
+    <div>
+    <h1>Dictionary data</h1>
+    <ul>
+        {%for key,value in data.items() %}
+            <li>{{key}}::{{value}}</li>
+        {%endfor%}
+    </ul>
+    </div>
 {%endif%}
 
 {% if ('proxy_pdf_url' in data)%}
