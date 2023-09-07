@@ -36,13 +36,10 @@ ckan.module('scheming-doc_upload', function($){
         this.input = $(field_upload, this.el);
         
         this.field_url = $(field_url, this.el).parents('.form-group');
-        //console.log("field_url::", this.field_url)
         
         this.field_image = this.input.parents('.form-group');
-        //console.log("field_image::", this.field_image)
         
         this.field_url_input = $('input', this.field_url);
-        //console.log("field_url_input::", this.field_url_input)
         
         this.field_name = this.el.parents('form').find(field_name);
         // this is the location for the upload/link data/image label
