@@ -1,4 +1,4 @@
-/* proxy_upload is a modified image-upload.js */
+/* logo_upload is a modified image-upload.js */
 
 ckan.module('scheming-proxy_upload', function($){
     return {
