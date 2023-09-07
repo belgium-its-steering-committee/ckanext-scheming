@@ -7,7 +7,7 @@ ckan.module('scheming-logo_upload', function($){
                 is_url_logo: false,  
                 is_upload_logo: false,
                 field_upload: 'logo_upload',
-                field_url: 'image_url',
+                field_url: 'proxy_pdf_url',
                 field_clear: 'clear_upload',
                 field_name: 'logo_name',
                 upload_label: '',
