@@ -400,7 +400,10 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
 
     def get_resource_uploader(self, data_dict):
         return None
-    
+
+
+#CUSTOM LOGIC
+
 def _load_schemas(schemas, type_field):
     out = {}
     for n in schemas:
