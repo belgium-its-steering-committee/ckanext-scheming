@@ -214,15 +214,17 @@ class OrganizationUploader(object):
         
         # hack into this to upload PROXY DOC
         print("\n START:: UPDATE DATA DICT")
+        print("DATA_DICT - Look for: proxy_pdf_url::")
         if self.proxy_doc_old_filename:
             self.proxy_doc_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.proxy_doc_old_filename)
         
-        self.proxy_doc_clear = data_dict.pop('proxy_pdf_url', None)
+        self.proxy_doc_clear = data_dict.pop('proxy_clear_upload', None)
         self.proxy_doc_file_field='proxy_pdf_url'
         self.proxy_doc_upload_field_storage  = data_dict.pop(self.proxy_doc_file_field, None)
         if isinstance(self.proxy_doc_upload_field_storage, (ALLOWED_UPLOAD_TYPES)):
             self.proxy_doc_filename= self.proxy_doc_upload_field_storage.filename
             self.proxy_doc_filename= munge.munge_filename(self.proxy_doc_filename)
+            print("proxy file name should be there:: ", self.proxy_doc_filename)
             organization_storagepath = os.path.join(self.storage_path, data_dict.get('name'))
             _make_dirs_if_not_existing(organization_storagepath)
             self.proxy_doc_filepath= os.path.join(organization_storagepath, self.proxy_doc_filename)
