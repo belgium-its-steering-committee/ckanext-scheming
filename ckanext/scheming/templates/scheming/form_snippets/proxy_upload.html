@@ -1,25 +1,17 @@
 {% import 'macros/form.html' as form %}
 
-{#
-Adjusted organisation_logo_uploader that uses the standard CKAN image upload process.
-Two attributes need to be linked too the CKAN attributes:
-//benap_schema_organisation.json needs::
-- upload_field: image_upload --> this is where the file is attached to the datadict
-//macro function:
-- field_url='image_url' --> this is where the html <img scr/> is linked to the path
-#}
-
 {% macro proxy_upload(
     data,
     errors,
     field_url='proxy_pdf_url',
-    field_upload='proxy_upload_doc',
-    field_clear='proxy_clear_upload_doc',
+    field_upload='proxy_upload',
+    field_clear='proxy_clear_upload',
     is_url_proxy=false,
     is_upload_proxy=true,
     is_upload_proxy_enabled=true,
-    field_label='proxy_label',
-    field_name="proxy_name",
+    url_label='',
+    upload_label='',
+    field_name="proxy_pdf_url",
     previous_upload=false
     )
 %}
@@ -30,33 +22,32 @@ Two attributes need to be linked too the CKAN attributes:
 
 
 {% if is_upload_proxy_enabled %}
-<div class="scheming-proxy_doc_upload"
-    data-module="scheming-proxy_doc_upload"
-    data-module-is_url_logo="{{ 'true' if is_url_logo else 'false' }}"
-    data-module-is_upload_logo="{{ 'true' if is_upload_logo else 'false'  }}"
+<div class="scheming-proxy_upload_zonderCSS2"
+    data-module="scheming-proxy_upload_zonderCSS"
+    data-module-is_url_proxy="{{ 'true' if is_url_proxy else 'false' }}"
+    data-module-is_upload_logo="{{ 'true' if is_upload_proxy else 'false'  }}"
     data-module-field_upload="{{ field_upload }}"
     data-module-field_url="{{ field_url }}"
     data-module-field_clear="{{ field_clear }}"
-    data-module-upload_label="{{ field_label }}"
+    data-module-upload_label="{{ upload_label }}"
     data-module-field_name="{{ field_name }}"
     data-module-previous_upload="{{ 'true' if previous_upload else 'false' }}"
+    data-module-data="{{data}}"
     >
 {% endif %}
 
 
-{{ form.input(field_url, label=field_label, id="field-proxy-file", type=type, value=data.get(field_url), error=errors.get(field_url), classes=['control-full'])  }}
+{{ form.input(field_url, label=url_label, id="field-proxy-file", type=type, value=data.get(field_url), error=errors.get(field_url), classes=['control-full'])  }}
 
-{% if is_upload_logo_enabled%}
-    {{ form.input(field_upload, label=field_label, id="field-proxy-upload", type="file", value='', error=errors.get(field_url), classes=['control-full'])}}
+{% if is_upload_proxy_enabled%}
+    {{ form.input(field_upload, label=upload_label, id="field-proxy-upload", type="file", value='', error=errors.get(field_url), classes=['control-full'])}}
     
-    {%if is_upload_logo%}
-        {{ form.checkbox(field_clear, label=_('Clear Upload'), id="field-clear-proxy-logo", value="true", classes=['control-full'])}}
+    {%if is_upload_proxy%}
+        {{ form.checkbox(field_clear, label=_('Clear Upload'), id="field-clear-proxy", value="true", classes=['control-full'])}}
     {%endif%}
 {%endif%}
 
-{% if is_upload_logo_enabled %}
-</div>
-{%endif%}
+{% if is_upload_proxy_enabled %}</div>{%endif%}
 
 {% endmacro %}
 
@@ -77,9 +68,10 @@ Two attributes need to be linked too the CKAN attributes:
     field_upload=field.upload_field,
     field_name=field.field_name,
     field_clear=field.upload_clear,
-    is_upload_logo_enabled=h.uploads_enabled(),
+    is_upload_proxy_enabled=h.uploads_enabled(),
     is_upload_proxy=is_upload_proxy,
-    field_label=h.scheming_language_text(field.label),
+    upload_label=h.scheming_language_text(field.upload),
+    url_label=h.scheming_language_text(field.label),
     previous_upload=previous_upload
 )
 }}
