@@ -22,7 +22,7 @@
 
 
 {% if is_upload_proxy_enabled %}
-<div class="scheming-proxy_upload_zonderCSS2"
+<div class="scheming-proxy_upload"
     data-module="scheming-proxy_upload_zonderCSS"
     data-module-is_url_proxy="{{ 'true' if is_url_proxy else 'false' }}"
     data-module-is_upload_logo="{{ 'true' if is_upload_proxy else 'false'  }}"
@@ -70,7 +70,7 @@
     field_clear=field.upload_clear,
     is_upload_proxy_enabled=h.uploads_enabled(),
     is_upload_proxy=is_upload_proxy,
-    upload_label=h.scheming_language_text(field.upload),
+    upload_label=h.scheming_language_text(field.upload_label),
     url_label=h.scheming_language_text(field.label),
     previous_upload=previous_upload
 )
