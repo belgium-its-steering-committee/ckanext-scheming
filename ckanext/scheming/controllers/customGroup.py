@@ -172,7 +172,8 @@ class customGroupOrganization(base.BaseController):
             
             self._setup_template_variables(context, data, group_type=group_type)
             c.form = render(self._group_form(group_type), extra_vars=vars)
-
+            
+            print("\n CONTROLLER END:: EDIT")
             return render(self._edit_template(c.group.type),
                         extra_vars={'group_type': group_type})
 
@@ -209,6 +210,7 @@ class customGroupOrganization(base.BaseController):
     def _save_edit(self, id, context, imageBool, rttiBool, srtiBool, sstpBool, proxyBool):
         print("\nCONTROLLER START:: _save_Edit")
         try:
+            print("_save_EDIT DataDict::", data_dict)
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))
             context['message'] = data_dict.get('log_message', '')
@@ -233,7 +235,7 @@ class customGroupOrganization(base.BaseController):
                 data_dict['sstp_doc_document_upload']='' if sstpBool else data_dict['sstp_doc_document_upload']
                 data_dict['srti_doc_document_upload']='' if srtiBool else data_dict['srti_doc_document_upload']
                 data_dict['proxy_pdf_url']='' if proxyBool else data_dict['proxy_pdf_url']
-        
+        print("\nCONTROLLER END:: _save_Edit")
         return self.edit(id, data_dict, errors, error_summary)
 
 
