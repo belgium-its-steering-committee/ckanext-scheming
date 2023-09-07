@@ -350,6 +350,7 @@ class OrganizationUploader(object):
         # hack into this to upload PROXY DOC
         print("\nSTART :: UPLOAD FILE")
         if self.proxy_doc_filename:
+            print("UPLOAD FILE:: self.proxy_doc_filename: ", self.proxy_doc_filename)
             with open(self.proxy_doc_tmp_filepath, 'wb+') as output_file:
                 try:
                     _copy_file(self.proxy_doc_upload_file, output_file, max_size)
