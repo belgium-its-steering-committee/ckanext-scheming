@@ -86,7 +86,6 @@ class customGroupOrganization(base.BaseController):
     
     # customization
     def new(self, data=None, errors=None, error_summary=None):
-            print("\n CONTROLLER START:: NEW")
             if data and 'type' in data:
                 group_type = data['type']
             else:
@@ -123,7 +122,6 @@ class customGroupOrganization(base.BaseController):
                         extra_vars={'group_type': group_type})
 
     def edit(self, id, data=None, errors=None, error_summary=None):
-            print("\n CONTROLLER START:: EDIT")
             group_type = self._ensure_controller_matches_group_type(
                 id.split('@')[0])
 
@@ -176,7 +174,6 @@ class customGroupOrganization(base.BaseController):
                         extra_vars={'group_type': group_type})
 
     def _save_new(self, context, group_type=None):
-        print("\nCONTROLLER START:: _save_New")
         try:
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))
@@ -206,20 +203,16 @@ class customGroupOrganization(base.BaseController):
         return self.new(data_dict, errors, error_summary)
 
     def _save_edit(self, id, context, imageBool, rttiBool, srtiBool, sstpBool, proxyBool):
-        print("\nCONTROLLER START:: _save_Edit")
         try:
             
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))
             context['message'] = data_dict.get('log_message', '')
             data_dict['id'] = id
-            #print("_save_EDIT DataDict::", data_dict)
             context['allow_partial_update'] = True
-            #print("_save_EDIT self_action::")
             group = self._action('organization_update')(context, data_dict)
             if id != group['name']:
                 self._force_reindex(group)
-            #print("_save_EDIT h.redirect_to::")
             h.redirect_to('%s_read' % group['type'], id=group['name'])
         except (NotFound, NotAuthorized) as e:
             abort(404, _('Organization not found'))
@@ -228,7 +221,6 @@ class customGroupOrganization(base.BaseController):
         except ValidationError as e:
             errors = e.error_dict
             error_summary = e.error_summary
-            #print("_save_EDIT ValidationErrror::")
             if data_dict.get('url_type') == 'upload':
                 data_dict['url_type']=''
                 data_dict['previous_upload']=True
