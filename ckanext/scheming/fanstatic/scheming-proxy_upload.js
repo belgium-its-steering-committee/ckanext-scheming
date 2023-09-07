@@ -117,7 +117,7 @@ ckan.module('scheming-proxy_upload', function($){
                 //var filename = this._fileNameFromUpload(this.field_url_input.val());
                 //this.field_url_input.val(filename);
 
-                this._updateUrlLabel(this._('Proxy Agreement PDF:'));
+                this._updateUrlLabel(this._('Proxy Agreement PDF'));
             } else {
                 this._showOnlyButtons();
             } 
