@@ -86,6 +86,7 @@ class customGroupOrganization(base.BaseController):
     
     # customization
     def new(self, data=None, errors=None, error_summary=None):
+            print("\n CONTROLLER START:: NEW")
             if data and 'type' in data:
                 group_type = data['type']
             else:
@@ -124,6 +125,7 @@ class customGroupOrganization(base.BaseController):
                         extra_vars={'group_type': group_type})
 
     def edit(self, id, data=None, errors=None, error_summary=None):
+            print("\n CONTROLLER START:: EDIT")
             group_type = self._ensure_controller_matches_group_type(
                 id.split('@')[0])
 
@@ -175,6 +177,7 @@ class customGroupOrganization(base.BaseController):
                         extra_vars={'group_type': group_type})
 
     def _save_new(self, context, group_type=None):
+        print("\nCONTROLLER START:: _save_New")
         try:
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))
@@ -204,6 +207,7 @@ class customGroupOrganization(base.BaseController):
         return self.new(data_dict, errors, error_summary)
 
     def _save_edit(self, id, context, imageBool, rttiBool, srtiBool, sstpBool, proxyBool):
+        print("\nCONTROLLER START:: _save_Edit")
         try:
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(request.params))))

@@ -109,6 +109,7 @@ class OrganizationUploader(object):
         self.rtti_doc_old_filepath = None
         # end NAP DOC hack
         #hack into this to upload PROXY DOC
+        print("\t//////UPLOADER")
         self.proxy_doc_url=''
         self.proxy_doc_clear= None
         self.proxy_doc_file_field = None
@@ -212,6 +213,7 @@ class OrganizationUploader(object):
         # end NAP DOC hack
         
         # hack into this to upload PROXY DOC
+        print("\n START:: UPDATE DATA DICT")
         if self.proxy_doc_old_filename:
             self.proxy_doc_filepath = os.path.join(self.storage_path, data_dict.get('name'), self.proxy_doc_old_filename)
         
@@ -234,6 +236,7 @@ class OrganizationUploader(object):
                 data_dict['proxy_pdf_url'] = self.proxy_doc_old_filename
             if self.proxy_doc_clear and self.proxy_doc_url == self.proxy_doc_old_filename:
                 data_dict['proxy_pdf_url'] = ''
+        print("\n END:: UPDATE DATA DICT")
         # end PROXY DOC hack
         
         if self.old_filename:
@@ -345,6 +348,7 @@ class OrganizationUploader(object):
         # end hack
 
         # hack into this to upload PROXY DOC
+        print("\nSTART :: UPLOAD FILE")
         if self.proxy_doc_filename:
             with open(self.proxy_doc_tmp_filepath, 'wb+') as output_file:
                 try:
@@ -354,6 +358,7 @@ class OrganizationUploader(object):
                     raise
                 finally:
                     self.proxy_doc_upload_file.close()
+                    print("\n UPLOAD FILE DONE")
             os.rename(self.proxy_doc_tmp_filepath, self.proxy_doc_filepath)
             self.proxy_doc_clear = True
         
@@ -362,4 +367,5 @@ class OrganizationUploader(object):
                 os.remove(self.proxy_doc_old_filepath)
             except OSError:
                 pass
+        print("\nEND :: UPLOAD FILE")
         #end PROXY DOC hack
