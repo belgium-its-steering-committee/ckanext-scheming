@@ -50,6 +50,12 @@
 
 {% endmacro %}
 
+{% if data%}
+    <script>
+        console.log("DATAAAAAAA::: ", str(data))
+    </script>
+{%endif%}
+
 {% if ('proxy_pdf_url' in data)%}
     {% if ((request.path == '/organization/new') and (errors == {})) or (request.path != '/organization/new') %}
         {%- set is_upload_proxy = (data.proxy_pdf_url != ' ') -%}
