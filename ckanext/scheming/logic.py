@@ -85,6 +85,7 @@ def scheming_organization_show(context, data_dict):
     """
     adjust contents of image_display_url
     """
+    
     #API restriction for not logged-in users
     if context['user'] =='':
         data_dict['include_extras'] = False
