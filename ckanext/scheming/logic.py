@@ -91,6 +91,7 @@ def scheming_organization_show(context, data_dict):
         data_dict['include_extras'] = False
 
     result_dict = organization_show(context, data_dict)
+    
     image_url = result_dict.get('image_url', '')
     organization_name = result_dict.get('name', None)
     if organization_name and not image_url.startswith(('http', 'https')) and len(image_url) > 0:
@@ -98,4 +99,9 @@ def scheming_organization_show(context, data_dict):
             'uploads/organization/{0}/{1}'.format(organization_name, result_dict.get('image_url')),
             qualified=True
         )
+
+    if context['user'] =='':
+        result_dict.pop('image_url')
+        result_dict.pop('image_display_url')
+    
     return result_dict
