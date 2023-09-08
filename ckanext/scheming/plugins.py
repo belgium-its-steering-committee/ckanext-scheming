@@ -54,7 +54,9 @@ from ckanext.scheming.logic import (
     scheming_group_schema_show,
     scheming_organization_schema_list,
     scheming_organization_schema_show,
-    scheming_organization_show)
+    scheming_organization_show
+    )
+
 from ckanext.scheming.converters import (
     convert_from_extras_group,
     convert_to_json_if_date,

@@ -8,7 +8,6 @@ from ckanext.scheming.helpers import (
     scheming_organization_schemas, scheming_get_organization_schema,
 )
 
-
 @side_effect_free
 def scheming_dataset_schema_list(context, data_dict):
     """
@@ -86,6 +85,10 @@ def scheming_organization_show(context, data_dict):
     """
     adjust contents of image_display_url
     """
+    #API restriction for not logged-in users
+    if context['user'] =='':
+        data_dict['include_extras'] = False
+
     result_dict = organization_show(context, data_dict)
     image_url = result_dict.get('image_url', '')
     organization_name = result_dict.get('name', None)
