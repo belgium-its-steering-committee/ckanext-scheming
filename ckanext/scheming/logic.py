@@ -95,10 +95,13 @@ def scheming_organization_show(context, data_dict):
     is_user_member_of_org = 0
 
     if user_name != '':
-        organization_id = result_dict.get('id', None)
-        user_org_dict = toolkit.get_action('organization_list_for_user')(
-            data_dict={'id': user_name})
-        is_user_member_of_org= len([ id for orgs in user_org_dict if orgs['id'] == organization_id])
+        if user_name == 'napcontrolbody':
+            is_user_member_of_org = 1
+        else:
+            organization_id = result_dict.get('id', None)
+            user_org_dict = toolkit.get_action('organization_list_for_user')(
+                data_dict={'id': user_name})
+            is_user_member_of_org= len([ id for orgs in user_org_dict if orgs['id'] == organization_id])
         
     if user_name == '' or is_user_member_of_org < 1:
         data_dict['include_extras'] = False
