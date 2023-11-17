@@ -14,8 +14,8 @@
 {% block resource_additional_information_inner %}
   <div class="module-content">
     <script>
-      var data = {{res |tojson |safe}};
-      console.log("debug:: ", data);
+      var data = {{res}};
+      console.log("debug:: ", str(data));
     </script>
     <div class="debug">{{res}}</div>
     <h2>{{ _('Additional Information') }}</h2>
