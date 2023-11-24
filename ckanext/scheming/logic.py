@@ -116,7 +116,7 @@ def scheming_organization_show(context, data_dict):
                    'organization_agreement_declaration_nap',
                    'proxy_pdf_url']
         for item in popList:
-            if result_dict[item]:
+            if item in result_dict:
                 result_dict.pop(item)
 
     #END API restriction   
