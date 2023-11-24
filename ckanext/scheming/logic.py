@@ -107,14 +107,18 @@ def scheming_organization_show(context, data_dict):
         #data_dict['include_extras'] = False
         #result_dict = organization_show(context, data_dict)
         #extra pops on NAP request
-        result_dict.pop('rtti_doc_document_upload')
-        result_dict.pop('srti_doc_document_upload')
-        result_dict.pop('sstp_doc_document_upload')
-        result_dict.pop('optional_comment')
-        result_dict.pop('image_display_url')
-        result_dict.pop('agreement_declaration_mmtis')
-        result_dict.pop('organization_agreement_declaration_nap')
-        result_dict.pop('proxy_pdf_url')
+        popList = ['rtti_doc_document_upload',
+                   'srti_doc_document_upload',
+                   'sstp_doc_document_upload',
+                   'optional_comment',
+                   'image_display_url',
+                   'agreement_declaration_mmtis',
+                   'organization_agreement_declaration_nap',
+                   'proxy_pdf_url']
+        for item in popList:
+            if result_dict[item]:
+                result_dict.pop[item]
+    
     #END API restriction   
     else:
         image_url = result_dict.get('image_url', '')
