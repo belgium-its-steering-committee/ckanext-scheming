@@ -117,8 +117,8 @@ def scheming_organization_show(context, data_dict):
                    'proxy_pdf_url']
         for item in popList:
             if result_dict[item]:
-                result_dict.pop[item]
-    
+                result_dict.pop(item)
+
     #END API restriction   
     else:
         image_url = result_dict.get('image_url', '')
