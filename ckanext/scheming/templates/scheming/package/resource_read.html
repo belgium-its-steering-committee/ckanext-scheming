@@ -15,11 +15,12 @@
   <div class="module-content">
     <script>
       var data = {{res}}
+      console.log(typeof data);
       for (var key in res){
         if(res.hasOwnProperty(key)){
           console.log(key + ": "+ res[key]);
         }
-      console.log(typeof data)
+      
       }
     </script>
     <div class="debug">{{res}}</div>
