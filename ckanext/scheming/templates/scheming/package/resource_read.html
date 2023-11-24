@@ -15,7 +15,8 @@
   <div class="module-content">
     <script>
       console.log("hello test");
-      var data = {{res}}
+      var data = "{{res | default('')}}";
+      console.log(data)
     </script>
     <div class="debug">{{res}}</div>
     <h2>{{ _('Additional Information') }}</h2>
