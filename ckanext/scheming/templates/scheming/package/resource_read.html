@@ -14,10 +14,12 @@
 {% block resource_additional_information_inner %}
   <div class="module-content">
     <script>
+      var data = {{res}}
       for (var key in res){
         if(res.hasOwnProperty(key)){
           console.log(key + ": "+ res[key]);
         }
+      console.log(typeof data)
       }
     </script>
     <div class="debug">{{res}}</div>
