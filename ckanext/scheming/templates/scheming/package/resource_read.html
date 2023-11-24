@@ -14,8 +14,7 @@
 {% block resource_additional_information_inner %}
   <div class="module-content">
     <script>
-      var data = {{res}};
-      console.log("debug:: ", str(data));
+      console.log({{res|tojson|safe}});
     </script>
     <div class="debug">{{res}}</div>
     <h2>{{ _('Additional Information') }}</h2>
@@ -30,7 +29,7 @@
         {%- block resource_last_updated -%}
           <tr>
             <th scope="row">{{ _('Last updated') }}</th>
-            <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.revision_timestamp) or h.render_datetime(res.created) or _('unknown') }}</td>
+            <td>{{ h.render_datetime(res.r) or h.render_datetime(res.revision_timestamp) or h.render_datetime(res.created) or _('unknown') }}</td>
           </tr>
         {%- endblock -%}
         {%- block resource_created -%}
