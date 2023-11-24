@@ -111,7 +111,6 @@ def scheming_organization_show(context, data_dict):
                    'srti_doc_document_upload',
                    'sstp_doc_document_upload',
                    'optional_comment',
-                   'image_display_url',
                    'agreement_declaration_mmtis',
                    'organization_agreement_declaration_nap',
                    'proxy_pdf_url']
