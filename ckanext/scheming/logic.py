@@ -113,8 +113,6 @@ def scheming_organization_show(context, data_dict):
                    'optional_comment',
                    'agreement_declaration_mmtis',
                    'organization_agreement_declaration_nap',
-                   'image_url',
-                   'image_display_url',
                    'proxy_pdf_url']
         
         for item in popList:
@@ -122,12 +120,13 @@ def scheming_organization_show(context, data_dict):
                 result_dict.pop(item)
 
     #END API restriction   
-    else:
-        image_url = result_dict.get('image_url', '')
-        organization_name = result_dict.get('name', None)
-        if organization_name and not image_url.startswith(('http', 'https')) and len(image_url) > 0:
-            result_dict['image_display_url'] = url_for_static(
-                'uploads/organization/{0}/{1}'.format(organization_name, result_dict.get('image_url')),
-                qualified=True
-            )
+    
+    image_url = result_dict.get('image_url', '')
+    organization_name = result_dict.get('name', None)
+    if organization_name and not image_url.startswith(('http', 'https')) and len(image_url) > 0:
+        result_dict['image_display_url'] = url_for_static(
+            'uploads/organization/{0}/{1}'.format(organization_name, result_dict.get('image_url')),
+            qualified=True
+        )
+        
     return result_dict
