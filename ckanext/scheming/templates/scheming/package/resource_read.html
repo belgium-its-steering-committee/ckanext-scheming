@@ -16,7 +16,8 @@
     <script>
       console.log("hello test");
       var data = "{{res | default('')}}";
-      console.log(data)
+      data = data.replace(/&#39;/g,"'");
+      console.log(data);
     </script>
     <div class="debug">{{res}}</div>
     <h2>{{ _('Additional Information') }}</h2>
