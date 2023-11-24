@@ -14,7 +14,11 @@
 {% block resource_additional_information_inner %}
   <div class="module-content">
     <script>
-      console.log({{res}});
+      for (var key in res){
+        if(res.hasOwnProperty(key)){
+          console.log(key + ": "+ res[key]);
+        }
+      }
     </script>
     <div class="debug">{{res}}</div>
     <h2>{{ _('Additional Information') }}</h2>
