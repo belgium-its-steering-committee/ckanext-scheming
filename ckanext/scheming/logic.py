@@ -113,6 +113,8 @@ def scheming_organization_show(context, data_dict):
                    'optional_comment',
                    'agreement_declaration_mmtis',
                    'organization_agreement_declaration_nap',
+                   'image_url',
+                   'image_display_url',
                    'proxy_pdf_url']
         
         for item in popList:
