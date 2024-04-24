@@ -1,5 +1,7 @@
 {% extends "package/resource_read.html" %}
 
+{% set Benap_Scheming_Res = c.resource %}
+
 {%- set exclude_fields = [
     'name',
     'description',
@@ -13,13 +15,6 @@
 
 {% block resource_additional_information_inner %}
   <div class="module-content">
-    <script>
-      console.log("hello test");
-      var data = "{{res | default('')}}";
-      data = data.replace(/&#39;/g,"'");
-      console.log(data);
-    </script>
-    <!--<div class="debug">{{res}}</div-->
     <h2>{{ _('Additional Information') }}</h2>
     <table class="table table-striped table-bordered table-condensed" data-module="table-toggle-more">
       <thead>
@@ -32,13 +27,19 @@
         {%- block resource_last_updated -%}
           <tr>
             <th scope="row">{{ _('Last updated') }}</th>
-            <td>{{ h.render_datetime(res.r) or h.render_datetime(res.revision_timestamp) or h.render_datetime(res.created) or _('unknown') }}</td>
+            <td>{{ h.render_datetime(Benap_Scheming_Res.r) 
+                    or h.render_datetime(Benap_Scheming_Res.revision_timestamp) 
+                    or h.render_datetime(Benap_Scheming_Res.created)
+                    or h.render_datetime(Benap_Scheming_Res.Created)
+                    or _('unknown') }}</td>
           </tr>
         {%- endblock -%}
         {%- block resource_created -%}
           <tr>
             <th scope="row">{{ _('Created') }}</th>
-            <td>{{ h.render_datetime(res.created) or _('unknown') }}</td>
+            <td>{{ h.render_datetime(Benap_Scheming_Res.created)
+                    or h.render_datetime(Benap_Scheming_Res.Created)
+                    or _('unknown') }}</td>
           </tr>
         {%- endblock -%}
         {%- block resource_license -%}
@@ -57,7 +58,7 @@
                 </th>
                 <td>
                   {%- snippet 'scheming/snippets/display_field.html',
-                      field=field, data=res, entity_type='dataset',
+                      field=field, data=Benap_Scheming_Res, entity_type='dataset',
                       object_type=dataset_type -%}
                 </td>
               </tr>
