@@ -121,6 +121,7 @@ def scheming_organization_show(context, data_dict):
 
     #END API restriction   
     
+
     image_url = result_dict.get('image_url', '')
     organization_name = result_dict.get('name', None)
     if organization_name and not image_url.startswith(('http', 'https')) and len(image_url) > 0:

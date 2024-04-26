@@ -401,7 +401,12 @@ class SchemingOrganizationsPlugin(p.SingletonPlugin, _GroupOrganizationMixin,
 
     def get_resource_uploader(self, data_dict):
         return None
-
+    
+    #IOrganizationController
+    def before_view(self, data_dict):
+        #print("\n\t DATADICT FROM SCHEMING::", str(data_dict), "\n")
+        return data_dict
+    
 
 #CUSTOM LOGIC
 
