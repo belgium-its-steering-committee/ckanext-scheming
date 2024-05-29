@@ -27,7 +27,7 @@
     {% elif f.field_name in ('agreement_declaration_mmtis', 'organization_agreement_declaration_nap', 'optional_comment') %}
         {% if h.check_access('organization_update', {'id': c.group_dict.id}) %}
             <dt>{{ h.scheming_language_text(f.label) }}:</dt>
-            <dd>{{ _('Signed') if c.group_dict[f.field_name] else ("&nbsp;"|safe) }}</dd>
+            <dd>{{ _('Signed') if c.group_dict[f.field_name] == ["Y"] else ("&nbsp;"|safe) }}</dd>
         {% endif %}
     {% else %}
         <dt>{{ h.scheming_language_text(f.label) }}:</dt>
