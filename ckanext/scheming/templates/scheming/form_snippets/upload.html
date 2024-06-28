@@ -48,6 +48,7 @@
 
 {% endmacro %}
 
+
 {% if (('image_url' in data) and (type=='file')) %}
     {% if ((request.path == '/organization/new') and (errors == {})) or (request.path != '/organization/new') %}
         {%- set is_upload = (data.image_url != '') -%}
@@ -57,6 +58,7 @@
 {% endif %}
 
 {% set astrix= '*' %}
+
 {{ image_upload(
     data,
     errors,
