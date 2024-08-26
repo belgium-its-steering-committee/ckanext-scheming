@@ -44,7 +44,6 @@
             {{ form.checkbox(field_clear, label=_('Clear Upload'), id='field-clear-upload', value='true', error='', classes=['control-full']) }}
         {% endif %}
     {% endif %}
-
     {% if is_upload_enabled %}</div>{% endif %}
 
 {% endmacro %}
@@ -58,6 +57,8 @@
     {% endif %}
 {% endif %}
 
+{% set astrix= '*' %}
+
 {{ image_upload(
     data,
     errors,
@@ -67,7 +68,7 @@
     is_upload_enabled=h.uploads_enabled(),
     is_url=data[field.field_name] and not is_upload,
     is_upload=is_upload,
-    upload_label=h.scheming_language_text(field.upload_label),
+    upload_label=astrix+" "+h.scheming_language_text(field.upload_label),
     url_label=h.scheming_language_text(field.label),
     placeholder=field.form_placeholder,
     previous_upload=previous_upload
