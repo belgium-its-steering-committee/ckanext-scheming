@@ -1,5 +1,13 @@
 {% import 'macros/form.html' as form %}
 
+<style>
+    label[for="field-image-upload"]::before {
+        content: "* ";
+        color: rgb(198,137,139);
+        font-weight: bold;
+    }
+</style>
+
 {% macro image_upload(
     data, 
     errors, 
@@ -68,7 +76,7 @@
     is_upload_enabled=h.uploads_enabled(),
     is_url=data[field.field_name] and not is_upload,
     is_upload=is_upload,
-    upload_label=astrix+" "+h.scheming_language_text(field.upload_label),
+    upload_label=h.scheming_language_text(field.upload_label),
     url_label=h.scheming_language_text(field.label),
     placeholder=field.form_placeholder,
     previous_upload=previous_upload
