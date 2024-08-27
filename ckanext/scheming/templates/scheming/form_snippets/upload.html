@@ -1,5 +1,13 @@
 {% import 'macros/form.html' as form %}
 
+<style>
+    label[for="field-image-upload"]::before {
+        content: "* ";
+        color: rgb(198,137,139);
+        font-weight: bold;
+    }
+</style>
+
 {% macro image_upload(
     data, 
     errors, 
@@ -44,7 +52,6 @@
             {{ form.checkbox(field_clear, label=_('Clear Upload'), id='field-clear-upload', value='true', error='', classes=['control-full']) }}
         {% endif %}
     {% endif %}
-
     {% if is_upload_enabled %}</div>{% endif %}
 
 {% endmacro %}
@@ -57,6 +64,8 @@
         {%- set is_upload = false -%}
     {% endif %}
 {% endif %}
+
+{% set astrix= '*' %}
 
 {{ image_upload(
     data,
