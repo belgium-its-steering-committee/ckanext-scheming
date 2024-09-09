@@ -1,4 +1,8 @@
+{%- if '{' in values -%}
+    {%- set values = h.convert_validation_list_to_JSON(values) -%}
+{%- else -%}
 {%- set values = data[field.field_name] -%}
+{%- endif -%}
 {%- set labels = [] -%}
 
 {%- for choice in h.scheming_field_choices(field) -%}
