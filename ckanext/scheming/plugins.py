@@ -12,7 +12,7 @@ from ckan.common import c
 from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.scheming.lib.uploader import OrganizationUploader
-from ckanext.benap.helpers import convert_validation_list_to_JSON
+from ckanext.benap.plugin import convert_validation_list_to_JSON
 
 try:
     from ckan.lib.helpers import helper_functions as core_helper_functions
@@ -117,7 +117,7 @@ class _SchemingMixin(object):
             'scheming_datastore_choices': helpers.scheming_datastore_choices,
             'scheming_display_json_value': helpers.scheming_display_json_value,
             'scheming_split_help_text_by_link': helpers.scheming_split_help_text_by_link,
-            'convert_validation_list_to_JSON': helpers.convert_validation_list_to_JSON
+            'convert_validation_list_to_JSON': convert_validation_list_to_JSON
         }
 
     def get_validators(self):
