@@ -1,6 +1,6 @@
 {%- set values = data[field.field_name] -%}
 {%- if '{' in values|string -%}
-    {%- set values = h.convert_validation_list_to_JSON(values) -%}
+    {%- set values = h.benap_convert_validation_list_to_JSON(values) -%}
 {%- endif -%}
 {%- set labels = [] -%}
 
