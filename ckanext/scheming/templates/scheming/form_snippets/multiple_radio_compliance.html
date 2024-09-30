@@ -48,8 +48,8 @@ fieldset.radios label input {
                     <input id="field-{{ field.field_name }}-{{ val }}"
                     type="radio"
                     name="{{ field.field_name }}"
-                    value="{{ val }}"
-                    {{"checked " if val in data[field.field_name] }} />
+                    value="{{ val }}"/>
+                    <!-- {{"checked " if val in data[field.field_name] }} /> -->
                     <div style="padding-left: 8px;">{{ label }}</div>
                 </div>
 
@@ -78,8 +78,8 @@ fieldset.radios label input {
                 <input id="field-{{ field.field_name }}-{{ val }}"
                     type="radio"
                     name="{{ field.field_name }}"
-                    value="{{ val }}"
-                    {{"checked " if val in data[field.field_name] }} />
+                    value="{{ val }}"/>
+                    <!-- {{"checked " if val in data[field.field_name] }} /> -->
                 {{ label }}
             </label>
         {%- endfor -%}
