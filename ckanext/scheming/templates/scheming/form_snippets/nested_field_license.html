@@ -1,6 +1,6 @@
 {% import 'macros/form.html' as form %}
 
-<fieldset style="border: 1px solid #ccc; padding: 20px; margin-bottom: 40px;">
+<fieldset id="rights-fieldset" style="border: 1px solid #ccc; padding: 20px; margin-bottom: 40px;">
     <legend style="font-weight: bold; margin-bottom: -5px;">
         <label style="display: inline-block; width: 120px;">
             <span style="color: rgb(198,137,139);">*</span> {{ h.scheming_language_text(field.label) }}</label>
@@ -36,19 +36,20 @@
 
 <script>
   $(document).ready(function() {
-    var $conditionsAccessField = $('#field-conditions_access');
+    var $conditionsUsageField = $('#field-conditions_usage');
     var $licenseTypeField = $('#field-license_type');
     var $starElement = $('#star');
-    var $valueDisplayDiv = $('#conditions-access-value');
     var $licenseFieldset = $('#license-fieldset');
 
-    function toggleFieldsetDisability($fieldset, disable) {
-      $fieldset.find('input, select, textarea').each(function() {
-        $(this).prop('disabled', disable);
-        if (disable) {
+    function toggleFieldsetDisability($fieldset, hide) {
+      if(hide){
+        $fieldset.hide();
+        $fieldset.find('input, select, textarea').each(function(){
           $(this).val('');
-        }
-      });
+        });
+      }else{
+        $fieldset.show();
+      }
     }
 
     function toggleRequiredFields(toggle) {
@@ -57,10 +58,8 @@
       // $('#field-license_text_translated-en', #field-license_text_translated-nl, #field-license_text_translated-de, #field-license_text_translated-fr').prop('required', toggle);
     }
 
-    $conditionsAccessField.on('change', function() {
+    $conditionsUsageField.on('change', function() {
       var selectedValue = $(this).val();
-      var test = $licenseTypeField.prop('required');
-      $valueDisplayDiv.text('Conditions access Value: ' + test);
       if (selectedValue === 'https://w3id.org/mobilitydcat-ap/conditions-for-access-and-usage/licence-provided') {
         $licenseTypeField.prop('required', true);
         $starElement.show();
@@ -72,7 +71,7 @@
       }
     });
 
-    if ($conditionsAccessField.val() === 'https://w3id.org/mobilitydcat-ap/conditions-for-access-and-usage/licence-provided') {
+    if ($conditionsUsageField.val() === 'https://w3id.org/mobilitydcat-ap/conditions-for-access-and-usage/licence-provided') {
       $licenseTypeField.prop('required', true);
       $starElement.show();
       toggleFieldsetDisability($licenseFieldset, false);
