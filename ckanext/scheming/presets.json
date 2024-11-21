@@ -151,10 +151,9 @@
       "preset_name": "hidden",
       "values": {
         "form_snippet": "hidden.html",
-        "display_snippet": "select.html",
+        "display_snippet": null,
         "validators": "scheming_choices"
       }
     }
-
   ]
 }
