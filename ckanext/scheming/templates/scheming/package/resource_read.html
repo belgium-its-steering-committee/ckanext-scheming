@@ -7,6 +7,7 @@
     'description',
     'url',
     'notes_translated',
+    'description_resource_translated',
     'agreement_declaration',
     'agreement_declaration_nap',
     'optional_comment'
@@ -15,6 +16,9 @@
 
 {% block resource_additional_information_inner %}
   <div class="module-content">
+      {%set description = Benap_Scheming_Res.get('description_resource_translated') %}
+      {{ h.render_markdown(h.scheming_language_text(description) or
+            h.benap_scheming_language_text_fallback(description, pkg['language'])) }}
     <h2>{{ _('Additional Information') }}</h2>
     <table class="table table-striped table-bordered table-condensed" data-module="table-toggle-more">
       <thead>
