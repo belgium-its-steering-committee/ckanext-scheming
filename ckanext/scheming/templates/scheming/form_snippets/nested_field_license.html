@@ -66,6 +66,7 @@
         toggleFieldsetDisability($licenseFieldset, false);
       } else {
         $licenseTypeField.prop('required', false);
+        toggleRequiredFields(false);
         $starElement.hide();
         toggleFieldsetDisability($licenseFieldset, true);
       }
@@ -77,6 +78,7 @@
       toggleFieldsetDisability($licenseFieldset, false);
     } else {
       $licenseTypeField.prop('required', false);
+      toggleRequiredFields(false);
       $starElement.hide();
       toggleFieldsetDisability($licenseFieldset, true);
     }
