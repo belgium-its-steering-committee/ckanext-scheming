@@ -42,6 +42,14 @@
                     or _('unknown') }}</td>
           </tr>
         {%- endblock -%}
+        <!-- TODO: Fix with license.html
+        {%- block resource_license -%}
+          <tr>
+            <th scope="row">{{ _('License') }}</th>
+            <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
+          </tr>
+        -->
+        {%- endblock -%}
         {%- block resource_fields -%}
           {%- for field in schema.resource_fields -%}
             {%- if field.field_name not in exclude_fields
