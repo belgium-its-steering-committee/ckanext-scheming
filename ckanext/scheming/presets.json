@@ -23,7 +23,7 @@
     {
       "preset_name": "tag_string_autocomplete",
       "values": {
-        "validators": "ignore_missing tag_string_convert",
+        "validators": "ignore_missing benap_tag_string_convert",
         "classes": ["control-full"],
         "form_attrs": {
           "data-module": "autocomplete",
