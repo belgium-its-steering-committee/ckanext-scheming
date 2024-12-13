@@ -80,14 +80,15 @@ def scheming_multiple_choice(field, schema):
             return
 
         value = data[key]
-        if value is not missing:
+        if value is not missing and value is not None:
             if isinstance(value, basestring):
                 value = [value]
             elif not isinstance(value, list):
                 errors[key].append(_('expecting list of strings'))
                 return
         else:
-            value = []
+            value = None
+            return
 
         choice_values = static_choice_values
         if not choice_values:
