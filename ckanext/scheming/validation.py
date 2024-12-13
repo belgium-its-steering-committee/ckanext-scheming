@@ -87,8 +87,11 @@ def scheming_multiple_choice(field, schema):
                 errors[key].append(_('expecting list of strings'))
                 return
         else:
-            value = None
-            return
+            if not field.get('required'):
+                value = None
+                return
+            else:
+                value = []
 
         choice_values = static_choice_values
         if not choice_values:
